@@ -274,14 +274,33 @@
     enableBtn.addEventListener('click', async () => {
       permStatus.textContent = 'Opening chooser...';
       try {
-        // Ask user to select a tab/window/screen to capture audio from
-        const stream = await navigator.mediaDevices.getDisplayMedia({ audio: true, video: false });
-        // Note: Chrome/Edge will show a dialog to choose what to share; pick the tab/window playing audio
+        // IMPORTANT: request video:true AND audio:true so browsers show the chooser
+        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+
+        // Chrome sometimes returns a stream without audio tracks (source didn't include audio).
+        // If no audio track present, stop stream and notify user.
+        const audioTracks = stream.getAudioTracks ? stream.getAudioTracks() : [];
+        if (!audioTracks.length) {
+          // stop returned tracks immediately
+          try { stream.getTracks().forEach(t=>t.stop()); } catch(e){}
+          permStatus.textContent = 'The chosen source had no audio track. Try choosing the tab playing audio or use Microphone instead.';
+          return;
+        }
+
+        // Note: success - start visualizer
         startFromStream(stream);
         permStatus.textContent = 'Visualizer enabled (capturing from chosen tab/window).';
       } catch (e) {
         console.warn('getDisplayMedia failed', e);
-        permStatus.textContent = 'Capture cancelled or blocked. You can try microphone instead.';
+
+        // Provide clearer, actionable messages depending on the error
+        if (e && e.name === 'NotAllowedError') {
+          permStatus.textContent = 'Permission denied. If you accidentally blocked it, check site permissions and try again.';
+        } else if (e && e.name === 'NotFoundError') {
+          permStatus.textContent = 'No suitable capture source was found. Try selecting a different tab/window or use Microphone.';
+        } else {
+          permStatus.textContent = 'Capture cancelled or blocked. You can try microphone instead.';
+        }
       }
     });
 
@@ -289,19 +308,32 @@
       permStatus.textContent = 'Requesting microphone...';
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+
+        // confirm audio tracks present
+        const audioTracks = stream.getAudioTracks ? stream.getAudioTracks() : [];
+        if (!audioTracks.length) {
+          try { stream.getTracks().forEach(t=>t.stop()); } catch(e){}
+          permStatus.textContent = 'No microphone found or audio unavailable.';
+          return;
+        }
+
         startFromStream(stream);
         permStatus.textContent = 'Visualizer enabled (microphone).';
       } catch (e) {
         console.warn('getUserMedia failed', e);
-        permStatus.textContent = 'Microphone access denied or unavailable.';
+        if (e && e.name === 'NotAllowedError') {
+          permStatus.textContent = 'Microphone permission denied. Please allow microphone access or try capturing a tab/window.';
+        } else {
+          permStatus.textContent = 'Microphone access denied or unavailable.';
+        }
       }
     });
 
     function startFromStream(stream){
-      // Keep reference so we can stop it later if desired
+      // keep ref so we can stop when needed
       capturingStream = stream;
 
-      // Hide the permission UI but leave a small message for turning off (could be extended)
+      // Hide the permission UI, your page will show aurora behind it
       permBox.style.display = 'none';
 
       if (!audioCtx || audioCtx.state === 'closed'){
