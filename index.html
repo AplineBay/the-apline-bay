@@ -116,7 +116,7 @@
 <header>
   <div class="header-inner">
     <div class="title">The Alpine Bay</div>
-    <input type="text" id="search" placeholder="Search games..." />
+    
   </div>
 </header>
 <div class="container">
@@ -128,7 +128,7 @@ fetch("games.json")
   .then(r => r.json())
   .then(data => {
     const container = document.getElementById('games');
-    const const search = document.getElementById('search');('search');
+    const search = document.getElementById('search');
 
     function render(list) {
       container.innerHTML = '';
@@ -159,18 +159,16 @@ fetch("games.json")
     render(data);
 
     search.addEventListener('input', () => {
-      const text = search.value.toLowerCase();
-      const filtered = data.filter(g => 
-        g.name.toLowerCase().includes(text) ||
-        g.slug.toLowerCase().includes(text) ||
-        g.description.toLowerCase().includes(text)
+      const t = search.value.toLowerCase();
+      const filtered = data.filter(g =>
+        g.name.toLowerCase().includes(t) ||
+        g.slug.toLowerCase().includes(t) ||
+        g.description.toLowerCase().includes(t)
       );
       render(filtered);
     });
-  });(card);
-    });
   });
+</script> });
 </script>
 </body>
 </html>
-
