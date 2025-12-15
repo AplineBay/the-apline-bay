@@ -59,6 +59,20 @@
       display: flex;
       justify-content: center;
       background: 
+        repeating-linear-gradient(
+          0deg,
+          rgba(25,45,75,0.03) 0px,
+          rgba(25,45,75,0.03) 1px,
+          transparent 1px,
+          transparent 2px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(25,45,75,0.03) 0px,
+          rgba(25,45,75,0.03) 1px,
+          transparent 1px,
+          transparent 2px
+        ),
         linear-gradient(180deg, 
           rgba(45,85,140,0.95) 0%, 
           rgba(30,65,115,0.97) 30%,
@@ -114,6 +128,20 @@
 
     .controls {
       background: 
+        repeating-linear-gradient(
+          45deg,
+          rgba(10,20,40,0.4) 0px,
+          rgba(10,20,40,0.4) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(10,20,40,0.4) 0px,
+          rgba(10,20,40,0.4) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
         linear-gradient(180deg, 
           rgba(55,95,150,0.9) 0%,
           rgba(40,75,125,0.92) 30%,
@@ -268,6 +296,20 @@
 
     .series-section {
       background: 
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          rgba(0,0,0,0.08) 0px,
+          rgba(0,0,0,0.08) 1px,
+          transparent 1px,
+          transparent 4px
+        ),
         linear-gradient(180deg, 
           rgba(45,80,130,0.85) 0%,
           rgba(35,65,110,0.88) 30%,
@@ -317,6 +359,15 @@
 
     .series-card {
       background: 
+        radial-gradient(ellipse at top left, rgba(255,255,255,0.03), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(0,0,0,0.15), transparent 50%),
+        repeating-linear-gradient(
+          120deg,
+          transparent 0px,
+          transparent 2px,
+          rgba(255,255,255,0.01) 2px,
+          rgba(255,255,255,0.01) 4px
+        ),
         linear-gradient(180deg, 
           rgba(50,90,145,0.85) 0%,
           rgba(38,72,120,0.88) 30%,
@@ -381,11 +432,20 @@
       font-size: 0.95rem;
       color: #a8d4ff;
       font-weight: 600;
-      background: rgba(20,40,70,0.6);
+      background: 
+        repeating-linear-gradient(
+          45deg,
+          rgba(10,20,35,0.6) 0px,
+          rgba(10,20,35,0.6) 2px,
+          rgba(15,25,40,0.6) 2px,
+          rgba(15,25,40,0.6) 4px
+        );
       padding: 6px 14px;
       border-radius: 20px;
       border: 1px solid rgba(100,160,230,0.3);
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+      box-shadow: 
+        inset 0 2px 4px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,255,255,0.1);
     }
 
     .series-card-arrow {
@@ -414,6 +474,14 @@
 
     .game-card {
       background: 
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.04), transparent 40%),
+        repeating-linear-gradient(
+          135deg,
+          rgba(0,0,0,0.02) 0px,
+          rgba(0,0,0,0.02) 2px,
+          transparent 2px,
+          transparent 4px
+        ),
         linear-gradient(180deg, 
           rgba(50,90,145,0.85) 0%,
           rgba(38,72,120,0.88) 30%,
@@ -486,6 +554,13 @@
 
     .version {
       background: 
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.02) 0px,
+          rgba(255,255,255,0.02) 1px,
+          rgba(0,0,0,0.03) 1px,
+          rgba(0,0,0,0.03) 2px
+        ),
         linear-gradient(180deg, 
           rgba(60,105,165,0.9) 0%,
           rgba(48,88,140,0.92) 30%,
