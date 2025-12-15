@@ -958,25 +958,13 @@
     // Sort series alphabetically
     const sortedSeries = Object.keys(groups).sort();
 
-    // Render each series in its own section
+    // Render each series as a collapsible card
     sortedSeries.forEach(seriesName=>{
-      const section = document.createElement('div');
-      section.className = 'series-section';
-      
-      const h = document.createElement('h2');
-      h.textContent = seriesName === 'other' ? 'Other Games' : seriesName;
-      section.appendChild(h);
-      
-      // Create collapsible series cards
-      groups[seriesName].forEach(game=>{
-        renderSeriesCard(game, section);
-      });
-      
-      container.appendChild(section);
+      renderSeriesCard(seriesName, groups[seriesName], container);
     });
   }
 
-  function renderSeriesCard(game, parent){
+  function renderSeriesCard(seriesName, games, parent){
     const card = document.createElement('div');
     card.className = 'series-card';
     
@@ -985,7 +973,7 @@
     
     const title = document.createElement('h3');
     title.className = 'series-card-title';
-    title.textContent = game.name;
+    title.textContent = seriesName === 'other' ? 'Other Games' : seriesName;
     
     const rightSide = document.createElement('div');
     rightSide.style.display = 'flex';
@@ -994,7 +982,7 @@
     
     const count = document.createElement('span');
     count.className = 'series-card-count';
-    count.textContent = `${game.versions ? game.versions.length : 0} version${game.versions && game.versions.length !== 1 ? 's' : ''}`;
+    count.textContent = `${games.length} game${games.length !== 1 ? 's' : ''}`;
     
     const arrow = document.createElement('span');
     arrow.className = 'series-card-arrow';
@@ -1007,82 +995,100 @@
     header.appendChild(rightSide);
     card.appendChild(header);
     
-    // Create collapsible content
+    // Create collapsible content for games list
     const gamesContainer = document.createElement('div');
     gamesContainer.className = 'series-card-games';
     
-    // Create game item
-    const gameItem = document.createElement('div');
-    gameItem.className = 'game-item';
-    
-    const gameHeader = document.createElement('div');
-    gameHeader.className = 'game-item-header';
-    
-    const gameTitle = document.createElement('div');
-    gameTitle.className = 'game-item-title';
-    gameTitle.textContent = 'Game Details';
-    
-    const gameArrow = document.createElement('span');
-    gameArrow.className = 'game-item-arrow';
-    gameArrow.textContent = '▶';
-    
-    gameHeader.appendChild(gameTitle);
-    gameHeader.appendChild(gameArrow);
-    gameItem.appendChild(gameHeader);
-    
-    // Game content (description + versions)
-    const gameContent = document.createElement('div');
-    gameContent.className = 'game-item-content';
-    
-    if (game.description) {
-      const desc = document.createElement('p');
-      desc.className = 'game-item-description';
-      desc.textContent = game.description;
-      gameContent.appendChild(desc);
-    }
-    
-    if (game.versions && game.versions.length) {
-      const versionsContainer = document.createElement('div');
-      versionsContainer.className = 'versions-container';
+    // Add each game as a collapsible item
+    games.forEach(game => {
+      const gameItem = document.createElement('div');
+      gameItem.className = 'game-item';
       
-      game.versions.forEach(v => {
-        const ver = document.createElement('div');
-        ver.className = 'version';
+      const gameHeader = document.createElement('div');
+      gameHeader.className = 'game-item-header';
+      
+      const gameTitle = document.createElement('div');
+      gameTitle.className = 'game-item-title';
+      gameTitle.textContent = game.name;
+      
+      const gameRight = document.createElement('div');
+      gameRight.style.display = 'flex';
+      gameRight.style.alignItems = 'center';
+      gameRight.style.gap = '10px';
+      
+      const versionCount = document.createElement('span');
+      versionCount.className = 'series-card-count';
+      versionCount.style.fontSize = '0.85rem';
+      versionCount.style.padding = '4px 10px';
+      versionCount.textContent = `${game.versions ? game.versions.length : 0} version${game.versions && game.versions.length !== 1 ? 's' : ''}`;
+      
+      const gameArrow = document.createElement('span');
+      gameArrow.className = 'game-item-arrow';
+      gameArrow.textContent = '▶';
+      
+      gameRight.appendChild(versionCount);
+      gameRight.appendChild(gameArrow);
+      
+      gameHeader.appendChild(gameTitle);
+      gameHeader.appendChild(gameRight);
+      gameItem.appendChild(gameHeader);
+      
+      // Game content (description + versions)
+      const gameContent = document.createElement('div');
+      gameContent.className = 'game-item-content';
+      
+      if (game.description) {
+        const desc = document.createElement('p');
+        desc.className = 'game-item-description';
+        desc.textContent = game.description;
+        gameContent.appendChild(desc);
+      }
+      
+      if (game.versions && game.versions.length) {
+        const versionsContainer = document.createElement('div');
+        versionsContainer.className = 'versions-container';
         
-        const platform = document.createElement('strong');
-        platform.textContent = v.platform;
-        ver.appendChild(platform);
-        
-        const link = document.createElement('a');
-        link.href = v.url;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.textContent = 'Download';
-        link.addEventListener('click', (e) => {
-          e.stopPropagation();
+        game.versions.forEach(v => {
+          const ver = document.createElement('div');
+          ver.className = 'version';
+          
+          const platform = document.createElement('strong');
+          platform.textContent = v.platform;
+          ver.appendChild(platform);
+          
+          const link = document.createElement('a');
+          link.href = v.url;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = 'Download';
+          link.addEventListener('click', (e) => {
+            e.stopPropagation();
+          });
+          ver.appendChild(link);
+          
+          versionsContainer.appendChild(ver);
         });
-        ver.appendChild(link);
         
-        versionsContainer.appendChild(ver);
+        gameContent.appendChild(versionsContainer);
+      }
+      
+      gameItem.appendChild(gameContent);
+      
+      // Toggle game details expand/collapse
+      gameHeader.addEventListener('click', (e) => {
+        e.stopPropagation();
+        gameItem.classList.toggle('expanded');
       });
       
-      gameContent.appendChild(versionsContainer);
-    }
+      gamesContainer.appendChild(gameItem);
+    });
     
-    gameItem.appendChild(gameContent);
-    gamesContainer.appendChild(gameItem);
     card.appendChild(gamesContainer);
     
     // Toggle series expand/collapse on header click
     header.addEventListener('click', (e) => {
       e.stopPropagation();
       card.classList.toggle('expanded');
-    });
-    
-    // Toggle game details expand/collapse
-    gameHeader.addEventListener('click', (e) => {
-      e.stopPropagation();
-      gameItem.classList.toggle('expanded');
     });
     
     parent.appendChild(card);
