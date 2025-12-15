@@ -28,26 +28,6 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Aurora canvas sits behind everything */
-    #aurora {
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -2; /* behind all content */
-      pointer-events: none;
-    }
-
-    /* a subtle dark overlay so content reads well,
-       but still allows aurora to show through the header (option C) */
-    .site-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(4,8,15,0.18), rgba(4,8,15,0.28));
-      z-index: -1;
-      pointer-events: none;
-    }
-
     header {
       width: 100%;
       padding: 26px 20px;
@@ -56,7 +36,7 @@
       justify-content: center;
       align-items: center;
       backdrop-filter: blur(8px);
-      background: rgba(10,18,32,0.62); /* dimmed so aurora is visible but header readable */
+      background: rgba(10,18,32,0.62);
       border-bottom: 1px solid rgba(255,255,255,0.06);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 30px rgba(0,0,0,0.55);
       z-index: 10;
@@ -86,7 +66,7 @@
       margin: 36px auto;
       padding: 24px;
       position: relative;
-      z-index: 2; /* above aurora */
+      z-index: 2;
       box-sizing: border-box;
     }
 
@@ -104,10 +84,6 @@
       width:100%;
       max-width:420px;
     }
-    #search:focus{
-      background: rgba(50,80,140,0.55);
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.6), 0 0 12px rgba(120,160,255,0.18);
-    }
 
     .game-card {
       background: linear-gradient(145deg, rgba(10,25,50,0.65), rgba(5,10,20,0.75));
@@ -121,12 +97,6 @@
       backdrop-filter: blur(18px);
       transition: transform .22s ease, box-shadow .22s ease;
     }
-    .game-card:hover{
-      transform: translateY(-6px);
-      box-shadow:
-        inset 0 2px 8px rgba(255,255,255,0.06),
-        0 18px 40px rgba(0,0,0,0.68);
-    }
 
     .game-card h3{
       margin:0 0 8px 0;
@@ -134,7 +104,6 @@
       font-weight:600;
       text-shadow:0 0 6px rgba(100,160,255,0.25);
     }
-    .game-card p{ margin:0 0 6px 0; color: rgba(230,240,255,0.90); }
 
     .version {
       background: linear-gradient(140deg, rgba(22,36,64,0.66), rgba(12,18,36,0.78));
@@ -150,385 +119,41 @@
       color: #9fc6ff;
       font-weight: 600;
       text-decoration: none;
-      text-shadow: 0 0 6px rgba(120,160,255,0.18);
-    }
-    a:hover { color: #d6e7ff; }
-
-    /* Permission box for enabling visualizer */
-    #audio-permission-box {
-      margin: 18px auto;
-      padding: 14px 16px;
-      max-width: 520px;
-      background: rgba(14,24,40,0.55);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.5);
-      text-align: center;
-      z-index: 5;
-      color: #e6f0ff;
-    }
-    #audio-permission-box p{
-      margin:0 0 8px 0;
-      font-size: 0.98rem;
-      color: #d7e8ff;
-      opacity: 0.95;
-    }
-    .perm-row{ display:flex; gap:10px; justify-content:center; margin-top:8px; flex-wrap:wrap; }
-    .perm-btn {
-      padding: 10px 14px;
-      border-radius: 9px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-      background: linear-gradient(180deg, rgba(70,110,255,0.18), rgba(70,110,255,0.28));
-      color: #eaf3ff;
-      box-shadow: 0 6px 18px rgba(30,60,120,0.18);
-      transition: transform .14s ease, filter .14s;
-    }
-    .perm-btn:hover { transform: translateY(-2px); filter: brightness(1.06); }
-
-    /* small helper messages */
-    .msg {
-      font-size: 0.9rem;
-      color: rgba(220,235,255,0.85);
-      opacity: 0.9;
-      margin-top: 8px;
-    }
-
-    /* small responsive tweaks */
-    @media (max-width:600px){
-      .header-inner{ padding:0 12px; }
-      .title{ font-size:1.2rem; }
-      .container{ margin: 18px 12px; padding:18px; }
-      #audio-permission-box{ margin:12px 12px; padding:12px; }
     }
   </style>
 </head>
+
 <body>
-  <!-- Aurora canvas -->
-  <canvas id="aurora"></canvas>
-  <!-- gentle overlay so aurora is visible but content still readable -->
-  <div class="site-overlay" aria-hidden="true"></div>
 
   <header>
     <div class="header-inner">
       <div class="title">The Alpine Bay</div>
-      <!-- we intentionally left the header minimal; search sits below in content -->
     </div>
   </header>
 
-  <!-- Permission box (visible until user enables visualizer) -->
-  <div class="container" id="top-container">
-    <div id="audio-permission-box" role="region" aria-label="Enable audio visualizer">
-      <p><strong>We only need this if you want the audio wave feature.</strong></p>
-      <div class="msg">If you enable it, choose the tab/window that's playing audio. The site will then visualize that audio in the background.</div>
-
-      <div class="perm-row">
-        <button id="enable-audio" class="perm-btn">Enable Visualizer (Capture Tab/Window)</button>
-        <button id="enable-mic" class="perm-btn">Use Microphone Instead</button>
-      </div>
-
-      <div id="perm-status" class="msg" style="margin-top:10px;"></div>
-    </div>
-
-    <!-- Search + games -->
-    <input type="text" id="search" placeholder="Search games..." aria-label="Search games" />
+  <div class="container">
+    <input type="text" id="search" placeholder="Search games..." />
     <div id="games"></div>
   </div>
 
   <script>
-  /* -------------------------
-     Aurora visualizer integrated with your site.
-     Captures either:
-     - screen/tab/window audio via getDisplayMedia (recommended for other-tab audio)
-     - or microphone input as a fallback
-     ------------------------- */
-
-  (function(){
-    const canvas = document.getElementById('aurora');
-    const ctx = canvas.getContext('2d', { alpha: true });
-    let W = canvas.width = window.innerWidth;
-    let H = canvas.height = window.innerHeight;
-
-    function resize(){
-      W = canvas.width = window.innerWidth;
-      H = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize, { passive:true });
-
-    // WebAudio variables
-    let audioCtx = null;
-    let analyser = null;
-    let dataArray = null;
-    let sourceNode = null;
-    let animationId = null;
-    let capturingStream = null;
-
-    // UI elements
-    const enableBtn = document.getElementById('enable-audio');
-    const micBtn = document.getElementById('enable-mic');
-    const permBox = document.getElementById('audio-permission-box');
-    const permStatus = document.getElementById('perm-status');
-
-    enableBtn.addEventListener('click', async () => {
-      permStatus.textContent = 'Opening chooser...';
-      try {
-        // IMPORTANT: request video:true AND audio:true so browsers show the chooser
-        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
-
-        // Chrome sometimes returns a stream without audio tracks (source didn't include audio).
-        // If no audio track present, stop stream and notify user.
-        const audioTracks = stream.getAudioTracks ? stream.getAudioTracks() : [];
-        if (!audioTracks.length) {
-          // stop returned tracks immediately
-          try { stream.getTracks().forEach(t=>t.stop()); } catch(e){}
-          permStatus.textContent = 'The chosen source had no audio track. Try choosing the tab playing audio or use Microphone instead.';
-          return;
-        }
-
-        // Note: success - start visualizer
-        startFromStream(stream);
-        permStatus.textContent = 'Visualizer enabled (capturing from chosen tab/window).';
-      } catch (e) {
-        console.warn('getDisplayMedia failed', e);
-
-        // Provide clearer, actionable messages depending on the error
-        if (e && e.name === 'NotAllowedError') {
-          permStatus.textContent = 'Permission denied. If you accidentally blocked it, check site permissions and try again.';
-        } else if (e && e.name === 'NotFoundError') {
-          permStatus.textContent = 'No suitable capture source was found. Try selecting a different tab/window or use Microphone.';
-        } else {
-          permStatus.textContent = 'Capture cancelled or blocked. You can try microphone instead.';
-        }
-      }
-    });
-
-    micBtn.addEventListener('click', async () => {
-      permStatus.textContent = 'Requesting microphone...';
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-
-        // confirm audio tracks present
-        const audioTracks = stream.getAudioTracks ? stream.getAudioTracks() : [];
-        if (!audioTracks.length) {
-          try { stream.getTracks().forEach(t=>t.stop()); } catch(e){}
-          permStatus.textContent = 'No microphone found or audio unavailable.';
-          return;
-        }
-
-        startFromStream(stream);
-        permStatus.textContent = 'Visualizer enabled (microphone).';
-      } catch (e) {
-        console.warn('getUserMedia failed', e);
-        if (e && e.name === 'NotAllowedError') {
-          permStatus.textContent = 'Microphone permission denied. Please allow microphone access or try capturing a tab/window.';
-        } else {
-          permStatus.textContent = 'Microphone access denied or unavailable.';
-        }
-      }
-    });
-
-    function startFromStream(stream){
-      // keep ref so we can stop when needed
-      capturingStream = stream;
-
-      // Hide the permission UI, your page will show aurora behind it
-      permBox.style.display = 'none';
-
-      if (!audioCtx || audioCtx.state === 'closed'){
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-
-      // Stop previous source if any
-      if (sourceNode) {
-        try { sourceNode.disconnect(); } catch(e){}
-        sourceNode = null;
-      }
-
-      sourceNode = audioCtx.createMediaStreamSource(stream);
-
-      analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 2048;
-      analyser.smoothingTimeConstant = 0.6; // smoother visuals
-      const bufferLength = analyser.frequencyBinCount;
-      dataArray = new Uint8Array(bufferLength);
-
-      // connect
-      sourceNode.connect(analyser);
-
-      // resume context if suspended
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume().catch(()=>{});
-      }
-
-      // start drawing
-      if (!animationId) draw();
-    }
-
-    function draw(){
-      animationId = requestAnimationFrame(draw);
-
-      if (!analyser || !dataArray) {
-        // gentle idle animation (subtle drifting bands) when no audio active
-        drawIdle();
-        return;
-      }
-
-      analyser.getByteFrequencyData(dataArray);
-
-      // create multilevel aurora look by drawing several layered sin-waves
-      ctx.clearRect(0, 0, W, H);
-
-      // parameters for layers
-      const layers = [
-        { amp: 0.28, freq: 0.8, blur: 40, stops: [[0, 'rgba(90,150,255,0.12)'], [0.6, 'rgba(140,90,255,0.10)']] },
-        { amp: 0.18, freq: 1.2, blur: 28, stops: [[0, 'rgba(120,200,255,0.10)'], [0.9, 'rgba(200,120,255,0.06)']] },
-        { amp: 0.10, freq: 2.1, blur: 18, stops: [[0, 'rgba(160,220,255,0.06)'], [1.0, 'rgba(220,160,255,0.04)']] }
-      ];
-
-      // compute an "energy" value from low-frequency bands to influence amplitude
-      let lowSum = 0;
-      const lowCut = Math.max(3, Math.floor(dataArray.length * 0.06)); // lower ~6%
-      for (let i=0;i<lowCut;i++) lowSum += dataArray[i];
-      const bass = (lowSum / (lowCut * 255)) || 0;
-
-      // overall horizontal phase shift to create motion
-      const time = Date.now() * 0.0006;
-
-      layers.forEach((layer, li) => {
-        // create an offscreen canvas for blur effect if desired
-        ctx.save();
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.filter = `blur(${layer.blur}px)`;
-        const grad = ctx.createLinearGradient(0, H*0.3, W, H*0.7);
-        // add color stops
-        layer.stops.forEach(s=> grad.addColorStop(s[0], s[1]));
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-
-        const points = 160; // resolution of wave
-        const slice = W / (points - 1);
-        for (let i=0;i<points;i++){
-          const x = i * slice;
-          // pick a band in the frequency data to modulate the y
-          const idx = Math.floor((i/points) * dataArray.length);
-          const v = dataArray[idx] / 255; // 0..1
-          // wave formula: base sine + modulation from audio + bass-driven amplitude
-          const base = Math.sin((i * layer.freq * 0.25) - time* (0.6 + li*0.3));
-          const audioMod = (v * (0.5 + li*0.8));
-          const y = H * (0.55 - (layer.amp + bass*0.45) * base - audioMod * 0.08 - li*0.02);
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        }
-
-        // close down to bottom
-        ctx.lineTo(W, H);
-        ctx.lineTo(0, H);
-        ctx.closePath();
-        ctx.globalAlpha = 0.95;
-        ctx.fill();
-        ctx.restore();
-      });
-
-      // optional subtle vignette for depth
-      ctx.save();
-      const vign = ctx.createRadialGradient(W*0.5, H*0.3, H*0.15, W*0.5, H*0.5, Math.max(W,H));
-      vign.addColorStop(0, 'rgba(0,0,0,0.0)');
-      vign.addColorStop(1, 'rgba(0,0,0,0.32)');
-      ctx.fillStyle = vign;
-      ctx.fillRect(0,0,W,H);
-      ctx.restore();
-    }
-
-    // gentle idle animation when no analyser yet
-    let idlePhase = 0;
-    function drawIdle(){
-      idlePhase += 0.002;
-      ctx.clearRect(0,0,W,H);
-
-      // slow faint bands
-      const grad = ctx.createLinearGradient(0, H*0.35, W, H*0.7);
-      grad.addColorStop(0, 'rgba(80,120,200,0.06)');
-      grad.addColorStop(1, 'rgba(150,90,200,0.04)');
-      ctx.fillStyle = grad;
-
-      ctx.beginPath();
-      const points = 120;
-      const slice = W / (points-1);
-      for (let i=0;i<points;i++){
-        const x = i*slice;
-        const base = Math.sin((i*0.03) - idlePhase*1.2);
-        const y = H*(0.60 - 0.04*base - 0.02*Math.sin(i*0.01 + idlePhase*0.9));
-        if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-      }
-      ctx.lineTo(W,H);
-      ctx.lineTo(0,H);
-      ctx.closePath();
-      ctx.fill();
-
-      // subtle overlay
-      ctx.save();
-      ctx.globalAlpha = 0.9;
-      const vign = ctx.createRadialGradient(W*0.5, H*0.3, H*0.1, W*0.5, H*0.5, Math.max(W,H));
-      vign.addColorStop(0, 'rgba(0,0,0,0)');
-      vign.addColorStop(1, 'rgba(0,0,0,0.28)');
-      ctx.fillStyle = vign;
-      ctx.fillRect(0,0,W,H);
-      ctx.restore();
-    }
-
-    // start an animation loop immediately for idle effect
-    (function startIdleLoop(){
-      if (!animationId) draw();
-    })();
-
-    // cleanup if page unloads
-    window.addEventListener('pagehide', () => {
-      try {
-        if (capturingStream) {
-          const tracks = capturingStream.getTracks();
-          tracks.forEach(t=>t.stop());
-        }
-      } catch(e){}
-      if (audioCtx && audioCtx.state !== 'closed') {
-        try { audioCtx.close(); } catch(e){}
-      }
-      if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
-    });
-
-  })();
-  </script>
-
-  <script>
-  /* -------------------------
-     Games loader + search (keeps external games.json as you requested)
-     Added error handling so user sees message if games.json fails to load.
-     ------------------------- */
   (function(){
     const container = document.getElementById('games');
     const search = document.getElementById('search');
 
     function showMessage(msg){
-      container.innerHTML = `<div class="game-card"><p style="opacity:0.9">${msg}</p></div>`;
+      container.innerHTML = `<div class="game-card"><p>${msg}</p></div>`;
     }
 
-    // show loading initially
     showMessage('Loading games...');
 
     fetch("games.json")
-      .then(r => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
-        return r.json();
-      })
+      .then(r => r.json())
       .then(data => {
-        if (!Array.isArray(data)) {
-          throw new Error('Invalid JSON format: expected an array of games at root.');
-        }
 
         function render(list) {
           container.innerHTML = '';
-          if (!list || list.length === 0){
+          if (!list.length){
             container.innerHTML = '<div class="game-card"><p>No games found.</p></div>';
             return;
           }
@@ -537,22 +162,17 @@
             const card = document.createElement('div');
             card.className = 'game-card';
 
-            const desc = game.description ? `<p>${escapeHtml(game.description)}</p>` : '';
             card.innerHTML = `
-              <h3>${escapeHtml(game.name || 'Untitled')}</h3>
-              ${desc}
+              <h3>${game.name}</h3>
+              <p>${game.description || ''}</p>
             `;
 
             (game.versions || []).forEach(v => {
               const ver = document.createElement('div');
               ver.className = 'version';
-              // tags safe join if array
-              const tags = Array.isArray(v.tags) ? v.tags.map(t => escapeHtml(t)).join(', ') : '';
-              const url = v.url ? escapeHtml(v.url) : '#';
               ver.innerHTML = `
-                <strong>${escapeHtml(v.platform || 'Unknown')}</strong><br>
-                <a href="${url}" target="_blank" rel="noopener noreferrer">Download</a><br>
-                <small>Tags: ${tags}</small>
+                <strong>${v.platform}</strong><br>
+                <a href="${v.url}" target="_blank">Download</a>
               `;
               card.appendChild(ver);
             });
@@ -561,34 +181,22 @@
           });
         }
 
-        // implement search
         render(data);
 
         search.addEventListener('input', () => {
-          const t = search.value.trim().toLowerCase();
-          if (!t) return render(data);
-          const filtered = data.filter(g =>
-            (g.name && g.name.toLowerCase().includes(t)) ||
-            (g.slug && g.slug.toLowerCase().includes(t)) ||
-            (g.description && g.description.toLowerCase().includes(t)) ||
-            (g.versions && g.versions.some(v => (v.platform && v.platform.toLowerCase().includes(t)) || (Array.isArray(v.tags) && v.tags.join(' ').toLowerCase().includes(t))))
-          );
-          render(filtered);
+          const t = search.value.toLowerCase();
+          render(data.filter(g =>
+            g.name.toLowerCase().includes(t) ||
+            (g.description && g.description.toLowerCase().includes(t))
+          ));
         });
 
       })
-      .catch(err => {
-        console.error('Failed to load games.json', err);
-        showMessage('Failed to load games.json. Make sure games.json is placed in the same folder as this page and is valid JSON.');
+      .catch(() => {
+        showMessage('Failed to load games.json');
       });
-
-    // tiny sanitizer for text nodes
-    function escapeHtml(s){
-      if (!s) return '';
-      return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-    }
-
   })();
   </script>
+
 </body>
 </html>
