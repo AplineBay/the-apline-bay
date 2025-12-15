@@ -315,6 +315,103 @@
       z-index: 1;
     }
 
+    .series-card {
+      background: 
+        linear-gradient(180deg, 
+          rgba(50,90,145,0.85) 0%,
+          rgba(38,72,120,0.88) 30%,
+          rgba(30,60,105,0.92) 70%,
+          rgba(25,50,90,0.95) 100%);
+      margin: 24px 0;
+      padding: 26px 30px;
+      border-radius: 18px;
+      border: 2px solid rgba(90,150,220,0.4);
+      box-shadow: 
+        0 8px 28px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.35),
+        inset 0 2px 6px rgba(255,255,255,0.18),
+        inset 0 -2px 4px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .series-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.22), transparent);
+      border-radius: 18px 18px 0 0;
+      pointer-events: none;
+    }
+
+    .series-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 12px 36px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 2px 8px rgba(255,255,255,0.2),
+        0 0 25px rgba(74,158,255,0.25);
+    }
+
+    .series-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .series-card-title {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color:#fff;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.35),
+        0 2px 3px rgba(0,0,0,0.5),
+        0 0 15px rgba(150,200,255,0.3);
+      margin: 0;
+      text-transform: capitalize;
+    }
+
+    .series-card-count {
+      font-size: 0.95rem;
+      color: #a8d4ff;
+      font-weight: 600;
+      background: rgba(20,40,70,0.6);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(100,160,230,0.3);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .series-card-arrow {
+      font-size: 1.3rem;
+      color: #a8d4ff;
+      transition: transform 0.3s;
+      margin-left: 12px;
+    }
+
+    .series-card.expanded .series-card-arrow {
+      transform: rotate(90deg);
+    }
+
+    .series-card-games {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      position: relative;
+      z-index: 1;
+    }
+
+    .series-card.expanded .series-card-games {
+      max-height: 10000px;
+      margin-top: 24px;
+    }
+
     .game-card {
       background: 
         linear-gradient(180deg, 
@@ -585,12 +682,93 @@
       h.textContent = seriesName === 'other' ? 'Other Games' : seriesName;
       section.appendChild(h);
       
+      // Create collapsible series cards
       groups[seriesName].forEach(game=>{
-        renderGame(game, section);
+        renderSeriesCard(game, section);
       });
       
       container.appendChild(section);
     });
+  }
+
+  function renderSeriesCard(game, parent){
+    const card = document.createElement('div');
+    card.className = 'series-card';
+    
+    const header = document.createElement('div');
+    header.className = 'series-card-header';
+    
+    const title = document.createElement('h3');
+    title.className = 'series-card-title';
+    title.textContent = game.name;
+    
+    const rightSide = document.createElement('div');
+    rightSide.style.display = 'flex';
+    rightSide.style.alignItems = 'center';
+    rightSide.style.gap = '12px';
+    
+    const count = document.createElement('span');
+    count.className = 'series-card-count';
+    count.textContent = `${game.versions ? game.versions.length : 0} version${game.versions && game.versions.length !== 1 ? 's' : ''}`;
+    
+    const arrow = document.createElement('span');
+    arrow.className = 'series-card-arrow';
+    arrow.textContent = '▶';
+    
+    rightSide.appendChild(count);
+    rightSide.appendChild(arrow);
+    
+    header.appendChild(title);
+    header.appendChild(rightSide);
+    card.appendChild(header);
+    
+    // Create collapsible content
+    const gamesContainer = document.createElement('div');
+    gamesContainer.className = 'series-card-games';
+    
+    if (game.description) {
+      const desc = document.createElement('p');
+      desc.textContent = game.description;
+      desc.style.margin = '16px 0 20px 0';
+      desc.style.lineHeight = '1.7';
+      desc.style.color = '#ddeeff';
+      desc.style.textShadow = '0 1px 2px rgba(0,0,0,0.4)';
+      gamesContainer.appendChild(desc);
+    }
+    
+    if (game.versions && game.versions.length) {
+      const versionsContainer = document.createElement('div');
+      versionsContainer.className = 'versions-container';
+      
+      game.versions.forEach(v => {
+        const ver = document.createElement('div');
+        ver.className = 'version';
+        
+        const platform = document.createElement('strong');
+        platform.textContent = v.platform;
+        ver.appendChild(platform);
+        
+        const link = document.createElement('a');
+        link.href = v.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Download';
+        ver.appendChild(link);
+        
+        versionsContainer.appendChild(ver);
+      });
+      
+      gamesContainer.appendChild(versionsContainer);
+    }
+    
+    card.appendChild(gamesContainer);
+    
+    // Toggle expand/collapse on click
+    header.addEventListener('click', () => {
+      card.classList.toggle('expanded');
+    });
+    
+    parent.appendChild(card);
   }
 
   function renderGame(game, parent){
