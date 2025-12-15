@@ -5,87 +5,210 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Alpine Bay</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg-start: #020710;
-      --bg-mid: #061122;
-      --text: #eef3ff;
-      --muted: rgba(220,233,255,0.12);
-      --glass: rgba(20,40,80,0.55);
-      --glass-strong: rgba(10,20,40,0.65);
+      --bg-start: #020a15;
+      --bg-mid: #030f1f;
+      --bg-end: #010610;
+      --text: #e8f4ff;
+      --accent: #4a9eff;
+      --glass-shine: rgba(255,255,255,0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    @keyframes aurora {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     html,body{
       height:100%;
       margin:0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(180deg, var(--bg-start), var(--bg-mid) 60%, var(--bg-start));
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: 
+        radial-gradient(ellipse at 20% 30%, rgba(15,35,70,0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(10,30,65,0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(8,25,55,0.4) 0%, transparent 60%),
+        linear-gradient(180deg, 
+          #020a15 0%, 
+          #030f1f 20%,
+          #041528 40%, 
+          #030f1f 60%,
+          #02080f 80%,
+          #010610 100%);
+      background-size: 200% 200%, 200% 200%, 200% 200%, 100% 100%;
+      animation: aurora 20s ease infinite;
       color: var(--text);
+      overflow-x: hidden;
     }
 
     header {
-      padding: 26px 20px;
+      padding: 36px 28px;
       display: flex;
       justify-content: center;
-      background: rgba(10,18,32,0.62);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+      background: 
+        linear-gradient(180deg, 
+          rgba(45,85,140,0.95) 0%, 
+          rgba(30,65,115,0.97) 30%,
+          rgba(20,50,95,0.98) 70%,
+          rgba(15,40,80,0.99) 100%);
+      border-bottom: 2px solid rgba(100,160,230,0.4);
+      box-shadow: 
+        0 8px 32px rgba(0,0,0,0.8),
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        inset 0 2px 4px rgba(255,255,255,0.15),
+        inset 0 -2px 4px rgba(0,0,0,0.4);
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent);
+      pointer-events: none;
     }
 
     .header-inner {
       max-width: 1200px;
       width: 100%;
       display:flex;
-      justify-content:space-between;
+      justify-content:center;
       align-items:center;
+      position: relative;
+      z-index: 1;
     }
 
     .title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #dce9ff;
-      text-shadow: 0 0 8px rgba(100,160,255,0.30);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.5),
+        0 2px 2px rgba(0,0,0,0.4),
+        0 4px 8px rgba(0,0,0,0.6),
+        0 0 30px rgba(100,180,255,0.5);
+      letter-spacing: 1px;
     }
 
     .container {
-      max-width: 1000px;
-      margin: 36px auto;
-      padding: 24px;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 28px;
+    }
+
+    .controls {
+      background: 
+        linear-gradient(180deg, 
+          rgba(55,95,150,0.9) 0%,
+          rgba(40,75,125,0.92) 30%,
+          rgba(30,60,105,0.95) 70%,
+          rgba(25,50,90,0.97) 100%);
+      padding: 28px 32px;
+      border-radius: 20px;
+      margin-bottom: 40px;
+      border: 2px solid rgba(100,160,230,0.4);
+      box-shadow: 
+        0 12px 40px rgba(0,0,0,0.7),
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 2px 6px rgba(255,255,255,0.2),
+        inset 0 -2px 4px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .controls::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
+      border-radius: 20px 20px 0 0;
+      pointer-events: none;
     }
 
     #search {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(24,40,72,0.45);
-      color: #e9f3ff;
+      padding: 15px 20px;
+      border-radius: 14px;
+      border: 2px solid rgba(20,40,70,0.8);
+      background: 
+        linear-gradient(180deg, 
+          rgba(12,25,45,0.98) 0%, 
+          rgba(8,18,35,0.99) 50%,
+          rgba(10,20,38,1) 100%);
+      color: #e8f4ff;
       width:100%;
-      max-width:420px;
-      margin-bottom: 14px;
+      font-size: 16px;
+      margin-bottom: 22px;
+      box-shadow: 
+        inset 0 3px 10px rgba(0,0,0,0.7),
+        inset 0 1px 2px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,255,255,0.15);
+      position: relative;
+    }
+
+    #search:focus {
+      outline: none;
+      border-color: rgba(74,158,255,0.8);
+      box-shadow: 
+        inset 0 3px 10px rgba(0,0,0,0.7),
+        0 0 0 3px rgba(74,158,255,0.3),
+        0 0 20px rgba(74,158,255,0.4);
+    }
+
+    #search::placeholder {
+      color: rgba(232,241,255,0.35);
     }
 
     .sort-toggle {
-      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     .sort-toggle label {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
       cursor: pointer;
+      user-select: none;
     }
 
     .sort-toggle input { display:none; }
 
     .toggle-ui {
-      width: 44px;
-      height: 24px;
-      border-radius: 14px;
-      background: linear-gradient(180deg, rgba(30,55,95,0.9), rgba(15,30,55,0.9));
-      border: 1px solid rgba(255,255,255,0.12);
+      width: 64px;
+      height: 36px;
+      border-radius: 20px;
+      background: 
+        linear-gradient(180deg, 
+          rgba(15,30,55,1) 0%,
+          rgba(10,22,42,1) 50%,
+          rgba(8,18,35,1) 100%);
+      border: 2px solid rgba(30,55,90,0.8);
       position: relative;
+      box-shadow: 
+        inset 0 3px 12px rgba(0,0,0,0.8),
+        inset 0 1px 3px rgba(0,0,0,0.6),
+        0 1px 0 rgba(255,255,255,0.15),
+        0 2px 4px rgba(0,0,0,0.4);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .toggle-ui::after {
@@ -93,46 +216,284 @@
       position:absolute;
       top:3px;
       left:3px;
-      width:18px;
-      height:18px;
+      width:28px;
+      height:28px;
       border-radius:50%;
-      background: linear-gradient(180deg,#eaf3ff,#9fc6ff);
-      transition:.2s;
+      background: 
+        linear-gradient(180deg, 
+          #ffffff 0%,
+          #f0f8ff 30%,
+          #d5e8ff 70%,
+          #b8d8f5 100%);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: 
+        0 4px 12px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -2px 4px rgba(0,0,0,0.1),
+        0 1px 2px rgba(255,255,255,0.5);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .sort-toggle input:checked + .toggle-ui {
+      background: 
+        linear-gradient(180deg, 
+          rgba(70,140,220,0.95) 0%,
+          rgba(55,115,190,1) 50%,
+          rgba(45,95,165,1) 100%);
+      border-color: rgba(100,180,255,0.6);
+      box-shadow: 
+        inset 0 3px 12px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,255,255,0.3),
+        0 0 20px rgba(74,158,255,0.4),
+        0 2px 4px rgba(0,0,0,0.3);
     }
 
     .sort-toggle input:checked + .toggle-ui::after {
-      transform: translateX(20px);
+      transform: translateX(28px);
+      box-shadow: 
+        0 4px 12px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -2px 4px rgba(0,0,0,0.1),
+        0 0 8px rgba(255,255,255,0.6);
     }
 
     .toggle-text {
       font-weight:600;
-      color:#cfe3ff;
+      font-size: 16px;
+      color:#f0f8ff;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.3),
+        0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .series-section {
+      background: 
+        linear-gradient(180deg, 
+          rgba(45,80,130,0.85) 0%,
+          rgba(35,65,110,0.88) 30%,
+          rgba(28,55,95,0.92) 70%,
+          rgba(22,45,80,0.95) 100%);
+      padding: 36px;
+      margin: 36px 0;
+      border-radius: 20px;
+      border: 2px solid rgba(90,150,220,0.4);
+      box-shadow: 
+        0 10px 35px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.35),
+        inset 0 2px 6px rgba(255,255,255,0.2),
+        inset 0 -2px 4px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .series-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent);
+      border-radius: 20px 20px 0 0;
+      pointer-events: none;
+    }
+
+    .series-section h2 {
+      margin: 0 0 32px 0;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: capitalize;
+      letter-spacing: 1.2px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid rgba(100,170,240,0.45);
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.4),
+        0 2px 2px rgba(0,0,0,0.4),
+        0 4px 8px rgba(0,0,0,0.5),
+        0 0 20px rgba(100,180,255,0.4);
+      position: relative;
+      z-index: 1;
     }
 
     .game-card {
-      background: linear-gradient(145deg, rgba(10,25,50,0.65), rgba(5,10,20,0.75));
-      margin: 20px 0;
-      padding: 22px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: 
+        linear-gradient(180deg, 
+          rgba(50,90,145,0.85) 0%,
+          rgba(38,72,120,0.88) 30%,
+          rgba(30,60,105,0.92) 70%,
+          rgba(25,50,90,0.95) 100%);
+      margin: 24px 0;
+      padding: 30px;
+      border-radius: 18px;
+      border: 2px solid rgba(90,150,220,0.4);
+      box-shadow: 
+        0 8px 28px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.35),
+        inset 0 2px 6px rgba(255,255,255,0.18),
+        inset 0 -2px 4px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.22), transparent);
+      border-radius: 18px 18px 0 0;
+      pointer-events: none;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        0 14px 40px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 2px 8px rgba(255,255,255,0.2),
+        0 0 30px rgba(74,158,255,0.3);
     }
 
     .game-card h3{
-      margin:0 0 8px 0;
-      color:#cfe3ff;
+      margin:0 0 14px 0;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color:#fff;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.35),
+        0 2px 3px rgba(0,0,0,0.5),
+        0 0 15px rgba(150,200,255,0.3);
+      position: relative;
+      z-index: 1;
+    }
+
+    .game-card p {
+      margin: 12px 0 20px 0;
+      line-height: 1.7;
+      color: #ddeeff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .versions-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
     }
 
     .version {
-      background: linear-gradient(140deg, rgba(22,36,64,0.66), rgba(12,18,36,0.78));
-      padding: 10px;
-      margin-top: 12px;
-      border-radius: 10px;
+      background: 
+        linear-gradient(180deg, 
+          rgba(60,105,165,0.9) 0%,
+          rgba(48,88,140,0.92) 30%,
+          rgba(38,72,120,0.95) 70%,
+          rgba(30,60,100,0.97) 100%);
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 2px solid rgba(90,150,220,0.45);
+      box-shadow: 
+        0 4px 16px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.4),
+        inset 0 2px 5px rgba(255,255,255,0.2),
+        inset 0 -2px 3px rgba(0,0,0,0.25);
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .version::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent);
+      border-radius: 14px 14px 0 0;
+      pointer-events: none;
+    }
+
+    .version:hover {
+      transform: translateY(-3px);
+      border-color: rgba(120,190,255,0.6);
+      box-shadow: 
+        0 8px 24px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.5),
+        inset 0 2px 6px rgba(255,255,255,0.25),
+        0 0 20px rgba(74,158,255,0.35);
+    }
+
+    .version strong {
+      color: #f5faff;
+      font-size: 15px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 12px;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.3),
+        0 2px 3px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
     }
 
     a {
-      color: #9fc6ff;
-      font-weight: 600;
+      color: #8ec8ff;
+      font-weight: 700;
       text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.2),
+        0 2px 4px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
+    }
+
+    a:hover {
+      color: #c5e5ff;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.4),
+        0 2px 6px rgba(0,0,0,0.6),
+        0 0 15px rgba(142,200,255,0.6);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 80px 20px;
+      color: #ddeeff;
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.2),
+        0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        margin: 20px auto;
+      }
+
+      .title {
+        font-size: 1.8rem;
+      }
+
+      .series-section {
+        padding: 24px;
+      }
+
+      .series-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .versions-container {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -146,15 +507,16 @@
 </header>
 
 <div class="container">
-  <div class="sort-toggle">
-    <label>
-      <input type="checkbox" id="groupToggle">
-      <span class="toggle-ui"></span>
-      <span class="toggle-text">Group by series</span>
-    </label>
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search games..." />
+    <div class="sort-toggle">
+      <label>
+        <input type="checkbox" id="groupToggle">
+        <span class="toggle-ui"></span>
+        <span class="toggle-text">Group by series</span>
+      </label>
+    </div>
   </div>
-
-  <input type="text" id="search" placeholder="Search games..." />
   <div id="games"></div>
 </div>
 
@@ -167,15 +529,29 @@
   let dataCache = [];
 
   function showMessage(msg){
-    container.innerHTML = `<div class="game-card"><p>${msg}</p></div>`;
+    container.innerHTML = `<div class="no-results">${msg}</div>`;
   }
 
   function seriesKey(name){
-    return name
-      .replace(/\b\d+\b/g,'')
-      .replace(/(edition|remastered|definitive|collection)/i,'')
+    // Extract series name by removing numbers, editions, and common suffixes
+    let series = name
+      .replace(/\b\d+(\.\d+)?[a-z]?\b/gi, '') // Remove version numbers
+      .replace(/\b(edition|remastered|definitive|collection|hd|remake|redux|complete|ultimate|deluxe|premium|gold)\b/gi, '')
+      .replace(/[:\-–—]/g, '') // Remove separators
+      .replace(/\(.*?\)/g, '') // Remove parentheses content
       .trim()
       .toLowerCase();
+    
+    // Handle special cases for better grouping
+    if (series.includes('forza horizon')) return 'forza horizon';
+    if (series.includes('forza motorsport')) return 'forza motorsport';
+    if (series.includes('gran turismo')) return 'gran turismo';
+    if (series.includes('need for speed') || series.includes('nfs')) return 'need for speed';
+    if (series.includes('call of duty') || series.includes('cod')) return 'call of duty';
+    if (series.includes('asphalt')) return 'asphalt';
+    if (series.includes('assetto corsa')) return 'assetto corsa';
+    
+    return series || 'other';
   }
 
   function render(list){
@@ -186,55 +562,104 @@
     }
 
     if(!toggle.checked){
-      list.forEach(renderGame);
+      list.forEach(game => renderGame(game, container));
       return;
     }
 
+    // Group by series
     const groups = {};
     list.forEach(g=>{
       const k = seriesKey(g.name);
-      (groups[k] ||= []).push(g);
+      (groups[k] = groups[k] || []).push(g);
     });
 
-    Object.keys(groups).sort().forEach(group=>{
+    // Sort series alphabetically
+    const sortedSeries = Object.keys(groups).sort();
+
+    // Render each series in its own section
+    sortedSeries.forEach(seriesName=>{
+      const section = document.createElement('div');
+      section.className = 'series-section';
+      
       const h = document.createElement('h2');
-      h.textContent = group.toUpperCase();
-      h.style.margin = '32px 0 12px';
-      container.appendChild(h);
-      groups[group].forEach(renderGame);
+      h.textContent = seriesName === 'other' ? 'Other Games' : seriesName;
+      section.appendChild(h);
+      
+      groups[seriesName].forEach(game=>{
+        renderGame(game, section);
+      });
+      
+      container.appendChild(section);
     });
   }
 
-  function renderGame(game){
+  function renderGame(game, parent){
     const card = document.createElement('div');
     card.className = 'game-card';
-    card.innerHTML = `<h3>${game.name}</h3><p>${game.description||''}</p>`;
-    (game.versions||[]).forEach(v=>{
-      const ver = document.createElement('div');
-      ver.className = 'version';
-      ver.innerHTML = `<strong>${v.platform}</strong><br><a href="${v.url}" target="_blank">Download</a>`;
-      card.appendChild(ver);
-    });
-    container.appendChild(card);
+    
+    const title = document.createElement('h3');
+    title.textContent = game.name;
+    card.appendChild(title);
+    
+    if (game.description) {
+      const desc = document.createElement('p');
+      desc.textContent = game.description;
+      card.appendChild(desc);
+    }
+    
+    if (game.versions && game.versions.length) {
+      const versionsContainer = document.createElement('div');
+      versionsContainer.className = 'versions-container';
+      
+      game.versions.forEach(v => {
+        const ver = document.createElement('div');
+        ver.className = 'version';
+        
+        const platform = document.createElement('strong');
+        platform.textContent = v.platform;
+        ver.appendChild(platform);
+        
+        const link = document.createElement('a');
+        link.href = v.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Download';
+        ver.appendChild(link);
+        
+        versionsContainer.appendChild(ver);
+      });
+      
+      card.appendChild(versionsContainer);
+    }
+    
+    parent.appendChild(card);
   }
 
   function apply(){
     const t = search.value.toLowerCase();
-    render(dataCache.filter(g =>
+    const filtered = dataCache.filter(g =>
       g.name.toLowerCase().includes(t) ||
-      (g.description && g.description.toLowerCase().includes(t))
-    ));
+      (g.description && g.description.toLowerCase().includes(t)) ||
+      (g.versions && g.versions.some(v => 
+        v.platform.toLowerCase().includes(t) ||
+        (v.tags && v.tags.some(tag => tag.toLowerCase().includes(t)))
+      ))
+    );
+    render(filtered);
   }
 
   showMessage('Loading games...');
 
   fetch('games.json')
-    .then(r=>r.json())
-    .then(d=>{
+    .then(r => {
+      if (!r.ok) throw new Error('Failed to load');
+      return r.json();
+    })
+    .then(d => {
       dataCache = d;
       apply();
     })
-    .catch(()=>showMessage('Failed to load games.json'));
+    .catch(() => showMessage('Failed to load games.json'));
 
   search.addEventListener('input', apply);
   toggle.addEventListener('change', apply);
