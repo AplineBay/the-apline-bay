@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <title>The Alpine Bay</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #0d1a2e;
+      color: #fff;
+      overflow-x: hidden;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    /* iOS 6 Style Header */
+    .header {
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(50,90,145,0.98) 0%, 
+          rgba(35,70,120,0.99) 50%,
+          rgba(25,55,100,1) 100%);
+      border-bottom: 1px solid rgba(0,0,0,0.5);
+      -webkit-box-shadow: 
+        0 1px 0 rgba(255,255,255,0.2) inset,
+        0 1px 4px rgba(0,0,0,0.6);
+      padding: 10px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+      margin: 0;
+      padding: 8px 0;
+    }
+
+    /* iOS 6 Search Bar */
+    .search-container {
+      padding: 8px 10px;
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(25,45,75,0.95), 
+          rgba(20,40,70,0.98));
+      border-bottom: 1px solid rgba(0,0,0,0.3);
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 8px 12px 8px 30px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.6);
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(10,18,32,1), 
+          rgba(12,22,38,0.98));
+      color: #fff;
+      font-size: 14px;
+      -webkit-box-shadow: 
+        0 1px 3px rgba(0,0,0,0.6) inset,
+        0 1px 0 rgba(255,255,255,0.1);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><circle cx="6" cy="6" r="5" fill="none" stroke="rgba(150,180,220,0.6)" stroke-width="2"/><line x1="10" y1="10" x2="15" y2="15" stroke="rgba(150,180,220,0.6)" stroke-width="2"/></svg>');
+      background-repeat: no-repeat;
+      background-position: 8px center;
+      background-size: 14px;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: rgba(70,130,200,0.6);
+    }
+
+    /* iOS 6 List Container */
+    .content {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      height: calc(100% - 110px);
+    }
+
+    .list-group {
+      margin: 12px 10px;
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(40,70,115,0.9), 
+          rgba(30,55,95,0.92));
+      border-radius: 10px;
+      -webkit-box-shadow: 
+        0 1px 0 rgba(255,255,255,0.15) inset,
+        0 1px 4px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    .list-group-header {
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(30,55,95,0.95), 
+          rgba(25,45,80,0.98));
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.4);
+      -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset;
+    }
+
+    .list-group-header h2 {
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #b8d4ff;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    }
+
+    /* iOS 6 List Items */
+    .list-item {
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(50,85,135,0.85), 
+          rgba(40,70,115,0.9));
+      border-bottom: 1px solid rgba(0,0,0,0.3);
+      padding: 12px;
+      position: relative;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .list-item:active {
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(60,100,160,0.9), 
+          rgba(50,85,140,0.92));
+    }
+
+    .list-item-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+      margin-bottom: 4px;
+    }
+
+    .list-item-desc {
+      font-size: 13px;
+      color: #b8d4ff;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .list-item-arrow {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      margin-top: -8px;
+      width: 8px;
+      height: 16px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="16" viewBox="0 0 8 16"><path d="M1 1 L7 8 L1 15" fill="none" stroke="rgba(180,200,230,0.8)" stroke-width="2"/></svg>') no-repeat center;
+    }
+
+    /* iOS 6 Buttons */
+    .version-list {
+      margin-top: 8px;
+    }
+
+    .version-button {
+      display: block;
+      width: 100%;
+      margin: 6px 0;
+      padding: 10px 14px;
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(60,105,165,0.95), 
+          rgba(45,85,140,0.98));
+      border: 1px solid rgba(80,130,190,0.6);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.4);
+      -webkit-box-shadow: 
+        0 1px 0 rgba(255,255,255,0.25) inset,
+        0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .version-button:active {
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(45,85,140,0.98), 
+          rgba(60,105,165,0.95));
+      -webkit-box-shadow: 
+        0 1px 3px rgba(0,0,0,0.5) inset;
+    }
+
+    .version-button-label {
+      display: block;
+      font-size: 11px;
+      font-weight: normal;
+      opacity: 0.8;
+      margin-bottom: 2px;
+    }
+
+    /* Collapsible */
+    .collapsible-content {
+      max-height: 0;
+      overflow: hidden;
+      -webkit-transition: max-height 0.3s ease-out;
+    }
+
+    .collapsible-content.expanded {
+      max-height: 2000px;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: #b8d4ff;
+      font-size: 16px;
+    }
+
+    /* Loading */
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: #b8d4ff;
+      font-size: 16px;
+    }
+
+    /* Grouped View Toggle */
+    .toggle-container {
+      padding: 10px;
+      background: rgba(20,40,70,0.5);
+      border-bottom: 1px solid rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .toggle-switch {
+      display: inline-block;
+      position: relative;
+      width: 52px;
+      height: 32px;
+      vertical-align: middle;
+      margin: 0 8px;
+    }
+
+    .toggle-switch input {
+      display: none;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(15,25,45,1), 
+          rgba(10,18,35,1));
+      border: 1px solid rgba(0,0,0,0.6);
+      border-radius: 16px;
+      -webkit-box-shadow: 
+        0 1px 3px rgba(0,0,0,0.6) inset,
+        0 1px 0 rgba(255,255,255,0.1);
+      -webkit-transition: 0.3s;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 28px;
+      width: 28px;
+      left: 2px;
+      top: 1px;
+      background: 
+        -webkit-linear-gradient(top, 
+          #f8fbff, 
+          #d5e8ff);
+      border-radius: 50%;
+      -webkit-box-shadow: 
+        0 2px 6px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,255,255,0.8) inset;
+      -webkit-transition: 0.3s;
+    }
+
+    input:checked + .toggle-slider {
+      background: 
+        -webkit-linear-gradient(top, 
+          rgba(50,100,170,0.95), 
+          rgba(40,85,150,1));
+    }
+
+    input:checked + .toggle-slider:before {
+      -webkit-transform: translateX(20px);
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      color: #d5e8ff;
+      font-weight: bold;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>The Alpine Bay</h1>
+</div>
+
+<div class="toggle-container">
+  <span class="toggle-label">Group by Series</span>
+  <label class="toggle-switch">
+    <input type="checkbox" id="groupToggle">
+    <span class="toggle-slider"></span>
+  </label>
+</div>
+
+<div class="search-container">
+  <input type="text" id="searchInput" class="search-input" placeholder="Search games...">
+</div>
+
+<div class="content" id="gamesList">
+  <div class="loading">Loading games...</div>
+</div>
+
+<script>
+(function(){
+  const gamesList = document.getElementById('gamesList');
+  const searchInput = document.getElementById('searchInput');
+  const groupToggle = document.getElementById('groupToggle');
+  let gamesData = [];
+
+  function seriesKey(name){
+    let series = name
+      .replace(/\b\d+(\.\d+)?[a-z]?\b/gi, '')
+      .replace(/\b(edition|remastered|definitive|collection|hd|remake|redux|complete|ultimate|deluxe|premium|gold)\b/gi, '')
+      .replace(/[:\-–—]/g, '')
+      .replace(/\(.*?\)/g, '')
+      .trim()
+      .toLowerCase();
+    
+    if (series.includes('forza horizon')) return 'forza horizon';
+    if (series.includes('forza motorsport')) return 'forza motorsport';
+    if (series.includes('gran turismo')) return 'gran turismo';
+    if (series.includes('need for speed') || series.includes('nfs')) return 'need for speed';
+    if (series.includes('call of duty') || series.includes('cod')) return 'call of duty';
+    if (series.includes('asphalt')) return 'asphalt';
+    if (series.includes('assetto corsa')) return 'assetto corsa';
+    
+    return series || 'other';
+  }
+
+  function renderGrouped(games) {
+    const groups = {};
+    games.forEach(g => {
+      const k = seriesKey(g.name);
+      (groups[k] = groups[k] || []).push(g);
+    });
+
+    const sortedSeries = Object.keys(groups).sort();
+    let html = '';
+
+    sortedSeries.forEach(seriesName => {
+      html += '<div class="list-group">';
+      html += '<div class="list-group-header">';
+      html += '<h2>' + (seriesName === 'other' ? 'Other Games' : seriesName.toUpperCase()) + '</h2>';
+      html += '</div>';
+
+      groups[seriesName].forEach(game => {
+        html += '<div class="list-item" onclick="toggleGame(this)">';
+        html += '<div class="list-item-title">' + game.name + '</div>';
+        html += '<div class="list-item-arrow"></div>';
+        html += '<div class="collapsible-content">';
+        if (game.description) {
+          html += '<div class="list-item-desc">' + game.description + '</div>';
+        }
+        if (game.versions && game.versions.length) {
+          html += '<div class="version-list">';
+          game.versions.forEach(v => {
+            html += '<a href="' + v.url + '" class="version-button" target="_blank">';
+            html += '<span class="version-button-label">' + v.platform + '</span>';
+            html += 'Download';
+            html += '</a>';
+          });
+          html += '</div>';
+        }
+        html += '</div>';
+        html += '</div>';
+      });
+
+      html += '</div>';
+    });
+
+    gamesList.innerHTML = html;
+  }
+
+  function renderFlat(games) {
+    let html = '<div class="list-group">';
+    
+    games.forEach(game => {
+      html += '<div class="list-item" onclick="toggleGame(this)">';
+      html += '<div class="list-item-title">' + game.name + '</div>';
+      html += '<div class="list-item-arrow"></div>';
+      html += '<div class="collapsible-content">';
+      if (game.description) {
+        html += '<div class="list-item-desc">' + game.description + '</div>';
+      }
+      if (game.versions && game.versions.length) {
+        html += '<div class="version-list">';
+        game.versions.forEach(v => {
+          html += '<a href="' + v.url + '" class="version-button" target="_blank">';
+          html += '<span class="version-button-label">' + v.platform + '</span>';
+          html += 'Download';
+          html += '</a>';
+        });
+        html += '</div>';
+      }
+      html += '</div>';
+      html += '</div>';
+    });
+
+    html += '</div>';
+    gamesList.innerHTML = html;
+  }
+
+  function render() {
+    const query = searchInput.value.toLowerCase();
+    const filtered = gamesData.filter(g =>
+      g.name.toLowerCase().includes(query) ||
+      (g.description && g.description.toLowerCase().includes(query)) ||
+      (g.versions && g.versions.some(v => v.platform.toLowerCase().includes(query)))
+    );
+
+    if (filtered.length === 0) {
+      gamesList.innerHTML = '<div class="no-results">No games found</div>';
+      return;
+    }
+
+    if (groupToggle.checked) {
+      renderGrouped(filtered);
+    } else {
+      renderFlat(filtered);
+    }
+  }
+
+  window.toggleGame = function(elem) {
+    const content = elem.querySelector('.collapsible-content');
+    if (content.classList.contains('expanded')) {
+      content.classList.remove('expanded');
+    } else {
+      content.classList.add('expanded');
+    }
+  };
+
+  fetch('games.json')
+    .then(r => r.json())
+    .then(data => {
+      gamesData = data;
+      render();
+    })
+    .catch(() => {
+      gamesList.innerHTML = '<div class="no-results">Failed to load games</div>';
+    });
+
+  searchInput.addEventListener('input', render);
+  groupToggle.addEventListener('change', render);
+})();
+</script>
+
+</body>
+</html>
