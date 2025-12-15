@@ -468,15 +468,23 @@
     }
   };
 
-  fetch('games.json')
-    .then(r => r.json())
-    .then(data => {
-      gamesData = data;
-      render();
-    })
-    .catch(() => {
-      gamesList.innerHTML = '<div class="no-results">Failed to load games</div>';
-    });
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'games.json', true);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        try {
+          gamesData = JSON.parse(xhr.responseText);
+          render();
+        } catch(e) {
+          gamesList.innerHTML = '<div class="no-results">Failed to parse games data</div>';
+        }
+      } else {
+        gamesList.innerHTML = '<div class="no-results">Failed to load games (Error: ' + xhr.status + ')</div>';
+      }
+    }
+  };
+  xhr.send();
 
   searchInput.addEventListener('input', render);
   groupToggle.addEventListener('change', render);
