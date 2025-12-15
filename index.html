@@ -373,8 +373,8 @@
           rgba(38,72,120,0.88) 30%,
           rgba(30,60,105,0.92) 70%,
           rgba(25,50,90,0.95) 100%);
-      margin: 24px 0;
-      padding: 26px 30px;
+      margin: 16px 0;
+      padding: 20px 26px;
       border-radius: 18px;
       border: 2px solid rgba(90,150,220,0.4);
       box-shadow: 
@@ -417,7 +417,7 @@
     }
 
     .series-card-title {
-      font-size: 1.55rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color:#fff;
       text-shadow: 
@@ -429,7 +429,7 @@
     }
 
     .series-card-count {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: #a8d4ff;
       font-weight: 600;
       background: 
@@ -440,7 +440,7 @@
           rgba(15,25,40,0.6) 2px,
           rgba(15,25,40,0.6) 4px
         );
-      padding: 6px 14px;
+      padding: 5px 12px;
       border-radius: 20px;
       border: 1px solid rgba(100,160,230,0.3);
       box-shadow: 
@@ -449,10 +449,10 @@
     }
 
     .series-card-arrow {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #a8d4ff;
       transition: transform 0.3s;
-      margin-left: 12px;
+      margin-left: 10px;
     }
 
     .series-card.expanded .series-card-arrow {
@@ -469,7 +469,98 @@
 
     .series-card.expanded .series-card-games {
       max-height: 10000px;
-      margin-top: 24px;
+      margin-top: 20px;
+    }
+
+    .game-item {
+      background: 
+        repeating-linear-gradient(
+          90deg,
+          rgba(255,255,255,0.015) 0px,
+          rgba(255,255,255,0.015) 1px,
+          transparent 1px,
+          transparent 3px
+        ),
+        linear-gradient(180deg, 
+          rgba(40,75,125,0.7) 0%,
+          rgba(30,60,100,0.75) 50%,
+          rgba(25,50,85,0.8) 100%);
+      margin: 12px 0;
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(80,140,210,0.35);
+      box-shadow: 
+        0 4px 16px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.25),
+        inset 0 -1px 2px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .game-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 40%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent);
+      border-radius: 14px 14px 0 0;
+      pointer-events: none;
+    }
+
+    .game-item:hover {
+      transform: translateY(-1px);
+      box-shadow: 
+        0 6px 20px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.3),
+        0 0 15px rgba(74,158,255,0.2);
+    }
+
+    .game-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .game-item-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #e5f1ff;
+      text-shadow: 
+        0 1px 0 rgba(255,255,255,0.2),
+        0 2px 3px rgba(0,0,0,0.4);
+      margin: 0;
+    }
+
+    .game-item-arrow {
+      font-size: 0.9rem;
+      color: #a8d4ff;
+      transition: transform 0.3s;
+    }
+
+    .game-item.expanded .game-item-arrow {
+      transform: rotate(90deg);
+    }
+
+    .game-item-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .game-item.expanded .game-item-content {
+      max-height: 5000px;
+      margin-top: 14px;
+    }
+
+    .game-item-description {
+      margin: 12px 0 16px 0;
+      line-height: 1.6;
+      color: #d0e5ff;
+      font-size: 0.95rem;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     .game-card {
@@ -801,14 +892,34 @@
     const gamesContainer = document.createElement('div');
     gamesContainer.className = 'series-card-games';
     
+    // Create game item
+    const gameItem = document.createElement('div');
+    gameItem.className = 'game-item';
+    
+    const gameHeader = document.createElement('div');
+    gameHeader.className = 'game-item-header';
+    
+    const gameTitle = document.createElement('div');
+    gameTitle.className = 'game-item-title';
+    gameTitle.textContent = 'Game Details';
+    
+    const gameArrow = document.createElement('span');
+    gameArrow.className = 'game-item-arrow';
+    gameArrow.textContent = '▶';
+    
+    gameHeader.appendChild(gameTitle);
+    gameHeader.appendChild(gameArrow);
+    gameItem.appendChild(gameHeader);
+    
+    // Game content (description + versions)
+    const gameContent = document.createElement('div');
+    gameContent.className = 'game-item-content';
+    
     if (game.description) {
       const desc = document.createElement('p');
+      desc.className = 'game-item-description';
       desc.textContent = game.description;
-      desc.style.margin = '16px 0 20px 0';
-      desc.style.lineHeight = '1.7';
-      desc.style.color = '#ddeeff';
-      desc.style.textShadow = '0 1px 2px rgba(0,0,0,0.4)';
-      gamesContainer.appendChild(desc);
+      gameContent.appendChild(desc);
     }
     
     if (game.versions && game.versions.length) {
@@ -828,19 +939,31 @@
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         link.textContent = 'Download';
+        link.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
         ver.appendChild(link);
         
         versionsContainer.appendChild(ver);
       });
       
-      gamesContainer.appendChild(versionsContainer);
+      gameContent.appendChild(versionsContainer);
     }
     
+    gameItem.appendChild(gameContent);
+    gamesContainer.appendChild(gameItem);
     card.appendChild(gamesContainer);
     
-    // Toggle expand/collapse on click
-    header.addEventListener('click', () => {
+    // Toggle series expand/collapse on header click
+    header.addEventListener('click', (e) => {
+      e.stopPropagation();
       card.classList.toggle('expanded');
+    });
+    
+    // Toggle game details expand/collapse
+    gameHeader.addEventListener('click', (e) => {
+      e.stopPropagation();
+      gameItem.classList.toggle('expanded');
     });
     
     parent.appendChild(card);
