@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Alpine Bay</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -24,23 +23,15 @@
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(180deg, var(--bg-start), var(--bg-mid) 60%, var(--bg-start));
       color: var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
     }
 
     header {
-      width: 100%;
       padding: 26px 20px;
-      box-sizing: border-box;
       display: flex;
       justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(8px);
       background: rgba(10,18,32,0.62);
       border-bottom: 1px solid rgba(255,255,255,0.06);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 30px rgba(0,0,0,0.55);
-      z-index: 10;
-      position: relative;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.55);
     }
 
     .header-inner {
@@ -49,8 +40,6 @@
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:12px;
-      padding:0 8px;
     }
 
     .title {
@@ -58,31 +47,66 @@
       font-weight: 600;
       color: #dce9ff;
       text-shadow: 0 0 8px rgba(100,160,255,0.30);
-      letter-spacing: 0.2px;
     }
 
     .container {
       max-width: 1000px;
       margin: 36px auto;
       padding: 24px;
-      position: relative;
-      z-index: 2;
-      box-sizing: border-box;
     }
 
     #search {
       padding: 10px 14px;
-      font-size: 1rem;
       border-radius: 10px;
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(24,40,72,0.45);
       color: #e9f3ff;
-      backdrop-filter: blur(8px);
-      outline: none;
-      box-shadow: inset 0 2px 6px rgba(0,0,0,0.45);
-      transition: 0.18s;
       width:100%;
       max-width:420px;
+      margin-bottom: 14px;
+    }
+
+    .sort-toggle {
+      margin-bottom: 14px;
+    }
+
+    .sort-toggle label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .sort-toggle input { display:none; }
+
+    .toggle-ui {
+      width: 44px;
+      height: 24px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(30,55,95,0.9), rgba(15,30,55,0.9));
+      border: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+    }
+
+    .toggle-ui::after {
+      content:'';
+      position:absolute;
+      top:3px;
+      left:3px;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background: linear-gradient(180deg,#eaf3ff,#9fc6ff);
+      transition:.2s;
+    }
+
+    .sort-toggle input:checked + .toggle-ui::after {
+      transform: translateX(20px);
+    }
+
+    .toggle-text {
+      font-weight:600;
+      color:#cfe3ff;
     }
 
     .game-card {
@@ -91,18 +115,11 @@
       padding: 22px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.08);
-      box-shadow:
-        inset 0 2px 6px rgba(255,255,255,0.03),
-        0 10px 28px rgba(0,0,0,0.55);
-      backdrop-filter: blur(18px);
-      transition: transform .22s ease, box-shadow .22s ease;
     }
 
     .game-card h3{
       margin:0 0 8px 0;
       color:#cfe3ff;
-      font-weight:600;
-      text-shadow:0 0 6px rgba(100,160,255,0.25);
     }
 
     .version {
@@ -110,9 +127,6 @@
       padding: 10px;
       margin-top: 12px;
       border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: inset 0 1px 3px rgba(255,255,255,0.02);
-      font-size: 0.95rem;
     }
 
     a {
@@ -125,78 +139,107 @@
 
 <body>
 
-  <header>
-    <div class="header-inner">
-      <div class="title">The Alpine Bay</div>
-    </div>
-  </header>
+<header>
+  <div class="header-inner">
+    <div class="title">The Alpine Bay</div>
+  </div>
+</header>
 
-  <div class="container">
-    <input type="text" id="search" placeholder="Search games..." />
-    <div id="games"></div>
+<div class="container">
+  <div class="sort-toggle">
+    <label>
+      <input type="checkbox" id="groupToggle">
+      <span class="toggle-ui"></span>
+      <span class="toggle-text">Group by series</span>
+    </label>
   </div>
 
-  <script>
-  (function(){
-    const container = document.getElementById('games');
-    const search = document.getElementById('search');
+  <input type="text" id="search" placeholder="Search games..." />
+  <div id="games"></div>
+</div>
 
-    function showMessage(msg){
-      container.innerHTML = `<div class="game-card"><p>${msg}</p></div>`;
+<script>
+(function(){
+  const container = document.getElementById('games');
+  const search = document.getElementById('search');
+  const toggle = document.getElementById('groupToggle');
+
+  let dataCache = [];
+
+  function showMessage(msg){
+    container.innerHTML = `<div class="game-card"><p>${msg}</p></div>`;
+  }
+
+  function seriesKey(name){
+    return name
+      .replace(/\b\d+\b/g,'')
+      .replace(/(edition|remastered|definitive|collection)/i,'')
+      .trim()
+      .toLowerCase();
+  }
+
+  function render(list){
+    container.innerHTML = '';
+    if(!list.length){
+      showMessage('No games found.');
+      return;
     }
 
-    showMessage('Loading games...');
+    if(!toggle.checked){
+      list.forEach(renderGame);
+      return;
+    }
 
-    fetch("games.json")
-      .then(r => r.json())
-      .then(data => {
+    const groups = {};
+    list.forEach(g=>{
+      const k = seriesKey(g.name);
+      (groups[k] ||= []).push(g);
+    });
 
-        function render(list) {
-          container.innerHTML = '';
-          if (!list.length){
-            container.innerHTML = '<div class="game-card"><p>No games found.</p></div>';
-            return;
-          }
+    Object.keys(groups).sort().forEach(group=>{
+      const h = document.createElement('h2');
+      h.textContent = group.toUpperCase();
+      h.style.margin = '32px 0 12px';
+      container.appendChild(h);
+      groups[group].forEach(renderGame);
+    });
+  }
 
-          list.forEach(game => {
-            const card = document.createElement('div');
-            card.className = 'game-card';
+  function renderGame(game){
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.innerHTML = `<h3>${game.name}</h3><p>${game.description||''}</p>`;
+    (game.versions||[]).forEach(v=>{
+      const ver = document.createElement('div');
+      ver.className = 'version';
+      ver.innerHTML = `<strong>${v.platform}</strong><br><a href="${v.url}" target="_blank">Download</a>`;
+      card.appendChild(ver);
+    });
+    container.appendChild(card);
+  }
 
-            card.innerHTML = `
-              <h3>${game.name}</h3>
-              <p>${game.description || ''}</p>
-            `;
+  function apply(){
+    const t = search.value.toLowerCase();
+    render(dataCache.filter(g =>
+      g.name.toLowerCase().includes(t) ||
+      (g.description && g.description.toLowerCase().includes(t))
+    ));
+  }
 
-            (game.versions || []).forEach(v => {
-              const ver = document.createElement('div');
-              ver.className = 'version';
-              ver.innerHTML = `
-                <strong>${v.platform}</strong><br>
-                <a href="${v.url}" target="_blank">Download</a>
-              `;
-              card.appendChild(ver);
-            });
+  showMessage('Loading games...');
 
-            container.appendChild(card);
-          });
-        }
+  fetch('games.json')
+    .then(r=>r.json())
+    .then(d=>{
+      dataCache = d;
+      apply();
+    })
+    .catch(()=>showMessage('Failed to load games.json'));
 
-        render(data);
-
-        search.addEventListener('input', () => {
-          const t = search.value.toLowerCase();
-          render(data.filter(g =>
-            g.name.toLowerCase().includes(t) ||
-            (g.description && g.description.toLowerCase().includes(t))
-          ));
-        });
-
-      })
-      .catch(() => {
-        showMessage('Failed to load games.json');
-      });
-  })();
-  </script>
+  search.addEventListener('input', apply);
+  toggle.addEventListener('change', apply);
+})();
+</script>
 
 </body>
 </html>
