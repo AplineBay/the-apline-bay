@@ -32,8 +32,141 @@
     "description": "Race through stunning locations, customize your dream cars, and feel the adrenaline in this arcade racer.",
     "versions": [
       {
+        "platform": "Demo for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/932244175204810792/A6_demo_download_fix.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile",
+          "Demo"
+        ]
+      },
+      {
+        "platform": "v1.00 Techno for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/963804545580953630/Asphalt6AdrenalineHD.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.00 WCG for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/1155074595557232680/6V1.0.0_WCG.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.01 Demo for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/1248588421459611648/Asphalt6_LG_930_ML_IGP_ATT_MP_GLLive_DEMO.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile",
+          "Demo"
+        ]
+      },
+      {
         "platform": "v1.02 for Android",
         "url": "https://www.mediafire.com/file/47bfsq5vr0r7cyi/Asphalt_6_Adrenaline_HD_Free_v1.0.2_1.2+%281%29.apk/file",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.03 for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/935504537802911834/Asphalt_6_HD_1.0.3_Cracked.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.05 for Android",
+        "url": "https://www.mediafire.com/file/llic1wflp8tb0v8/Asphalt_6_HD_v1.0.5.apk/file",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.05 Lava for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/1238960021996306545/Asphalt6_AdrenalineHD_Lava_Iris_501.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.07 LG Demo for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/1248875269121511474/Asphalt6_LG_P930_NONIGP_Bell_ML_GLLive_107.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile",
+          "Demo"
+        ]
+      },
+      {
+        "platform": "v1.16 for iOS",
+        "url": "https://archive.org/download/Asphalt6-v1.1.6/Asphalt.6.Adrenaline-v1.1.6-most_uniQue.ipa",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.24 for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/1193314051644719234/Asphalt_6_v1.2.4_full_screen.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.32 for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/1014456174021718056/Asphalt_6_1.3.2_fixed_data_download.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.39 LG for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428710468681829/1325364985735413822/Asphalt6_LG_Cosmo_ML_IGP_GLOBAL_MP_GLLive_379.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Offline",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.52 for iOS",
+        "url": "https://archive.org/download/Asphalt_6__Adrenaline_HD_1.5.1_ios_3.2/Asphalt_6__Adrenaline_HD_1.5.1_ios_3.2.ipa",
         "tags": [
           "Racing",
           "Singleplayer",
@@ -88,8 +221,150 @@
     "description": "A fast-paced racer with beautiful graphics, a huge roster of cars, and online multiplayer.",
     "versions": [
       {
+        "platform": "v1.00 Beta for Android",
+        "url": "https://disk.yandex.ru/d/urkL986wHVA6FQ",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile",
+          "Beta"
+        ]
+      },
+      {
+        "platform": "v1.00 for iOS",
+        "url": "https://archive.org/download/asphalt7-v1.0.0/Asphalt_7Heat_v1.0.0.ipa",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.00 Amazon for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428827368128572/1035055311326814218/asphalt7_1.0.0_amazon_apps.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.00 Samsung for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428827368128572/1035055311888842822/Asphalt7_1.0.0_samsung_store.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.01 for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428827368128572/1035175599515385996/Asphalt_7_Heat_Paymium_HD_Sony_Ericsson_Xperia_Play_android.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.02 for iOS",
+        "url": "https://archive.org/download/Asphalt_7__Heat_1.0.2_ios_4.0/Asphalt_7__Heat_1.0.2_ios_4.0.ipa",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.02 HTC Demo for Android",
+        "url": "https://disk.yandex.ru/d/3KpJ_kz4zX6uVg",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile",
+          "Demo"
+        ]
+      },
+      {
+        "platform": "v1.02 for Windows",
+        "url": "https://archive.org/download/asphalt7windows/GAMELOFTSA.Asphalt.7.Heat_v1.0.2.2.zip",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer"
+        ]
+      },
+      {
+        "platform": "v1.03 Celkon for Android",
+        "url": "https://drive.google.com/file/d/1SvJRZ-ow6xM-oECGKniBO-N7uOgoRIdF/view?usp=drivesdk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.04 for Android",
+        "url": "https://uloz.to/file/5hqreajempyg/asphalt-7-hd-v1-0-4-gameloft-store-fixed-data-link-for-android-11-and-above-apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
         "platform": "v1.05 for Android",
         "url": "https://mega.nz/file/42hXGZxA#-H8_n5_k9vvOTwut5MBAVOvyie5yBcJtskaN-OQLhUA",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.05 Lenovo for Android",
+        "url": "https://cdn.discordapp.com/attachments/751428827368128572/1146123746999009280/Asphalt_7_v1.0.5_Lenovo_Vibe_Z.apk",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.06 Amazon for Android",
+        "url": "https://dropmefiles.com/q9VKZ",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.06 - v1.07 Modded for Android",
+        "url": "https://mega.nz/file/8pxXWayL#j9CywJaERWUJlIZYy-RQQi19IMsjjj8HOQmOte3nbT4",
+        "tags": [
+          "Racing",
+          "Singleplayer",
+          "Multiplayer",
+          "Mobile",
+          "Modded"
+        ]
+      },
+      {
+        "platform": "v1.12 for Android",
+        "url": "https://drive.google.com/file/d/1-E_IwvB-9uGJaPxSWGKE2rLVNsnA8813/view?usp=drivesdk",
         "tags": [
           "Racing",
           "Singleplayer",
@@ -105,7 +380,16 @@
     "description": "High-speed racing action with stunts and stunning gameplay.",
     "versions": [
       {
-        "platform": "1.00j for Windows",
+        "platform": "v1.00R for iOS",
+        "url": "https://archive.org/download/app-id-47/Asphalt8%201.0.0.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.00J for Windows",
         "url": "https://drive.usercontent.google.com/download?id=1QQBuIen3feZYINY1pEeY1_uxO23C9zAG&export=download&authuser=0",
         "tags": [
           "Racing",
@@ -114,17 +398,63 @@
         ]
       },
       {
-        "platform": "Remastered Edition for Android",
-        "url": "https://techboy1997mods.blogspot.com/p/download_10.html",
+        "platform": "v1.01R for iOS",
+        "url": "https://archive.org/download/app-id-47/Asphalt8%201.0.1.ipa",
         "tags": [
           "Racing",
           "SinglePlayer",
-          "Offline"
+          "Mobile"
         ]
       },
       {
-        "platform": "1.90f for Android",
-        "url": "https://drive.usercontent.google.com/download?id=1xvJ4Lr6-651L8tPV1cgPgfF1f25RVuPZ&export=download&authuser=0",
+        "platform": "v1.01A for Android",
+        "url": "https://archive.org/download/10699_202510/Asphalt_8.apk",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.04R Acer Predator for Android",
+        "url": "https://disk.yandex.ru/d/pU6zI7k0ThaDnQ",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.05N Debug Build for Android",
+        "url": "https://cdn.discordapp.com/attachments/889077830435106826/1176609681712615444/Asphalt8_1.0.5_debugcam__uae_track.apk",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile",
+          "Debug"
+        ]
+      },
+      {
+        "platform": "v1.10R for iOS",
+        "url": "https://archive.org/download/app-id-47/Asphalt8%201.1.0.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.20R for iOS",
+        "url": "https://archive.org/download/app-id-47/Asphalt8%201.2.0.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.20 Premium Edition for Android",
+        "url": "https://www.mediafire.com/folder/khaxxvvstba7l/A8P_by_Techboy1997",
         "tags": [
           "Racing",
           "SinglePlayer",
@@ -133,7 +463,61 @@
         ]
       },
       {
-        "platform": "1.70f for Android",
+        "platform": "v1.20E for Android",
+        "url": "https://drive.google.com/file/d/1-nZEB_Q_9jVB0iLFAXeAvMRifpDbmX1u/view?usp=drivesdk",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.31L Lenovo for Android",
+        "url": "https://cdn.discordapp.com/attachments/889077830435106826/1127686297906065488/Asphalt_8_Lenovo_Z2_pro_v1.3.1_1.apk",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.40R for iOS",
+        "url": "https://archive.org/download/asphalt-8-old-version-ipa-collection/Asphalt%208%20Airborne%20v1.4.0.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.40L Lenovo for Android",
+        "url": "https://cdn.discordapp.com/attachments/889077830435106826/1127686123225886822/Asphalt_8_Lenovo_P70_v1.4.0.apk",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.60I Lenovo for Android",
+        "url": "https://mega.nz/file/91lwSDZD#XlPjJC_sD3R_MHcqqCI6ZXjq9o6vzg61EWO6y4AtKLo",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.61R for iOS",
+        "url": "https://archive.org/download/asphalt-8-1.6.1/Asphalt%208%20Airborne%20v1.6.1.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.70F for Android",
         "url": "https://www.mediafire.com/file/up520zidxw6631n/Asphalt_8_Airborne_Samsung_Store-1.7.0-607459+%281%29.7z/file",
         "tags": [
           "Racing",
@@ -143,8 +527,26 @@
         ]
       },
       {
-        "platform": "5.60if for Android",
-        "url": "https://disk.yandex.com/d/tkZT_OdMK6c6dg",
+        "platform": "v1.70E Samsung for Android",
+        "url": "https://cdn.discordapp.com/attachments/889077830435106826/1161750771512123463/Asphalt_8_Airborne_Samsung_Store-1.7.0-607459.7z",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.72A for iOS",
+        "url": "https://archive.org/download/asphalt-8-old-version-ipa-collection/Asphalt%208%20Airborne%20v1.7.2a.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v1.90F for Android",
+        "url": "https://drive.usercontent.google.com/download?id=1xvJ4Lr6-651L8tPV1cgPgfF1f25RVuPZ&export=download&authuser=0",
         "tags": [
           "Racing",
           "SinglePlayer",
@@ -153,17 +555,58 @@
         ]
       },
       {
-        "platform": "3.80m for Android",
-        "url": "https://www.mediafire.com/file/e2j2aopfc746sba/A8_3.8.0m.zip/file",
+        "platform": "v1.91A for iOS",
+        "url": "https://archive.org/download/asphalt-8-1.9.1/Asphalt8%201.9.1.ipa",
         "tags": [
           "Racing",
           "SinglePlayer",
-          "Offline",
-          "Unmodded"
+          "Mobile"
         ]
       },
       {
-        "platform": "3.00L for Android",
+        "platform": "v2.40C China for Android",
+        "url": "https://drive.google.com/file/d/1nPsa6bz_qBGn2QAZfrmnbWtV66Rf333C/view?usp=drivesdk",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v2.42B for Windows",
+        "url": "https://www.mediafire.com/file/9ow2pxxx6dtwg7s/Setup.Appx/file",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v2.51B for Windows",
+        "url": "https://1024terabox.com/s/1ZmOSPc0aCKidQHgCystC1w",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v2.60G for Windows",
+        "url": "https://1024terabox.com/s/1dDSWQ_f6HsAm8-OEfVFvAQ",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v2.70R for iOS",
+        "url": "https://archive.org/download/asphalt-8-v-1.1.6-clutch-1.3-v-2.7.0/Asphalt%208-v1.1.6-%28Clutch-1.3%29%20%28v2.7.0%29.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v3.00L Modded for Android",
         "url": "https://www.mediafire.com/file/wji2xipbpk8kav6/Asphalt+8+3.0.0L+mod.apk/file",
         "tags": [
           "Racing",
@@ -173,7 +616,7 @@
         ]
       },
       {
-        "platform": "3.11c for Android",
+        "platform": "v3.11C for Android",
         "url": "https://www.mediafire.com/file/4pspo6e5qs2bn02/Airborne+3.1.1c.apk",
         "tags": [
           "Racing",
@@ -183,13 +626,367 @@
         ]
       },
       {
-        "platform": "1.20 Premium Edition for Android",
-        "url": "https://www.mediafire.com/folder/khaxxvvstba7l/A8P_by_Techboy1997",
+        "platform": "v3.20R for Windows",
+        "url": "https://1024terabox.com/s/1lIFjrPV226nbp_TO_NKYFQ",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.21A for Windows",
+        "url": "https://1024terabox.com/s/1_f453klNqFfc53VWBoBrGQ",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.32A for Windows",
+        "url": "https://1024terabox.com/s/1gS_mzXdcWMxvQEaGjy5frQ",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.40M for Windows",
+        "url": "https://1024terabox.com/s/1cQRy9e2lA1YUkGuQuxDryA",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.50J for Windows",
+        "url": "https://1024terabox.com/s/1dol_as-8ydIYxScUMFvnPg",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.50J Modded for Android",
+        "url": "https://disk.yandex.ru/d/kIKpXX7LWdDSAw",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile",
+          "Modded"
+        ]
+      },
+      {
+        "platform": "v3.50J Classic Maps for Android",
+        "url": "https://disk.yandex.ru/d/TiofR3FkBplW2Q",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile",
+          "Modded"
+        ]
+      },
+      {
+        "platform": "v3.50J Ultimate Mod for Android",
+        "url": "https://drive.google.com/drive/folders/1E73gSG33ZKDvTykgznYFYC230JjiAvKh",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile",
+          "Modded"
+        ]
+      },
+      {
+        "platform": "v3.61 for Windows",
+        "url": "https://1024terabox.com/s/1qgj74y0N3lrqDKnDL5UcuA",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.70M for Windows",
+        "url": "https://1024terabox.com/s/1y_WEyPzMgILh3umT6AU-Pw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.71A Modded for Android",
+        "url": "https://www.mediafire.com/file/qp6jxleiziyuuy9/Asphalt_8_v3.7.1a_free_credits.apk/file",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile",
+          "Modded"
+        ]
+      },
+      {
+        "platform": "v3.80K for Windows",
+        "url": "https://1024terabox.com/s/1-IzQ_s46nh9omRKjKzpl4g",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v3.80M for Android",
+        "url": "https://www.mediafire.com/file/e2j2aopfc746sba/A8_3.8.0m.zip/file",
         "tags": [
           "Racing",
           "SinglePlayer",
           "Offline",
           "Unmodded"
+        ]
+      },
+      {
+        "platform": "v3.80E Demo for Android",
+        "url": "https://disk.yandex.com/d/_gzqyQGArN089Q",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile",
+          "Demo"
+        ]
+      },
+      {
+        "platform": "v4.00L for Android",
+        "url": "https://4pda.to/forum/dl/post/14737658/Asphalt+8_4.0.0l.apk",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v4.01A for Windows",
+        "url": "https://1024terabox.com/s/1OfSPrhV7hepcTDJHSin4ww",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.02B for Windows",
+        "url": "https://1024terabox.com/s/1YL8-USJyTyVd1damuqHLyw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.10M for Windows",
+        "url": "https://1024terabox.com/s/10OI2MbpME1KfEZy0TILfVg",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.20K for Windows",
+        "url": "https://1024terabox.com/s/1SuSyEIJALYp245g-YU2KIQ",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.30K for Windows",
+        "url": "https://1024terabox.com/s/1JwzlwyQbrrCWdf5B884FfA",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.40J for Windows",
+        "url": "https://1024terabox.com/s/1Ew0oXgIHDgK5Z4jz_5jpzw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.50N for Windows",
+        "url": "https://1024terabox.com/s/1xg18UWeupdCe52O0DKBDnw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.60I for Windows",
+        "url": "https://1024terabox.com/s/1jZhrqC75c1uhgY2pisZNZw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.70J for Windows",
+        "url": "https://1024terabox.com/s/1cpvCTlL6aZTYg67xMixBvg",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.80H for Windows",
+        "url": "https://1024terabox.com/s/1epk-1BcB2N-JcJokWGc_Cw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v4.90K for Windows",
+        "url": "https://1024terabox.com/s/1lWjR0988u3nrhOE1PNraaw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.00A for Windows",
+        "url": "https://1024terabox.com/s/1KXG8FzEtNannSDMTnygp5Q",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.01A for Windows",
+        "url": "https://1024terabox.com/s/1i-7UBY2_Q5t1C9-adVw8LA",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.10I for Windows",
+        "url": "https://1024terabox.com/s/1VDiI7gXPU7QJDGjL2xHrKA",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.20J for Windows",
+        "url": "https://1024terabox.com/s/1E71aG6kLRMouoKkK8fmjhA",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.30N for Windows",
+        "url": "https://1024terabox.com/s/19ZI1lLVP5W0WAgvI0RqWBw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.40O for Windows",
+        "url": "https://1024terabox.com/s/1SyGTC7cz02LsNLnDD04f0w",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.50L for Windows",
+        "url": "https://1024terabox.com/s/1VcJ5f82Qb3a3__8Ojj8DaQ",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.60I for Windows",
+        "url": "https://1024terabox.com/s/1q6NKIM3-gZhYfdYXTfkOsw",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.60I for Android",
+        "url": "https://disk.yandex.com/d/tkZT_OdMK6c6dg",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Offline",
+          "Unmodded"
+        ]
+      },
+      {
+        "platform": "v5.60I Modded for Android",
+        "url": "https://disk.yandex.com/d/Uhg-RkoGnq-SJw",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile",
+          "Modded"
+        ]
+      },
+      {
+        "platform": "v5.70J for Windows",
+        "url": "https://1024terabox.com/s/1PSzqCokek9hzj5Vk9DvYZA",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.71B for Windows",
+        "url": "https://1024terabox.com/s/1b09me4EReJpATzUvQPvY3A",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.82B for Windows",
+        "url": "https://1024terabox.com/s/1FGawaKpjuGWAO8y00Bvqvg",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v5.82B for Android",
+        "url": "https://archive.org/download/a-8-5.8.2b-apk-data/A8%205.8.2b%20apk%20%2B%20data.zip",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "v5.90N for Windows",
+        "url": "https://1024terabox.com/s/1kapF7ggu474857uupVLcHg",
+        "tags": [
+          "Racing",
+          "SinglePlayer"
+        ]
+      },
+      {
+        "platform": "v6.80R for iOS",
+        "url": "https://archive.org/download/com.gameloft.asphalt8-6.8.0-ios10.0-clutch-2.0.4/com.gameloft.asphalt8-iOS10.0-%28Clutch-2.0.4%29-99ffbd0de5b2731a4bf4216c698536d9.ipa",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Mobile"
+        ]
+      },
+      {
+        "platform": "Remastered Edition for Android",
+        "url": "https://techboy1997mods.blogspot.com/p/download_10.html",
+        "tags": [
+          "Racing",
+          "SinglePlayer",
+          "Offline"
         ]
       },
       {
@@ -1186,3 +1983,4 @@
     ]
   }
 ]
+
