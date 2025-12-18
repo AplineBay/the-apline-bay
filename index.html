@@ -915,49 +915,14 @@
   }
 function seriesKey(name){
   let clean = name
-    // Remove common edition/version suffixes
-    .replace(/\b(edition|remastered|definitive|collection|hd|remake|redux|complete|ultimate|deluxe|premium|gold|black|limited|presents|airborne)\b/gi, '')
+    // Remove common edition/version suffixes and "All DLC" type phrases
+    .replace(/\b(edition|remastered|definitive|collection|hd|remake|redux|complete|ultimate|deluxe|premium|gold|black|limited|presents|airborne|all\s*dlc)\b/gi, '')
     // Remove parentheses and their content
     .replace(/\([^)]*\)/g, '')
     // Remove version numbers and years at the end (but keep them in the middle)
     .replace(/\s+(v?\d+(\.\d+)?[a-z]?|20\d{2}|\d{4})$/gi, '')
     // Remove common separators
     .replace(/[:\-–—]/g, ' ')
-    .trim()
-    .toLowerCase();
-  
-  // Remove trailing numbers with optional subtitle patterns
-  clean = clean
-    .replace(/\s+\b(i{1,3}|iv|v|vi{1,3}|ix|x|xi{1,3})\b.*$/i, '') // Roman numerals
-    .replace(/\s+\d+(\.\d+)?[a-z]?\b.*$/i, ''); // Regular numbers
-  
-  // Remove single-word subtitles after the main title
-  const words = clean.split(/\s+/);
-  if (words.length > 2) {
-    const lastWord = words[words.length - 1];
-    const commonSubtitles = ['prostreet', 'underground', 'payback', 'heat', 'rivals', 'carbon', 
-                             'undercover', 'shift', 'run', 'unbound', 'adrenaline', 'airborne',
-                             'brotherhood', 'revelations', 'origins', 'odyssey', 'valhalla', 
-                             'mirage', 'syndicate', 'unity', 'rogue', 'ghosts', 'vanguard',
-                             'warzone', 'infinite', 'warfare', 'cold', 'war', 'blackflag',
-                             'revengeance', 'rising', 'unleashed', 'apex', 'delta', 'chronicles',
-                             'trilogy', 'spec', 'competizione', 'evo', 'sa', 'iv', 'v'];
-    
-    if (commonSubtitles.includes(lastWord)) {
-      words.pop();
-      clean = words.join(' ');
-    }
-  }
-  
-  // If still multi-word after cleanup, take first 2-3 words as the series base
-  const finalWords = clean.split(/\s+/);
-  if (finalWords.length > 3) {
-    // For longer titles, take first 2-3 words
-    clean = finalWords.slice(0, Math.min(3, finalWords.length)).join(' ');
-  }
-  
-  return clean.trim() || 'other';
-}
 
   function render(list){
     container.innerHTML = '';
