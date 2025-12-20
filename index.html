@@ -1114,46 +1114,70 @@
   }
 
   function renderGame(game, parent){
-    const card = document.createElement('div');
-    card.className = 'game-card';
-    
-    const title = document.createElement('h3');
-    title.textContent = game.name;
-    card.appendChild(title);
-    
-    if (game.description) {
-      const desc = document.createElement('p');
-      desc.textContent = game.description;
-      card.appendChild(desc);
-    }
-    
-    if (game.versions && game.versions.length) {
-      const versionsContainer = document.createElement('div');
-      versionsContainer.className = 'versions-container';
-      
-      game.versions.forEach(v => {
-        const ver = document.createElement('div');
-        ver.className = 'version';
-        
-        const platform = document.createElement('strong');
-        platform.textContent = v.platform;
-        ver.appendChild(platform);
-        
-        const link = document.createElement('a');
-        link.href = v.url;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.textContent = 'Download';
-        ver.appendChild(link);
-        
-        versionsContainer.appendChild(ver);
-      });
-      
-      card.appendChild(versionsContainer);
-    }
-    
-    parent.appendChild(card);
+  const gameItem = document.createElement('div');
+  gameItem.className = 'game-item';
+
+  const gameHeader = document.createElement('div');
+  gameHeader.className = 'game-item-header';
+
+  const gameTitle = document.createElement('div');
+  gameTitle.className = 'game-item-title';
+  gameTitle.textContent = game.name;
+
+  const gameArrow = document.createElement('span');
+  gameArrow.className = 'game-item-arrow';
+  gameArrow.textContent = '▶';
+
+  gameHeader.appendChild(gameTitle);
+  gameHeader.appendChild(gameArrow);
+  gameItem.appendChild(gameHeader);
+
+  const gameContent = document.createElement('div');
+  gameContent.className = 'game-item-content';
+
+  if (game.description) {
+    const desc = document.createElement('p');
+    desc.className = 'game-item-description';
+    desc.textContent = game.description;
+    gameContent.appendChild(desc);
   }
+
+  if (game.versions && game.versions.length) {
+    const versionsContainer = document.createElement('div');
+    versionsContainer.className = 'versions-container';
+
+    game.versions.forEach(v => {
+      const ver = document.createElement('div');
+      ver.className = 'version';
+
+      const platform = document.createElement('strong');
+      platform.textContent = v.platform;
+
+      const link = document.createElement('a');
+      link.href = v.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'Download';
+
+      link.addEventListener('click', e => e.stopPropagation());
+
+      ver.appendChild(platform);
+      ver.appendChild(link);
+      versionsContainer.appendChild(ver);
+    });
+
+    gameContent.appendChild(versionsContainer);
+  }
+
+  gameItem.appendChild(gameContent);
+
+  gameHeader.addEventListener('click', () => {
+    gameItem.classList.toggle('expanded');
+  });
+
+  parent.appendChild(gameItem);
+}
+
 
   function apply(){
     const t = search.value.toLowerCase();
