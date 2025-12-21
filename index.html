@@ -147,7 +147,7 @@
       color: #e8f4ff;
       width:100%;
       font-size: 16px;
-      margin-bottom: 22px;
+      margin-bottom: 0;
       box-shadow: 
         inset 0 3px 10px rgba(0,0,0,0.7),
         inset 0 1px 0 rgba(0,0,0,0.5),
@@ -168,251 +168,6 @@
 
     #search::placeholder {
       color: rgba(232,241,255,0.35);
-    }
-
-    .sort-toggle {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .sort-toggle label {
-      display: inline-flex;
-      align-items: center;
-      gap: 16px;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .sort-toggle input { display:none; }
-
-    .toggle-ui {
-      width: 64px;
-      height: 36px;
-      border-radius: 20px;
-      background: 
-        linear-gradient(180deg, 
-          rgba(25,50,90,0.95) 0%,
-          rgba(18,38,70,0.98) 30%,
-          rgba(12,28,55,1) 60%,
-          rgba(8,20,42,1) 100%);
-      border: 1px solid rgba(120,180,240,0.3);
-      position: relative;
-      box-shadow: 
-        inset 0 3px 10px rgba(0,0,0,0.8),
-        inset 0 1px 0 rgba(0,0,0,0.6),
-        0 1px 0 rgba(255,255,255,0.15);
-      transition: all 0.3s ease;
-    }
-
-    .toggle-ui::after {
-      content:'';
-      position:absolute;
-      top:3px;
-      left:3px;
-      width:28px;
-      height:28px;
-      border-radius:50%;
-      background: 
-        linear-gradient(180deg, 
-          #ffffff 0%,
-          #f5faff 20%,
-          #e8f2ff 50%,
-          #d8e8f8 80%,
-          #c8dff0 100%);
-      border: 1px solid rgba(255,255,255,0.5);
-      box-shadow: 
-        0 3px 10px rgba(0,0,0,0.5),
-        inset 0 -2px 3px rgba(0,0,0,0.15),
-        inset 0 1px 1px rgba(255,255,255,1),
-        0 0 15px rgba(255,255,255,0.4);
-      transition: all 0.3s ease;
-    }
-
-    .sort-toggle input:checked + .toggle-ui {
-      background: 
-        linear-gradient(180deg, 
-          rgba(80,140,220,0.95) 0%,
-          rgba(65,120,195,0.98) 30%,
-          rgba(50,100,170,1) 60%,
-          rgba(40,85,150,1) 100%);
-      border-color: rgba(140,200,255,0.6);
-      box-shadow: 
-        inset 0 3px 10px rgba(0,0,0,0.5),
-        0 0 25px rgba(74,158,255,0.6),
-        0 1px 0 rgba(255,255,255,0.3);
-    }
-
-    .sort-toggle input:checked + .toggle-ui::after {
-      transform: translateX(28px);
-    }
-
-    .toggle-text {
-      font-weight:600;
-      font-size: 16px;
-      color:#f0f8ff;
-      text-shadow: 
-        0 0 10px rgba(150,200,255,0.4),
-        0 1px 3px rgba(0,0,0,0.5);
-    }
-
-    .series-section {
-      background: 
-        linear-gradient(180deg, 
-          rgba(45,85,145,0.35) 0%,
-          rgba(35,70,125,0.32) 25%,
-          rgba(25,55,105,0.3) 50%,
-          rgba(18,42,85,0.32) 75%,
-          rgba(12,30,65,0.35) 100%);
-      padding: 36px;
-      margin: 36px 0;
-      border-radius: 16px;
-      border: 1px solid rgba(120,180,240,0.4);
-      box-shadow: 
-        0 8px 32px rgba(0,0,0,0.6),
-        inset 0 1px 0 rgba(255,255,255,0.2),
-        inset 0 -1px 0 rgba(0,0,0,0.5),
-        0 0 40px rgba(74,158,255,0.15);
-      position: relative;
-      backdrop-filter: blur(20px);
-    }
-
-    .series-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, 
-        rgba(255,255,255,0.1) 0%, 
-        transparent 100%
-      );
-      border-radius: 16px 16px 0 0;
-      pointer-events: none;
-    }
-
-    .series-section h2 {
-      margin: 0 0 32px 0;
-      font-size: 1.9rem;
-      font-weight: 700;
-      color: #fff;
-      text-transform: capitalize;
-      letter-spacing: 1.2px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid rgba(100,170,240,0.3);
-      text-shadow: 
-        0 0 15px rgba(100,180,255,0.6),
-        0 1px 0 rgba(255,255,255,0.3),
-        0 2px 6px rgba(0,0,0,0.6);
-      position: relative;
-      z-index: 1;
-    }
-
-    .series-card {
-      background: 
-        linear-gradient(180deg, 
-          rgba(50,95,160,0.28) 0%,
-          rgba(40,80,140,0.25) 25%,
-          rgba(30,65,120,0.23) 50%,
-          rgba(22,50,98,0.25) 75%,
-          rgba(15,38,78,0.28) 100%);
-      margin: 16px 0;
-      padding: 20px 26px;
-      border-radius: 12px;
-      border: 1px solid rgba(120,180,240,0.35);
-      box-shadow: 
-        0 4px 20px rgba(0,0,0,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.18),
-        inset 0 -1px 0 rgba(0,0,0,0.4),
-        0 0 20px rgba(74,158,255,0.08);
-      transition: all 0.2s;
-      cursor: pointer;
-      position: relative;
-      backdrop-filter: blur(15px);
-    }
-
-    .series-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, 
-        rgba(255,255,255,0.08) 0%, 
-        transparent 100%
-      );
-      border-radius: 12px 12px 0 0;
-      pointer-events: none;
-    }
-
-    .series-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 
-        0 6px 28px rgba(0,0,0,0.6),
-        inset 0 1px 0 rgba(255,255,255,0.22),
-        0 0 30px rgba(74,158,255,0.25);
-      background: 
-        linear-gradient(180deg, 
-          rgba(55,105,170,0.32) 0%,
-          rgba(45,90,150,0.3) 25%,
-          rgba(35,75,130,0.28) 50%,
-          rgba(28,60,110,0.3) 75%,
-          rgba(20,45,90,0.32) 100%);
-    }
-
-    .series-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .series-card-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color:#fff;
-      text-shadow: 
-        0 1px 0 rgba(255,255,255,0.3),
-        0 2px 6px rgba(0,0,0,0.4);
-      margin: 0;
-      text-transform: capitalize;
-    }
-
-    .series-card-count {
-      font-size: 0.9rem;
-      color: #c8e5ff;
-      font-weight: 600;
-      background: 
-        linear-gradient(180deg,
-          rgba(15,30,55,0.5) 0%,
-          rgba(10,22,45,0.7) 100%);
-      padding: 5px 12px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-    }
-
-    .series-card-arrow {
-      font-size: 1.1rem;
-      color: #a8d4ff;
-      transition: transform 0.3s;
-      margin-left: 10px;
-    }
-
-    .series-card.expanded .series-card-arrow {
-      transform: rotate(90deg);
-    }
-
-    .series-card-games {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-    }
-
-    .series-card.expanded .series-card-games {
-      max-height: 10000px;
-      margin-top: 20px;
     }
 
     .game-item {
@@ -480,12 +235,6 @@
         0 1px 0 rgba(255,255,255,0.2),
         0 2px 4px rgba(0,0,0,0.5);
       margin: 0;
-    } 600;
-      color: #f0f8ff;
-      text-shadow: 
-        0 1px 0 rgba(255,255,255,0.2),
-        0 2px 4px rgba(0,0,0,0.3);
-      margin: 0;
     }
 
     .game-item-arrow {
@@ -514,46 +263,6 @@
       line-height: 1.6;
       color: #d0e5ff;
       font-size: 0.95rem;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
-
-    .game-card {
-      background: 
-        linear-gradient(180deg, 
-          rgba(50,95,150,0.2) 0%, 
-          rgba(30,65,115,0.3) 100%);
-      margin: 24px 0;
-      padding: 30px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: 
-        0 4px 20px rgba(0,0,0,0.25),
-        inset 0 1px 0 rgba(255,255,255,0.15);
-      transition: all 0.2s;
-      backdrop-filter: blur(15px);
-    }
-
-    .game-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 
-        0 8px 32px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.2);
-    }
-
-    .game-card h3{
-      margin:0 0 14px 0;
-      font-size: 1.55rem;
-      font-weight: 700;
-      color:#fff;
-      text-shadow: 
-        0 1px 0 rgba(255,255,255,0.3),
-        0 2px 6px rgba(0,0,0,0.4);
-    }
-
-    .game-card p {
-      margin: 12px 0 20px 0;
-      line-height: 1.7;
-      color: #ddeeff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
@@ -639,14 +348,6 @@
         font-size: 1.8rem;
       }
 
-      .series-section {
-        padding: 24px;
-      }
-
-      .series-section h2 {
-        font-size: 1.5rem;
-      }
-
       .versions-container {
         grid-template-columns: 1fr;
       }
@@ -665,13 +366,6 @@
 <div class="container">
   <div class="controls">
     <input type="text" id="search" placeholder="Search games..." />
-    <div class="sort-toggle">
-      <label>
-        <input type="checkbox" id="groupToggle">
-        <span class="toggle-ui"></span>
-        <span class="toggle-text">Group by series</span>
-      </label>
-    </div>
   </div>
   <div id="games"></div>
 </div>
@@ -680,211 +374,23 @@
 (function(){
   const container = document.getElementById('games');
   const search = document.getElementById('search');
-  const toggle = document.getElementById('groupToggle');
   let dataCache = [];
   
   function showMessage(msg){
     container.innerHTML = `<div class="no-results">${msg}</div>`;
   }
 
-  function seriesKey(name){
-    let clean = name
-      // Remove common edition/version suffixes and "All DLC" type phrases
-      .replace(/\b(edition|remastered|definitive|collection|hd|remake|redux|complete|ultimate|deluxe|premium|gold|black|limited|presents|airborne|all\s*dlc)\b/gi, '')
-      // Remove parentheses and their content
-      .replace(/\([^)]*\)/g, '')
-      // Remove version numbers and years at the end (but keep them in the middle)
-      .replace(/\s+(v?\d+(\.\d+)?[a-z]?|20\d{2}|\d{4})$/gi, '')
-      // Remove common separators
-      .replace(/[:\-—–]/g, ' ')
-      .trim()
-      .toLowerCase();
-    
-    // Remove trailing numbers with optional subtitle patterns
-    clean = clean
-      .replace(/\s+\b(i{1,3}|iv|v|vi{1,3}|ix|x|xi{1,3})\b.*$/i, '') // Roman numerals
-      .replace(/\s+\d+(\.\d+)?[a-z]?\b.*$/i, ''); // Regular numbers
-    
-    // Remove single-word subtitles after the main title
-    const words = clean.split(/\s+/);
-    if (words.length > 2) {
-      const lastWord = words[words.length - 1];
-      const commonSubtitles = ['prostreet', 'underground', 'payback', 'heat', 'rivals', 'carbon', 
-                               'undercover', 'shift', 'run', 'unbound', 'adrenaline', 'airborne',
-                               'brotherhood', 'revelations', 'origins', 'odyssey', 'valhalla', 
-                               'mirage', 'syndicate', 'unity', 'rogue', 'ghosts', 'vanguard',
-                               'warzone', 'infinite', 'warfare', 'cold', 'war', 'blackflag',
-                               'revengeance', 'rising', 'unleashed', 'apex', 'delta', 'chronicles',
-                               'trilogy', 'spec', 'competizione', 'evo', 'sa', 'iv', 'v',
-                               'concept', 'hd'];
-      
-      if (commonSubtitles.includes(lastWord)) {
-        words.pop();
-        clean = words.join(' ');
-      }
-    }
-    
-    // If still multi-word after cleanup, take first 2-3 words as the series base
-    const finalWords = clean.split(/\s+/);
-    if (finalWords.length > 3) {
-      clean = finalWords.slice(0, Math.min(3, finalWords.length)).join(' ');
-    }
-    
-    return clean.trim() || 'other';
-  }
-
   function render(list){
     container.innerHTML = '';
     if(!list.length){
-      showMessage('No games found.');
+      if(search.value.trim() === ''){
+        showMessage('Start typing to search for games...');
+      } else {
+        showMessage('No games found.');
+      }
       return;
     }
-    if(!toggle.checked){
-      list.forEach(game => renderGame(game, container));
-      return;
-    }
-    // Group by series
-    const groups = {};
-    list.forEach(g=>{
-      const k = seriesKey(g.name);
-      (groups[k] = groups[k] || []).push(g);
-    });
-    // Sort series alphabetically
-    const sortedSeries = Object.keys(groups).sort();
-    // Render each series as a collapsible card
-    sortedSeries.forEach(seriesName=>{
-      renderSeriesCard(seriesName, groups[seriesName], container);
-    });
-  }
-
-  function renderSeriesCard(seriesName, games, parent){
-    const card = document.createElement('div');
-    card.className = 'series-card';
-    
-    const header = document.createElement('div');
-    header.className = 'series-card-header';
-    
-    const title = document.createElement('h3');
-    title.className = 'series-card-title';
-    title.textContent = seriesName === 'other' ? 'Other Games' : seriesName;
-    
-    const rightSide = document.createElement('div');
-    rightSide.style.display = 'flex';
-    rightSide.style.alignItems = 'center';
-    rightSide.style.gap = '12px';
-    
-    const count = document.createElement('span');
-    count.className = 'series-card-count';
-    count.textContent = `${games.length} game${games.length !== 1 ? 's' : ''}`;
-    
-    const arrow = document.createElement('span');
-    arrow.className = 'series-card-arrow';
-    arrow.textContent = '▶';
-    
-    rightSide.appendChild(count);
-    rightSide.appendChild(arrow);
-    
-    header.appendChild(title);
-    header.appendChild(rightSide);
-    card.appendChild(header);
-    
-    // Create collapsible content for games list
-    const gamesContainer = document.createElement('div');
-    gamesContainer.className = 'series-card-games';
-    
-    // Add each game as a collapsible item
-    games.forEach(game => {
-      const gameItem = document.createElement('div');
-      gameItem.className = 'game-item';
-      
-      const gameHeader = document.createElement('div');
-      gameHeader.className = 'game-item-header';
-      
-      const gameTitle = document.createElement('div');
-      gameTitle.className = 'game-item-title';
-      gameTitle.textContent = game.name;
-      
-      const gameRight = document.createElement('div');
-      gameRight.style.display = 'flex';
-      gameRight.style.alignItems = 'center';
-      gameRight.style.gap = '10px';
-      
-      const versionCount = document.createElement('span');
-      versionCount.className = 'series-card-count';
-      versionCount.style.fontSize = '0.85rem';
-      versionCount.style.padding = '4px 10px';
-      versionCount.textContent = `${game.versions ? game.versions.length : 0} version${game.versions && game.versions.length !== 1 ? 's' : ''}`;
-      
-      const gameArrow = document.createElement('span');
-      gameArrow.className = 'game-item-arrow';
-      gameArrow.textContent = '▶';
-      
-      gameRight.appendChild(versionCount);
-      gameRight.appendChild(gameArrow);
-      
-      gameHeader.appendChild(gameTitle);
-      gameHeader.appendChild(gameRight);
-      gameItem.appendChild(gameHeader);
-      
-      // Game content (description + versions)
-      const gameContent = document.createElement('div');
-      gameContent.className = 'game-item-content';
-      
-      if (game.description) {
-        const desc = document.createElement('p');
-        desc.className = 'game-item-description';
-        desc.textContent = game.description;
-        gameContent.appendChild(desc);
-      }
-      
-      if (game.versions && game.versions.length) {
-        const versionsContainer = document.createElement('div');
-        versionsContainer.className = 'versions-container';
-        
-        game.versions.forEach(v => {
-          const ver = document.createElement('div');
-          ver.className = 'version';
-          
-          const platform = document.createElement('strong');
-          platform.textContent = v.platform;
-          ver.appendChild(platform);
-          
-          const link = document.createElement('a');
-          link.href = v.url;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.textContent = 'Download';
-          link.addEventListener('click', (e) => {
-            e.stopPropagation();
-          });
-          ver.appendChild(link);
-          
-          versionsContainer.appendChild(ver);
-        });
-        
-        gameContent.appendChild(versionsContainer);
-      }
-      
-      gameItem.appendChild(gameContent);
-      
-      // Toggle game details expand/collapse
-      gameHeader.addEventListener('click', (e) => {
-        e.stopPropagation();
-        gameItem.classList.toggle('expanded');
-      });
-      
-      gamesContainer.appendChild(gameItem);
-    });
-    
-    card.appendChild(gamesContainer);
-    
-    // Toggle series expand/collapse on header click
-    header.addEventListener('click', (e) => {
-      e.stopPropagation();
-      card.classList.toggle('expanded');
-    });
-    
-    parent.appendChild(card);
+    list.forEach(game => renderGame(game, container));
   }
 
   function renderGame(game, parent){
@@ -953,7 +459,11 @@
   }
 
   function apply(){
-    const t = search.value.toLowerCase();
+    const t = search.value.toLowerCase().trim();
+    if(t === ''){
+      render([]);
+      return;
+    }
     const filtered = dataCache.filter(g =>
       g.name.toLowerCase().includes(t) ||
       (g.description && g.description.toLowerCase().includes(t)) ||
@@ -965,7 +475,7 @@
     render(filtered);
   }
 
-  showMessage('Loading games...');
+  showMessage('Start typing to search for games...');
 
   fetch('games.json')
     .then(r => {
@@ -974,12 +484,11 @@
     })
     .then(d => {
       dataCache = d;
-      apply();
+      showMessage('Start typing to search for games...');
     })
     .catch(() => showMessage('Failed to load games.json'));
 
   search.addEventListener('input', apply);
-  toggle.addEventListener('change', apply);
 })();
 </script>
 
