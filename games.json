@@ -3258,8 +3258,221 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "spider-man-2001",
+    "name": "Spider-Man (2001)",
+    "description": "The classic action-adventure game based on the Marvel character.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?x4dugqx7gs1l9xaggewm",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Preinstalled",
+          "Admin Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-2-2004",
+    "name": "Spider-Man 2 (2004)",
+    "description": "Open-world action game based on the film Spider-Man 2.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?43qghsydniuv1uuywnru",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Preinstalled",
+          "Admin Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "ultimate-spider-man",
+    "name": "Ultimate Spider-Man (2005)",
+    "description": "A cell-shaded open-world game following both Spider-Man and Venom.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?kgfefku99oiou9979p73",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Preinstalled",
+          "Admin Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-3-2007",
+    "name": "Spider-Man 3 (2007)",
+    "description": "The video game adaptation of the third film in the Raimi trilogy.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?wje21u39ma2r64qg5mzi",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Preinstalled",
+          "Admin Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-friend-or-foe",
+    "name": "Spider-Man: Friend Or Foe (2007)",
+    "description": "A beat 'em up featuring Spider-Man teaming up with his famous allies and enemies.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?qbx59wvuqi30h837jccv",
+        "tags": [
+          "Action",
+          "Beat 'em up",
+          "Singleplayer",
+          "Preinstalled",
+          "Admin Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-web-of-shadows",
+    "name": "Spider-Man: Web Of Shadows (2008)",
+    "description": "An action game featuring a choice-based system and a symbiote invasion of New York.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?s4yhlos6kbh0hj4l1dxk",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Preinstalled",
+          "Admin Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-shattered-dimensions",
+    "name": "Spider-Man: Shattered Dimensions (2010)",
+    "description": "Play as four different versions of Spider-Man across different universes.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://drive.google.com/drive/u/2/folders/1C4PGySuuzknII8gRD28eSvKfL5byVVoZ",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "No Install Required",
+          "Regfix Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-edge-of-time",
+    "name": "Spider-Man: Edge of Time (2011)",
+    "description": "A timeline-bending adventure featuring Amazing Spider-Man and Spider-Man 2099.",
+    "versions": [
+      {
+        "platform": "Windows (RPCS3 Emulated)",
+        "url": "https://1fichier.com/?h93rqk1q2w8eieh84hs5",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Emulated"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "the-amazing-spider-man",
+    "name": "The Amazing Spider-Man (2012)",
+    "description": "An open-world game serving as an epilogue to the 2012 film.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?7qd3wk7bdqjd8pdw49ea",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Compatibility Mode Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "the-amazing-spider-man-2",
+    "name": "The Amazing Spider-Man 2 (2014)",
+    "description": "The sequel to the 2012 game, expanding the open world and hero/menace system.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?ee4bb0rnlwftvs541uay",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "No Install Required",
+          "Admin Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-remastered",
+    "name": "Spider-Man Remastered",
+    "description": "The critically acclaimed modern action-adventure game from Insomniac Games.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://gofile.io/d/78ooEM",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer",
+          "Remastered"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spider-man-2-remastered",
+    "name": "Spider-Man 2",
+    "description": "The sequel to the modern Spider-Man series, featuring both Peter Parker and Miles Morales.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://www.filecrypt.cc/Container/FA4205F11C",
+        "tags": [
+          "Action",
+          "Adventure",
+          "Singleplayer"
+        ]
+      }
+    ]
   }
 ]
+
+
 
 
 
