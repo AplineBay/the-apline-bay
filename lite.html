@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <title>The Alpine Bay</title>
+  <title>The Apline Bay</title>
 
   <style>
     * {
@@ -88,7 +88,7 @@
     .content {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      height: calc(100% - 110px);
+      height: calc(100% - 74px);
     }
 
     .list-group {
@@ -102,24 +102,6 @@
         0 1px 0 rgba(255,255,255,0.15) inset,
         0 1px 4px rgba(0,0,0,0.5);
       overflow: hidden;
-    }
-
-    .list-group-header {
-      background: 
-        -webkit-linear-gradient(top, 
-          rgba(30,55,95,0.95), 
-          rgba(25,45,80,0.98));
-      padding: 8px 12px;
-      border-bottom: 1px solid rgba(0,0,0,0.4);
-      -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset;
-    }
-
-    .list-group-header h2 {
-      font-size: 14px;
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #b8d4ff;
-      text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
     }
 
     /* iOS 6 List Items */
@@ -238,97 +220,13 @@
       color: #b8d4ff;
       font-size: 16px;
     }
-
-    /* Grouped View Toggle */
-    .toggle-container {
-      padding: 10px;
-      background: rgba(20,40,70,0.5);
-      border-bottom: 1px solid rgba(0,0,0,0.3);
-      text-align: center;
-    }
-
-    .toggle-switch {
-      display: inline-block;
-      position: relative;
-      width: 52px;
-      height: 32px;
-      vertical-align: middle;
-      margin: 0 8px;
-    }
-
-    .toggle-switch input {
-      display: none;
-    }
-
-    .toggle-slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        -webkit-linear-gradient(top, 
-          rgba(15,25,45,1), 
-          rgba(10,18,35,1));
-      border: 1px solid rgba(0,0,0,0.6);
-      border-radius: 16px;
-      -webkit-box-shadow: 
-        0 1px 3px rgba(0,0,0,0.6) inset,
-        0 1px 0 rgba(255,255,255,0.1);
-      -webkit-transition: 0.3s;
-    }
-
-    .toggle-slider:before {
-      position: absolute;
-      content: "";
-      height: 28px;
-      width: 28px;
-      left: 2px;
-      top: 1px;
-      background: 
-        -webkit-linear-gradient(top, 
-          #f8fbff, 
-          #d5e8ff);
-      border-radius: 50%;
-      -webkit-box-shadow: 
-        0 2px 6px rgba(0,0,0,0.5),
-        0 1px 0 rgba(255,255,255,0.8) inset;
-      -webkit-transition: 0.3s;
-    }
-
-    input:checked + .toggle-slider {
-      background: 
-        -webkit-linear-gradient(top, 
-          rgba(50,100,170,0.95), 
-          rgba(40,85,150,1));
-    }
-
-    input:checked + .toggle-slider:before {
-      -webkit-transform: translateX(20px);
-    }
-
-    .toggle-label {
-      font-size: 14px;
-      color: #d5e8ff;
-      font-weight: bold;
-      text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
-    }
   </style>
 </head>
 
 <body>
 
 <div class="header">
-  <h1>The Alpine Bay</h1>
-</div>
-
-<div class="toggle-container">
-  <span class="toggle-label">Group by Series</span>
-  <label class="toggle-switch">
-    <input type="checkbox" id="groupToggle">
-    <span class="toggle-slider"></span>
-  </label>
+  <h1>The Apline Bay</h1>
 </div>
 
 <div class="search-container">
@@ -336,81 +234,25 @@
 </div>
 
 <div class="content" id="gamesList">
-  <div class="loading">Loading games...</div>
+  <div class="loading">Start typing to search for games...</div>
 </div>
 
 <script>
 (function(){
   const gamesList = document.getElementById('gamesList');
   const searchInput = document.getElementById('searchInput');
-  const groupToggle = document.getElementById('groupToggle');
   let gamesData = [];
 
-  function seriesKey(name){
-    let series = name
-      .replace(/\b\d+(\.\d+)?[a-z]?\b/gi, '')
-      .replace(/\b(edition|remastered|definitive|collection|hd|remake|redux|complete|ultimate|deluxe|premium|gold)\b/gi, '')
-      .replace(/[:\-–—]/g, '')
-      .replace(/\(.*?\)/g, '')
-      .trim()
-      .toLowerCase();
-    
-    if (series.includes('forza horizon')) return 'forza horizon';
-    if (series.includes('forza motorsport')) return 'forza motorsport';
-    if (series.includes('gran turismo')) return 'gran turismo';
-    if (series.includes('need for speed') || series.includes('nfs')) return 'need for speed';
-    if (series.includes('call of duty') || series.includes('cod')) return 'call of duty';
-    if (series.includes('asphalt')) return 'asphalt';
-    if (series.includes('assetto corsa')) return 'assetto corsa';
-    
-    return series || 'other';
-  }
-
-  function renderGrouped(games) {
-    const groups = {};
-    games.forEach(g => {
-      const k = seriesKey(g.name);
-      (groups[k] = groups[k] || []).push(g);
-    });
-
-    const sortedSeries = Object.keys(groups).sort();
-    let html = '';
-
-    sortedSeries.forEach(seriesName => {
-      html += '<div class="list-group">';
-      html += '<div class="list-group-header">';
-      html += '<h2>' + (seriesName === 'other' ? 'Other Games' : seriesName.toUpperCase()) + '</h2>';
-      html += '</div>';
-
-      groups[seriesName].forEach(game => {
-        html += '<div class="list-item" onclick="toggleGame(this)">';
-        html += '<div class="list-item-title">' + game.name + '</div>';
-        html += '<div class="list-item-arrow"></div>';
-        html += '<div class="collapsible-content">';
-        if (game.description) {
-          html += '<div class="list-item-desc">' + game.description + '</div>';
-        }
-        if (game.versions && game.versions.length) {
-          html += '<div class="version-list">';
-          game.versions.forEach(v => {
-            html += '<a href="' + v.url + '" class="version-button" target="_blank">';
-            html += '<span class="version-button-label">' + v.platform + '</span>';
-            html += 'Download';
-            html += '</a>';
-          });
-          html += '</div>';
-        }
-        html += '</div>';
-        html += '</div>';
-      });
-
-      html += '</div>';
-    });
-
-    gamesList.innerHTML = html;
-  }
-
   function renderFlat(games) {
+    if (games.length === 0) {
+      if (searchInput.value.trim() === '') {
+        gamesList.innerHTML = '<div class="no-results">Start typing to search for games...</div>';
+      } else {
+        gamesList.innerHTML = '<div class="no-results">No games found</div>';
+      }
+      return;
+    }
+
     let html = '<div class="list-group">';
     
     games.forEach(game => {
@@ -440,23 +282,20 @@
   }
 
   function render() {
-    const query = searchInput.value.toLowerCase();
+    const query = searchInput.value.toLowerCase().trim();
+    
+    if (query === '') {
+      renderFlat([]);
+      return;
+    }
+
     const filtered = gamesData.filter(g =>
       g.name.toLowerCase().includes(query) ||
       (g.description && g.description.toLowerCase().includes(query)) ||
       (g.versions && g.versions.some(v => v.platform.toLowerCase().includes(query)))
     );
 
-    if (filtered.length === 0) {
-      gamesList.innerHTML = '<div class="no-results">No games found</div>';
-      return;
-    }
-
-    if (groupToggle.checked) {
-      renderGrouped(filtered);
-    } else {
-      renderFlat(filtered);
-    }
+    renderFlat(filtered);
   }
 
   window.toggleGame = function(elem) {
@@ -468,26 +307,47 @@
     }
   };
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'games.json', true);
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        try {
-          gamesData = JSON.parse(xhr.responseText);
-          render();
-        } catch(e) {
-          gamesList.innerHTML = '<div class="no-results">Failed to parse games data</div>';
-        }
+  // Load all JSON files from Rom 47 folder
+  async function loadAllGames() {
+    try {
+      // First, try to load a manifest file that lists all JSON files
+      const manifestResponse = await fetch('Rom 47/manifest.json');
+      let jsonFiles = [];
+      
+      if (manifestResponse.ok) {
+        const manifest = await manifestResponse.json();
+        jsonFiles = manifest.files || [];
       } else {
-        gamesList.innerHTML = '<div class="no-results">Failed to load games (Error: ' + xhr.status + ')</div>';
+        // Fallback: try common file names
+        jsonFiles = ['pak1.json', 'pak2.json', 'pak3.json', 'pak4.json', 'pak5.json'];
       }
+      
+      // Load all JSON files in parallel
+      const promises = jsonFiles.map(file => 
+        fetch('Rom 47/' + file)
+          .then(r => r.ok ? r.json() : [])
+          .catch(function() { return []; })
+      );
+      
+      const results = await Promise.all(promises);
+      
+      // Combine all arrays into one
+      gamesData = results.reduce(function(acc, val) {
+        return acc.concat(val);
+      }, []);
+      
+      if (gamesData.length === 0) {
+        gamesList.innerHTML = '<div class="no-results">No games found. Make sure JSON files are in the "Rom 47" folder.</div>';
+      } else {
+        gamesList.innerHTML = '<div class="no-results">Start typing to search for games...</div>';
+      }
+    } catch (err) {
+      gamesList.innerHTML = '<div class="no-results">Failed to load games from Rom 47 folder.</div>';
     }
-  };
-  xhr.send();
+  }
 
+  loadAllGames();
   searchInput.addEventListener('input', render);
-  groupToggle.addEventListener('change', render);
 })();
 </script>
 
