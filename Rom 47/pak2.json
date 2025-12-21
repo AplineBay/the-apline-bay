@@ -1,0 +1,100 @@
+[
+  {
+    "slug": "trackmania-turbo",
+    "name": "Trackmania Turbo",
+    "description": "Arcade racing game featuring over-the-top tracks with loops, wall rides, and ramps in a high-speed racing experience.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://megadb.net/ajw497i3xlfc",
+        "tags": [
+          "Racing",
+          "Arcade",
+          "Singleplayer/Multiplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "counter-strike-1-6",
+    "name": "Counter-Strike 1.6",
+    "description": "The classic tactical first-person shooter that defined competitive gaming, featuring iconic maps and weapons.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://mega.nz/file/Tmx1QJhC#plOIjSee-z92yeYJlSbYHXc38Su0q2QxQkLKVGxPzN4",
+        "tags": [
+          "Shooter",
+          "Tactical",
+          "Multiplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "counter-strike-global-offensive",
+    "name": "Counter-Strike: Global Offensive",
+    "description": "The modern iteration of Counter-Strike with updated graphics, new maps, and competitive matchmaking.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://www.mediafire.com/file/f9zvvfxb53dsn1c/7l_csgo_latest_setup.exe/file",
+        "tags": [
+          "Shooter",
+          "Tactical",
+          "Multiplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "modern-combat-4-zero-hour",
+    "name": "Modern Combat 4: Zero Hour",
+    "description": "Mobile first-person shooter with console-quality graphics and intense multiplayer action.",
+    "versions": [
+      {
+        "platform": "Android",
+        "url": "https://drive.google.com/file/d/1QxOnJjAwRe-mPbLb3UvON3Is0hLmUewQ/view?usp=sharing",
+        "tags": [
+          "Shooter",
+          "Mobile",
+          "Singleplayer/Multiplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "juiced",
+    "name": "Juiced",
+    "description": "Street racing game with crew-based gameplay, betting, and extensive car customization.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://drive.google.com/drive/folders/1w9eoSvf5k5RATYzK5HjVJDZwzX0AiJVZ?usp=sharing",
+        "tags": [
+          "Racing",
+          "Street Racing",
+          "Singleplayer",
+          "No Install"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "juiced-2-hot-import-nights",
+    "name": "Juiced 2: Hot Import Nights",
+    "description": "Sequel featuring enhanced graphics, more cars, and intense drift competitions in illegal street racing.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://drive.google.com/drive/u/1/folders/1NWcQsJR-7Z3utVkmdKT27XyjHuEMo2nP",
+        "tags": [
+          "Racing",
+          "Street Racing",
+          "Singleplayer",
+          "No Install"
+        ]
+      }
+    ]
+  }
+]
