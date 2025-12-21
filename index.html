@@ -475,19 +475,47 @@
     render(filtered);
   }
 
-  showMessage('Start typing to search for games...');
+  showMessage('Loading games...');
 
-  fetch('games.json')
-    .then(r => {
-      if (!r.ok) throw new Error('Failed to load');
-      return r.json();
-    })
-    .then(d => {
-      dataCache = d;
-      showMessage('Start typing to search for games...');
-    })
-    .catch(() => showMessage('Failed to load games.json'));
+  // Load all JSON files from Rom 47 folder
+  async function loadAllGames() {
+    try {
+      // First, try to load a manifest file that lists all JSON files
+      const manifestResponse = await fetch('Rom 47/manifest.json');
+      let jsonFiles = [];
+      
+      if (manifestResponse.ok) {
+        const manifest = await manifestResponse.json();
+        jsonFiles = manifest.files || [];
+      } else {
+        // Fallback: try common file names
+        jsonFiles = ['pak1.json', 'pak2.json', 'pak3.json', 'pak4.json', 'pak5.json'];
+      }
+      
+      // Load all JSON files in parallel
+      const promises = jsonFiles.map(file => 
+        fetch(`Rom 47/${file}`)
+          .then(r => r.ok ? r.json() : [])
+          .catch(() => [])
+      );
+      
+      const results = await Promise.all(promises);
+      
+      // Combine all arrays into one
+      dataCache = results.flat();
+      
+      if (dataCache.length === 0) {
+        showMessage('No games found. Make sure JSON files are in the "Rom 47" folder.');
+      } else {
+        showMessage('Start typing to search for games...');
+      }
+    } catch (err) {
+      showMessage('Failed to load games from Rom 47 folder.');
+      console.error(err);
+    }
+  }
 
+  loadAllGames();
   search.addEventListener('input', apply);
 })();
 </script>
