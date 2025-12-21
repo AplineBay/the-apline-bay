@@ -1012,7 +1012,7 @@
   {
     "slug": "assassins-creed-1",
     "name": "Assassin's Creed",
-    "description": "The first game in the series, introducing the Assassin Alta\u00efr Ibn-La'Ahad.",
+    "description": "The first game in the series, introducing the Assassin Altaïr Ibn-La'Ahad.",
     "versions": [
       {
         "platform": "Windows",
@@ -1175,7 +1175,7 @@
   {
     "slug": "assassins-creed-revelations",
     "name": "Assassin's Creed Revelations",
-    "description": "The final chapter in the Ezio Auditore and Alta\u00efr Ibn-La'Ahad trilogies.",
+    "description": "The final chapter in the Ezio Auditore and Altaïr Ibn-La'Ahad trilogies.",
     "versions": [
       {
         "platform": "Windows",
@@ -3086,6 +3086,97 @@
         ]
       }
     ]
-  }
+  },
+  {
+    "slug": "project-gotham-racing-3",
+    "name": "Project Gotham Racing 3",
+    "description": "An arcade-style racing game focused on style-based driving and city circuit racing.",
+    "versions": [
+      {
+        "platform": "Windows (XBOX 360 Emulated)",
+        "url": "https://1fichier.com/?v1y28ukd9x7bjr4ll23b",
+        "tags": [
+          "Racing",
+          "Arcade",
+          "Singleplayer",
+          "Emulated",
+          "No Config Required"
+        ]
+      }
     ]
+  },
+  {
+    "slug": "project-gotham-racing-4",
+    "name": "Project Gotham Racing 4",
+    "description": "The final entry in the Project Gotham Racing series, featuring motorcycles, dynamic weather, and expanded cities.",
+    "versions": [
+      {
+        "platform": "Windows (XBOX 360 Emulated)",
+        "url": "https://1fichier.com/?dgyakcwsizjf9an3l7p3",
+        "tags": [
+          "Racing",
+          "Arcade",
+          "Singleplayer",
+          "Emulated",
+          "No Config Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "skate",
+    "name": "Skate",
+    "description": "A realistic skateboarding game introducing the flick-it control system.",
+    "versions": [
+      {
+        "platform": "Windows (XBOX 360 Emulated)",
+        "url": "https://1fichier.com/?5hodwwly1b3uvhglbs7m",
+        "tags": [
+          "Sports",
+          "Skateboarding",
+          "Singleplayer",
+          "Emulated",
+          "No Config Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "skate-2",
+    "name": "Skate 2",
+    "description": "The sequel to Skate, featuring an expanded open world and deeper trick system.",
+    "versions": [
+      {
+        "platform": "Windows (XBOX 360 Emulated)",
+        "url": "https://1fichier.com/?pizusywtqqvmcxywyjey",
+        "tags": [
+          "Sports",
+          "Skateboarding",
+          "Singleplayer",
+          "Emulated",
+          "No Config Required"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "skate-3",
+    "name": "Skate 3",
+    "description": "The third entry in the Skate series, adding team-based gameplay and expanded online features.",
+    "versions": [
+      {
+        "platform": "Windows (XBOX 360 Emulated)",
+        "url": "https://1fichier.com/?pdxaxa0wjyh8gg6vyy1i",
+        "tags": [
+          "Sports",
+          "Skateboarding",
+          "Singleplayer",
+          "Emulated",
+          "No Config Required"
+        ]
+      }
+    ]
+  }
+]
+
 
