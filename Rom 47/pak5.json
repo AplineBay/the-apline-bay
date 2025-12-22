@@ -220,5 +220,37 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "project-cars-goty",
+    "name": "Project CARS (Game Of The Year)",
+    "description": "The ultimate driver journey, featuring all DLC, extra cars, and tracks in one comprehensive package.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?ikarx6hjfqlo5jko0p2w",
+        "tags": [
+          "Racing",
+          "Simulation",
+          "Portable"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "project-cars-2-all-dlc",
+    "name": "Project CARS 2 (All DLC)",
+    "description": "The pinnacle of simulation racing, featuring a massive car roster, dynamic surface physics, and full season effects.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?3xtw7e0kwi4bhg0cnbhw",
+        "tags": [
+          "Racing",
+          "Simulation",
+          "Portable"
+        ]
+      }
+    ]
   }
 ]
