@@ -1,0 +1,114 @@
+[
+  {
+    "slug": "battlefield-3",
+    "name": "Battlefield 3",
+    "description": "Large-scale modern military shooter with destructible environments and intense multiplayer battles.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://www.filecrypt.cc/Container/2F603A5155",
+        "tags": [
+          "Shooter",
+          "Singleplayer/Multiplayer",
+          "Military"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "battlefield-4",
+    "name": "Battlefield 4",
+    "description": "Modern warfare FPS with massive 64-player battles, naval combat, and Levolution map-changing events.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?eo5rzpvapewoyfmy69vq",
+        "tags": [
+          "Shooter",
+          "Singleplayer/Multiplayer",
+          "Military"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "battlefield-bad-company-2",
+    "name": "Battlefield: Bad Company 2",
+    "description": "Tactical shooter featuring the Bad Company squad with enhanced destruction and engaging multiplayer.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://www.filecrypt.cc/Container/49E19DF889",
+        "tags": [
+          "Shooter",
+          "Singleplayer/Multiplayer",
+          "Military"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "battlefield-1",
+    "name": "Battlefield 1",
+    "description": "WWI-era shooter with epic battles across multiple fronts, featuring period-authentic weapons and vehicles.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://1fichier.com/?rtiv9ea6hoejtn2d2cx5",
+        "tags": [
+          "Shooter",
+          "Singleplayer/Multiplayer",
+          "WWI"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "battlefield-v",
+    "name": "Battlefield V",
+    "description": "WWII multiplayer shooter with immersive combat, grand operations, and battle royale mode.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://www.filecrypt.cc/Container/732F7B09B3",
+        "tags": [
+          "Shooter",
+          "Singleplayer/Multiplayer",
+          "WWII"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "battlefield-hardline",
+    "name": "Battlefield: Hardline",
+    "description": "Cops vs criminals themed Battlefield with heist modes, vehicle pursuits, and urban warfare.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://gofile.io/d/jp0Nn0",
+        "tags": [
+          "Shooter",
+          "Singleplayer/Multiplayer",
+          "Crime"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "battlefield-6-campaign",
+    "name": "Battlefield 6 Campaign",
+    "description": "Near-future warfare with advanced technology, massive maps, and dynamic weather events.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://buzzheavier.com/wb34m83386ee",
+        "tags": [
+          "Shooter",
+          "Singleplayer",
+          "Modern"
+        ]
+      }
+    ]
+  }
+]
