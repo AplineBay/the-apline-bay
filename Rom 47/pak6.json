@@ -1,0 +1,138 @@
+[
+  {
+    "slug": "portal",
+    "name": "Portal",
+    "description": "A ground-breaking single-player puzzle-platformer set in the mysterious Aperture Science Laboratories, focusing on the use of a portal gun to solve spatial puzzles.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://megadb.net/a888c87uglsu",
+        "tags": [
+          "Puzzle",
+          "First-Person",
+          "Singleplayer",
+          "Sci-Fi"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "portal-2",
+    "name": "Portal 2",
+    "description": "The epic sequel featuring an expanded single-player campaign with new puzzle mechanics and a dedicated two-player cooperative mode.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://gofile.io/d/HyiOmH",
+        "tags": [
+          "Puzzle",
+          "First-Person",
+          "Co-op",
+          "Singleplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "half-life",
+    "name": "Half-Life",
+    "description": "The legendary debut of Gordon Freeman, blending intense action and continuous storytelling in the Black Mesa Research Facility.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://megadb.net/sk4haov07nyk",
+        "tags": [
+          "Shooter",
+          "Sci-Fi",
+          "Classic",
+          "Singleplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "half-life-2",
+    "name": "Half-Life 2",
+    "description": "Set years after the original, Gordon Freeman joins the resistance against the alien Combine in City 17, featuring advanced physics-based gameplay.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://megadb.net/4cw0nfvb3ifp",
+        "tags": [
+          "Shooter",
+          "Sci-Fi",
+          "Physics",
+          "Singleplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "half-life-alyx",
+    "name": "Half-Life: Alyx",
+    "description": "The return to the Half-Life series in VR, following Alyx Vance's fight against the Combine between the events of Half-Life and Half-Life 2.",
+    "versions": [
+      {
+        "platform": "Windows (VR Required)",
+        "url": "https://www.filecrypt.cc/Container/ECC9E1DAF2",
+        "tags": [
+          "Shooter",
+          "VR",
+          "Sci-Fi",
+          "Singleplayer"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "counter-strike-source",
+    "name": "Counter-Strike: Source",
+    "description": "A complete remake of the original Counter-Strike using the Source engine, featuring updated graphics and physics while maintaining the classic tactical gameplay.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://7launcher.com/dl/7l_cs-source_installer.exe",
+        "tags": [
+          "Shooter",
+          "Tactical",
+          "Multiplayer",
+          "Competitive"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "garrys-mod",
+    "name": "Garry's Mod",
+    "description": "A physics sandbox that allows players to manipulate objects and experiment with physics using assets from various Source engine games.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://megadb.net/vr2r178d1rkj",
+        "tags": [
+          "Sandbox",
+          "Physics",
+          "Multiplayer",
+          "Creative"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "rainbow-six-siege",
+    "name": "Tom Clancy's Rainbow Six Siege",
+    "description": "An elite, tactical team-based shooter where superior planning and execution are key to victory, featuring highly destructible environments.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://www.filecrypt.cc/Container/9A8B9DFECE",
+        "tags": [
+          "Shooter",
+          "Tactical",
+          "Multiplayer",
+          "Destruction"
+        ]
+      }
+    ]
+  }
+]
