@@ -1,3 +1,36 @@
 {
-  "files": ["pak1.json", "pak2.json", "pak3.json", "pak4.json", "pak5.json", "pak6.json", "pak7.json", "pak8.json"]
+  "files": [
+    "pak1.json",
+    "pak2.json",
+    "pak3.json",
+    "pak4.json",
+    "pak5.json",
+    "pak6.json",
+    "pak7.json",
+    "pak8.json",
+    "pak9.json",
+    "pak10.json",
+    "pak11.json",
+    "pak12.json",
+    "pak13.json",
+    "pak14.json",
+    "pak15.json",
+    "pak16.json",
+    "pak17.json",
+    "pak18.json",
+    "pak19.json",
+    "pak20.json",
+    "pak21.json",
+    "pak22.json",
+    "pak23.json",
+    "pak24.json",
+    "pak25.json",
+    "pak26.json",
+    "pak27.json",
+    "pak28.json",
+    "pak29.json",
+    "pak30.json",
+    "pak31.json",
+    "pak32.json"
+  ]
 }
