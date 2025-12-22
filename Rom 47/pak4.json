@@ -254,5 +254,21 @@
         ]
       }
     ]
+  },
+  {
+    "slug": "call-of-duty-black-ops-4",
+    "name": "Call of Duty: Black Ops 4",
+    "description": "A multiplayer-focused entry featuring a deep zombies mode and the Blackout battle royale experience.",
+    "versions": [
+      {
+        "platform": "Windows",
+        "url": "https://buzzheavier.com/g6317flvjjk5",
+        "tags": [
+          "Shooter",
+          "Multiplayer",
+          "Battle Royale"
+        ]
+      }
+    ]
   }
 ]
