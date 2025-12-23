@@ -1,0 +1,336 @@
+[
+    {
+        "slug": "call-of-duty-black-ops-3",
+        "name": "Call of Duty: Black Ops III [mac]",
+        "description": "A popular first-person shooter in the Call of Duty series, known for its futuristic setting and fast-paced multiplayer combat.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/2yoqs1wab10r.html",
+                "tags": [
+                    "First-person Shooter",
+                    "Singleplayer",
+                    "Multiplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "asphalt-8-mac",
+        "name": "Asphalt 8: Airborne [mac]",
+        "description": "A version of Asphalt 8: Airborne for macOS.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/i10d2e3cqwdx.html",
+                "tags": [
+                    "Racing",
+                    "Singleplayer",
+                    "Multiplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "crysis-mac",
+        "name": "Crysis [mac]",
+        "description": "A science fiction first-person shooter game known for its visually demanding graphics at the time of its release.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/z5j03xx4s2wi.html",
+                "tags": [
+                    "First-person Shooter",
+                    "Singleplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "grand-theft-auto-v-mac",
+        "name": "Grand Theft Auto V [mac]",
+        "description": "An action-adventure game set in the fictional state of San Andreas, focusing on three protagonists with a wide variety of missions and open-world gameplay.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/2umxx09ic5uz.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Open World",
+                    "Singleplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "grand-theft-auto-vice-city-mac",
+        "name": "Grand Theft Auto: Vice City [mac]",
+        "description": "An open-world action-adventure game set in the 1980s in Vice City, a fictional city based on Miami.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/rqz5hilhiu93.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Open World",
+                    "Singleplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "grand-theft-auto-san-andreas-mac",
+        "name": "Grand Theft Auto: San Andreas [mac]",
+        "description": "An open-world action-adventure game following Carl 'CJ' Johnson's return to Los Santos. The game is known for its wide open world and RPG-like elements.",
+        "versions": [
+            {
+                "platform": "Mac (Wineskin)",
+                "url": "https://usersdrive.com/2f9u528812ra.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Open World",
+                    "Singleplayer",
+                    "Offline",
+                    "Mac",
+                    "Wineskin"
+                ]
+            },
+            {
+                "platform": "Mac (Native)",
+                "url": "https://usersdrive.com/2ilv4bvn2ewt.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Open World",
+                    "Singleplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "grand-theft-auto-iv-mac",
+        "name": "Grand Theft Auto IV [mac]",
+        "description": "An action-adventure game set in Liberty City, following the story of Niko Bellic as he seeks the American Dream.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/sc70pqy5kdeq.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Open World",
+                    "Singleplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "assassins-creed-black-flag-mac",
+        "name": "Assassin's Creed IV: Black Flag [mac]",
+        "description": "An action-adventure game focused on pirate life in the Caribbean during the Golden Age of Piracy, with naval combat and open-world exploration.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/22f4xvpvim97.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Singleplayer",
+                    "Open World",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "assassins-creed-rogue-mac",
+        "name": "Assassin's Creed Rogue [mac]",
+        "description": "An action-adventure game set during the Seven Years' War, following a Templar's journey and naval exploration in the North Atlantic.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/bftoac8hhhq6.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Singleplayer",
+                    "Open World",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "assassins-creed-directors-cut-mac",
+        "name": "Assassin's Creed: Director's Cut Edition [mac]",
+        "description": "The first installment in the series, featuring a historical science-fiction setting with an open world and stealth-focused gameplay.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/cclyo8z54e8v.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Singleplayer",
+                    "Open World",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "assassins-creed-ii-mac",
+        "name": "Assassin's Creed II [mac]",
+        "description": "A sequel to the first game, set during the Italian Renaissance. This title expands on the open-world gameplay with a more robust story and side quests.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/o0w1m6fh0ej2.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Singleplayer",
+                    "Open World",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "assassins-creed-revelations-mac",
+        "name": "Assassin's Creed: Revelations [mac]",
+        "description": "The final chapter in the Ezio Auditore trilogy, with a storyline that spans across Constantinople and other historical settings.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/fxx7bixu9jmw.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Singleplayer",
+                    "Open World",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "assassins-creed-brotherhood-mac",
+        "name": "Assassin's Creed: Brotherhood [mac]",
+        "description": "A direct sequel to Assassin's Creed II, following Ezio's adventures in Rome. It introduces the ability to recruit and train assassins.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/1abp5okm204o.html",
+                "tags": [
+                    "Action",
+                    "Adventure",
+                    "Singleplayer",
+                    "Open World",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "nfs-payback-mac",
+        "name": "Need for Speed: Payback [mac]",
+        "description": "An action racing game with a focus on heist missions and a narrative-driven single-player campaign. The game is set in the open world of Fortune Valley.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/dwvgf3xmlm8o.html",
+                "tags": [
+                    "Racing",
+                    "Action",
+                    "Singleplayer",
+                    "Offline",
+                    "Open World",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "gear-club-stradale-mac",
+        "name": "Gear.Club Stradale [mac]",
+        "description": "A racing game set in Tuscany, Italy, where you can drive supercars, customize your vehicles, and form a club with friends to participate in races.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/h43waelfhfg3.html",
+                "tags": [
+                    "Racing",
+                    "Singleplayer",
+                    "Multiplayer",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "dying-light-mac",
+        "name": "Dying Light [mac]",
+        "description": "A survival horror game played from a first-person perspective, set in an open world environment overrun by zombies. The game features a dynamic day-night cycle, with more dangerous enemies at night, and an emphasis on parkour and melee combat.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/fhwfevp1ay0s.html",
+                "tags": [
+                    "Survival Horror",
+                    "First-person",
+                    "Open World",
+                    "Singleplayer",
+                    "Multiplayer",
+                    "Co-op",
+                    "Offline",
+                    "Zombies",
+                    "Parkour",
+                    "Mac"
+                ]
+            }
+        ]
+    },
+    {
+        "slug": "dirt-4-mac",
+        "name": "Dirt 4 [mac]",
+        "description": "A racing game focused on rally and off-road racing. It includes a 'Your Stage' route creation system, a wide variety of vehicles, and a career mode.",
+        "versions": [
+            {
+                "platform": "Mac",
+                "url": "https://usersdrive.com/kn34dh7xrexd.html",
+                "tags": [
+                    "Racing",
+                    "Singleplayer",
+                    "Multiplayer",
+                    "Rally",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    }
+]
