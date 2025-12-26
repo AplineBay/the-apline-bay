@@ -251,14 +251,24 @@
     }
 
     .game-item-content {
-      max-height: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.25s ease-out;
       overflow: hidden;
-      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .game-item.expanded .game-item-content {
-      max-height: 5000px;
-      margin-top: 14px;
+      grid-template-rows: 1fr;
+    }
+
+    .game-item-content-inner {
+      overflow: hidden;
+      padding-top: 0;
+      transition: padding-top 0.25s ease-out;
+    }
+
+    .game-item.expanded .game-item-content-inner {
+      padding-top: 14px;
     }
 
     .game-item-description {
@@ -464,11 +474,14 @@
     const gameContent = document.createElement('div');
     gameContent.className = 'game-item-content';
 
+    const gameContentInner = document.createElement('div');
+    gameContentInner.className = 'game-item-content-inner';
+
     if (game.description) {
       const desc = document.createElement('p');
       desc.className = 'game-item-description';
       desc.textContent = game.description;
-      gameContent.appendChild(desc);
+      gameContentInner.appendChild(desc);
     }
 
     if (game.versions?.length) {
@@ -493,9 +506,10 @@
         versionsContainer.appendChild(ver);
       });
 
-      gameContent.appendChild(versionsContainer);
+      gameContentInner.appendChild(versionsContainer);
     }
 
+    gameContent.appendChild(gameContentInner);
     gameItem.appendChild(gameContent);
 
     gameHeader.onclick = () => gameItem.classList.toggle('expanded');
