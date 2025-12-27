@@ -1,0 +1,109 @@
+[
+    {
+        "slug": "real-racing-3",
+        "name": "Real Racing 3",
+        "description": "Real Racing 3 is an award-winning franchise that sets a new standard for mobile racing games. It features licensed tracks with 40 circuits at 19 real-world locations, a 43-car grid, and over 250 meticulously detailed cars from manufacturers like Porsche, Bugatti, Chevrolet, Aston Martin and Audi.",
+        "versions": [
+            {
+                "platform": "Android (V1.0.30)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.0.30%20%28ROW%20Version%29%20mandatory%20sensor%20gyroscope%20body.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V1.0.56)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.0.56%20%28ROW%20Version%29%20mandatory%20sensor%20gyroscope%20body.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V1.1.11)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.1.11%20%28ROW%20version%29.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V1.1.7)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.1.7%20%28NA%20Version%29.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V1.20)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.2.0%20%28NA%20version%29.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V1.35)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.3.5%20%28NA%20Version%29.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V1.40)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.4.0%20%28NA%20Version%29.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V1.50)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v1.5.0%20%28NA%20Version%29.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V3.50)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v3.3.0%20-%20ROW_Android-4.0.2.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V6.30)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v6.3.0%20-%20ROW_Android-4.0.3.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V8.60)",
+                "url": "https://archive.org/download/real-racing-3-android/Real%20Racing%203%20v8.6.0%20-%20ROW_Android-4.1.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V5.30)",
+                "url": "https://archive.org/download/real-racing-3-5.3.0/Real%20Racing%203_5.3.0.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android"]
+            },
+            {
+                "platform": "Android (V5.50 [MOD])",
+                "url": "https://archive.org/download/RealRacing3MOD5.5.09appsforpc/Real-Racing-3-%28MOD%29_5.5.0-9appsforpc.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android", "Mod"]
+            },
+            {
+                "platform": "Android (V8.10 [MOD])",
+                "url": "https://archive.org/download/realracing38.1.0modnightwolfapk.com.br/Real%20Racing%203%208.1.0%20-%20Mod%20-%20nightwolfapk.com.br.apk",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "Android", "Mod"]
+            },
+            {
+                "platform": "iOS (V1.1.2)",
+                "url": "https://archive.org/download/RealRacing3-v1.1.2/Real%20Racing%203%20v1.1.2.ipa",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "iOS"]
+            },
+            {
+                "platform": "iOS (V4.0.5)",
+                "url": "https://archive.org/download/Real_Racing_3_4.0.5_ios_6.1/Real_Racing_3_4.0.5_ios_6.1.ipa",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "iOS"]
+            },
+            {
+                "platform": "iOS (V5.1.0)",
+                "url": "https://archive.org/download/Real_Racing_3_5.1.0_ios_7.0/Real_Racing_3_5.1.0_ios_7.0.ipa",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "iOS"]
+            },
+            {
+                "platform": "iOS (V10.8.2)",
+                "url": "https://archive.org/download/Real_Racing_3_10.8.2_ios_9.0/Real_Racing_3_10.8.2_ios_9.0.ipa",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "iOS"]
+            },
+            {
+                "platform": "iOS (V1.3.5)",
+                "url": "https://archive.org/download/Real_Racing_3_1.3.5_ios_4.3/Real_Racing_3_1.3.5_ios_4.3.ipa",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "iOS"]
+            },
+            {
+                "platform": "iOS (V8.1.0)",
+                "url": "https://archive.org/download/Real_Racing_3_8.1.0_ios_8.0/Real_Racing_3_8.1.0_ios_8.0.ipa",
+                "tags": ["Racing", "Singleplayer", "Multiplayer", "Offline", "iOS"]
+            }
+        ]
+    }
+]
