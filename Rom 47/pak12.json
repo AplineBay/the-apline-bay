@@ -1,0 +1,20 @@
+{
+    "slug": "forza-motorsport-8",
+    "name": "Forza Motorsport 8 [windows]",
+    "description": "Experience a cutting-edge racing simulation featuring over 500 real-world cars and 20 living environments. Forza Motorsport features advanced physics, real-time ray tracing on track, and a deep career mode focusing on car building and competition.",
+    "versions": [
+        {
+            "platform": "Windows",
+            "url": "https://driveseed.org/file/NXPTszAJrtwRb1qN0DsG",
+            "tags": [
+                "Racing",
+                "Simulation",
+                "Singleplayer",
+                "Multiplayer",
+                "Automotive",
+                "Offline",
+                "Windows"
+            ]
+        }
+    ]
+}
