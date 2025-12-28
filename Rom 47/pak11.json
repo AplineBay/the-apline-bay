@@ -1,22 +1,49 @@
 [
     {
         "slug": "ea-sports-fc-26",
-        "name": "EA Sports FC 26",
+        "name": "EA SPORTS FC 26 [windows]",
         "description": "The latest installment in the world-renowned football simulation series, featuring updated rosters, advanced gameplay mechanics, and deep career and management modes.",
         "versions": [
             {
                 "platform": "Windows",
                 "url": "https://gofile.io/d/8SPacK",
-                "tags": [
-                    "Sports",
-                    "Football",
-                    "Simulation",
-                    "Singleplayer",
-                    "Multiplayer",
-                    "Competitive",
-                    "Offline",
-                    "Windows"
-                ]
+                "tags": ["Sports", "Football", "Simulation", "Singleplayer", "Multiplayer", "Competitive", "Offline", "Windows"]
+            }
+        ]
+    },
+    {
+        "slug": "call-of-duty-infinite-warfare",
+        "name": "Call of Duty: Infinite Warfare [windows]",
+        "description": "A futuristic first-person shooter that takes the franchise into space, featuring a grand-scale war between the United Nations Space Alliance and the Settlement Defense Front.",
+        "versions": [
+            {
+                "platform": "Windows",
+                "url": "https://uploadhaven.com/download/62be2f868ff93e82ffab84e01901e65f",
+                "tags": ["First-person Shooter", "Sci-fi", "Singleplayer", "Multiplayer", "Offline", "Windows"]
+            }
+        ]
+    },
+    {
+        "slug": "call-of-duty-modern-warfare-remastered",
+        "name": "Call of Duty: Modern Warfare Remastered [windows]",
+        "description": "A high-definition remaster of the classic 2007 title, featuring improved textures, rendering, and high-dynamic range lighting while keeping the original's acclaimed gameplay.",
+        "versions": [
+            {
+                "platform": "Windows",
+                "url": "https://uploadhaven.com/download/6a0df104f200d88f875a2153d8550bf6",
+                "tags": ["First-person Shooter", "Action", "Singleplayer", "Multiplayer", "Offline", "Windows"]
+            }
+        ]
+    },
+    {
+        "slug": "call-of-duty-mw2-campaign-remastered",
+        "name": "Call of Duty: Modern Warfare 2 Campaign Remastered [windows]",
+        "description": "A completely remastered version of the blockbuster 2009 single-player campaign, featuring improved animations, physical rendering, and updated audio.",
+        "versions": [
+            {
+                "platform": "Windows",
+                "url": "https://uploadhaven.com/download/6179f411e069e17bd5b064e649435959",
+                "tags": ["First-person Shooter", "Action", "Singleplayer", "Campaign", "Offline", "Windows"]
             }
         ]
     }
