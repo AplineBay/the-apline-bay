@@ -1,0 +1,27 @@
+[
+    {
+        "slug": "need-for-speed-underground-2",
+        "name": "Need for Speed Underground 2",
+        "description": "A popular game with engaging gameplay and features.",
+        "versions": [
+            {
+                "platform": "Windows",
+                "url": "https://d3.xp.myabandonware.com/t/e22e9d3f-2a1b-423e-834d-b01d04c50e62/Need-for-Speed-Underground-2_Win_EN_MagiPack.zip",
+                "tags": [
+                    "Singleplayer",
+                    "Offline",
+                    "Windows"
+                ]
+            },
+            {
+                "platform": "Macintosh",
+                "url": "https://www.mediafire.com/file/jm9yxexr593vwqg/Need_for_Speed_Underground_2_Eng_v2.dmg/file",
+                "tags": [
+                    "Singleplayer",
+                    "Offline",
+                    "Mac"
+                ]
+            }
+        ]
+    }
+]
