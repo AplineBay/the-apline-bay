@@ -1,0 +1,18 @@
+[
+    {
+        "slug": "project-cars-3",
+        "name": "Project Cars 3",
+        "description": "A popular game with engaging gameplay and features.",
+        "versions": [
+            {
+                "platform": "Windows",
+                "url": "https://uploadhaven.com/download/8abba7cedb4591616699ccbb58f6fe55",
+                "tags": [
+                    "Singleplayer",
+                    "Offline",
+                    "Windows"
+                ]
+            }
+        ]
+    }
+]
