@@ -779,4 +779,251 @@
       case 'name-desc':
         sorted.sort((a, b) => b.name.localeCompare(a.name));
         break;
-      case 'versions-desc
+      case 'versions-desc':
+        sorted.sort((a, b) => (b.versions?.length || 0) - (a.versions?.length || 0));
+        break;
+      case 'versions-asc':
+        sorted.sort((a, b) => (a.versions?.length || 0) - (b.versions?.length || 0));
+        break;
+    }
+    return sorted;
+  }
+
+  function filterByFavorites(list) {
+    if (!showOnlyFavorites) return list;
+    return list.filter(game => favorites.has(game.name));
+  }
+
+  function render(list){
+    if(!list.length){
+      showMessage(showOnlyFavorites ? 'No favorite games yet.' : 'No games found.');
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    const newRendered = new Map();
+
+    list.forEach(game => {
+      let gameItem = renderedGames.get(game.name);
+      if (!gameItem) {
+        gameItem = createGameElement(game);
+      } else {
+        updateFavoriteButton(gameItem, game);
+      }
+      newRendered.set(game.name, gameItem);
+      fragment.appendChild(gameItem);
+    });
+
+    container.textContent = '';
+    container.appendChild(fragment);
+    renderedGames = newRendered;
+  }
+
+  function updateFavoriteButton(gameItem, game) {
+    const favBtn = gameItem.querySelector('.favorite-btn');
+    if (favBtn) {
+      favBtn.className = 'favorite-btn' + (favorites.has(game.name) ? ' active' : '');
+    }
+  }
+
+  function toggleFavorite(gameName) {
+    if (favorites.has(gameName)) {
+      favorites.delete(gameName);
+    } else {
+      favorites.add(gameName);
+    }
+    localStorage.setItem('alpine_favorites', JSON.stringify([...favorites]));
+    updateStats();
+    apply();
+  }
+
+  function shareGame(game) {
+    const url = window.location.href.split('?')[0] + '?game=' + encodeURIComponent(game.name);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Game link copied to clipboard!');
+      });
+    } else {
+      prompt('Copy this link:', url);
+    }
+  }
+
+  function createGameElement(game){
+    const gameItem = document.createElement('div');
+    gameItem.className = 'game-item';
+
+    const gameHeader = document.createElement('div');
+    gameHeader.className = 'game-item-header';
+
+    const gameTitleRow = document.createElement('div');
+    gameTitleRow.className = 'game-item-title-row';
+
+    const favBtn = document.createElement('button');
+    favBtn.className = 'favorite-btn' + (favorites.has(game.name) ? ' active' : '');
+    favBtn.textContent = '⭐';
+    favBtn.onclick = (e) => {
+      e.stopPropagation();
+      toggleFavorite(game.name);
+    };
+
+    const gameTitle = document.createElement('div');
+    gameTitle.className = 'game-item-title';
+    gameTitle.textContent = game.name;
+
+    gameTitleRow.append(favBtn, gameTitle);
+
+    const gameActions = document.createElement('div');
+    gameActions.className = 'game-actions';
+
+    const shareBtn = document.createElement('button');
+    shareBtn.className = 'share-btn';
+    shareBtn.textContent = '🔗 Share';
+    shareBtn.onclick = (e) => {
+      e.stopPropagation();
+      shareGame(game);
+    };
+
+    const gameArrow = document.createElement('span');
+    gameArrow.className = 'game-item-arrow';
+    gameArrow.textContent = '▶';
+
+    gameActions.append(shareBtn, gameArrow);
+    gameHeader.append(gameTitleRow, gameActions);
+    gameItem.appendChild(gameHeader);
+
+    const gameContent = document.createElement('div');
+    gameContent.className = 'game-item-content';
+
+    const gameContentInner = document.createElement('div');
+    gameContentInner.className = 'game-item-content-inner';
+
+    if (game.description) {
+      const desc = document.createElement('p');
+      desc.className = 'game-item-description';
+      desc.textContent = game.description;
+      gameContentInner.appendChild(desc);
+    }
+
+    if (game.versions?.length) {
+      const versionsContainer = document.createElement('div');
+      versionsContainer.className = 'versions-container';
+
+      game.versions.forEach(v => {
+        const ver = document.createElement('div');
+        ver.className = 'version';
+
+        const platform = document.createElement('strong');
+        platform.textContent = v.platform;
+
+        const link = document.createElement('a');
+        link.href = v.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'Download';
+        link.onclick = e => e.stopPropagation();
+
+        ver.append(platform, link);
+        versionsContainer.appendChild(ver);
+      });
+
+      gameContentInner.appendChild(versionsContainer);
+    }
+
+    gameContent.appendChild(gameContentInner);
+    gameItem.appendChild(gameContent);
+
+    gameHeader.onclick = () => gameItem.classList.toggle('expanded');
+
+    return gameItem;
+  }
+
+  function apply(){
+    const query = search.value.toLowerCase().trim();
+    let filtered = dataCache;
+    
+    if(query !== ''){
+      filtered = filtered.filter(g =>
+        g.name.toLowerCase().includes(query) ||
+        g.description?.toLowerCase().includes(query) ||
+        g.versions?.some(v => 
+          v.platform.toLowerCase().includes(query) ||
+          v.tags?.some(tag => tag.toLowerCase().includes(query))
+        )
+      );
+    }
+    
+    filtered = filterByFavorites(filtered);
+    filtered = sortGames(filtered);
+    
+    render(filtered);
+  }
+
+  const debouncedApply = debounce(apply, 150);
+
+  showMessage('Loading games...');
+
+  async function loadAllGames() {
+    try {
+      const manifestResponse = await fetch('Rom 47/manifest.json');
+      let jsonFiles = [];
+      
+      if (manifestResponse.ok) {
+        const manifest = await manifestResponse.json();
+        jsonFiles = manifest.files || [];
+      } else {
+        jsonFiles = ['pak1.json', 'pak2.json', 'pak3.json', 'pak4.json', 'pak5.json'];
+      }
+      
+      const results = await Promise.all(
+        jsonFiles.map(file => 
+          fetch(`Rom 47/${file}`)
+            .then(r => r.ok ? r.json() : [])
+            .catch(() => [])
+        )
+      );
+      
+      dataCache = results.flat();
+      
+      if (dataCache.length === 0) {
+        showMessage('No games found. Make sure JSON files are in the "Rom 47" folder.');
+      } else {
+        updateStats();
+        apply();
+        
+        const params = new URLSearchParams(window.location.search);
+        const sharedGame = params.get('game');
+        if (sharedGame) {
+          search.value = sharedGame;
+          apply();
+        }
+      }
+    } catch (err) {
+      showMessage('Failed to load games from Rom 47 folder.');
+      console.error(err);
+    }
+  }
+
+  loadAllGames();
+  
+  search.oninput = debouncedApply;
+  sortSelect.onchange = () => {
+    currentSort = sortSelect.value;
+    apply();
+  };
+  
+  favoritesBtn.onclick = () => {
+    showOnlyFavorites = !showOnlyFavorites;
+    favoritesBtn.textContent = showOnlyFavorites ? '📋 All Games' : '⭐ Favorites';
+    apply();
+  };
+  
+  refreshBtn.onclick = () => {
+    showMessage('Refreshing games...');
+    renderedGames.clear();
+    loadAllGames();
+  };
+})();
+</script>
+
+</body>
+</html>
