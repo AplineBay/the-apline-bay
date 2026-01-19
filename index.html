@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Apline Bay</title>
+  <title>The Alpine Bay</title>
 
   <style>
     :root {
-      --bg-dark: #0a1828;
-      --glass-light: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.25);
-      --text: #e8f4ff;
-      --accent: #4a9eff;
+      --bg-gradient-start: #c5cfd8;
+      --bg-gradient-end: #9ca6af;
+      --glass-light: rgba(255, 255, 255, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.8);
+      --text: #333;
+      --accent: #007aff;
+      --ios-blue: #007aff;
+      --ios-shadow: rgba(0, 0, 0, 0.2);
     }
 
     * {
@@ -33,59 +36,59 @@
 
     html, body {
       height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(180deg, #0a1a2e 0%, #050d1a 50%, #020508 100%);
+      font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
       color: var(--text);
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Aurora background lights */
+    /* iOS 6 style linen texture */
     body::before {
       content: '';
       position: fixed;
-      top: -10%;
-      left: -10%;
-      width: 60%;
-      height: 80%;
-      background: radial-gradient(ellipse 800px 200px, rgba(80, 160, 240, 0.3) 0%, transparent 70%);
-      filter: blur(40px);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.05) 2px, rgba(255,255,255,.05) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.03) 2px, rgba(255,255,255,.03) 4px);
       z-index: 0;
-      animation: float 25s ease-in-out infinite;
       pointer-events: none;
-      will-change: transform, opacity;
+      opacity: 0.5;
     }
 
     body::after {
-      content: '';
-      position: fixed;
-      bottom: -10%;
-      right: -10%;
-      width: 55%;
-      height: 70%;
-      background: radial-gradient(ellipse 700px 180px, rgba(100, 180, 255, 0.25) 0%, transparent 70%);
-      filter: blur(40px);
-      z-index: 0;
-      animation: floatAlt 30s ease-in-out infinite;
-      pointer-events: none;
-      will-change: transform, opacity;
+      display: none;
     }
 
-    /* Boxy glossy header */
+    /* iOS 6 style header with navigation bar */
     header {
-      padding: 24px;
+      padding: 20px 24px 16px 24px;
       background: linear-gradient(180deg, 
-        rgba(50, 90, 140, 0.9) 0%, 
-        rgba(30, 70, 120, 0.95) 100%);
-      border-top: 2px solid var(--glass-border);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        #b0bac5 0%, 
+        #8a95a0 50%,
+        #6d7883 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       box-shadow: 
-        0 4px 24px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
       position: relative;
       z-index: 10;
       text-align: center;
+    }
+
+    body.light-theme header {
+      background: linear-gradient(180deg, 
+        rgba(100, 150, 220, 0.7) 0%, 
+        rgba(80, 130, 200, 0.75) 100%);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     }
 
     /* Glass shine effect on header */
@@ -103,14 +106,69 @@
     }
 
     .title {
-      font-size: 2.2rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #fff;
       text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(100, 180, 255, 0.5);
-      letter-spacing: 1.5px;
+        0 -1px 0 rgba(0, 0, 0, 0.5),
+        0 1px 0 rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.5px;
       position: relative;
+    }
+
+    .header-stats {
+      margin-top: 12px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .stat-text {
+      color: #fff;
+      font-size: 0.8rem;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+      font-weight: 500;
+    }
+
+    body.light-theme .stat-text {
+      color: #2d5a8f;
+    }
+
+    /* iOS 6 style buttons */
+    .btn {
+      padding: 6px 14px;
+      background: linear-gradient(180deg, #ffffff 0%, #d5dde5 50%, #b8c5d0 51%, #a8b5c0 100%);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      color: var(--ios-blue);
+      cursor: pointer;
+      box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      position: relative;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .btn:hover {
+      background: linear-gradient(180deg, #f8f8f8 0%, #cbd8e3 50%, #aabac8 51%, #98a8b8 100%);
+    }
+
+    .btn:active {
+      background: linear-gradient(180deg, #a8b5c0 0%, #b8c5d0 50%, #d5dde5 51%, #ffffff 100%);
+      box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.2),
+        0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    body.light-theme .btn {
+      background: linear-gradient(180deg, rgba(100,150,220,0.5) 0%, rgba(80,130,200,0.55) 100%);
+      color: #0a1828;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
     }
 
     .container {
@@ -121,20 +179,28 @@
       z-index: 10;
     }
 
-    /* Boxy glossy search container */
+    /* iOS 6 style controls container */
     .controls {
-      background: linear-gradient(180deg, 
-        rgba(40, 75, 130, 0.4) 0%, 
-        rgba(25, 55, 105, 0.45) 100%);
-      padding: 24px;
-      border: 1px solid rgba(120, 180, 240, 0.4);
-      border-top: 2px solid var(--glass-border);
-      margin-bottom: 32px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      margin-bottom: 20px;
       box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
       position: relative;
+    }
+
+    body.light-theme .controls {
+      background: linear-gradient(180deg, 
+        rgba(200, 220, 245, 0.6) 0%, 
+        rgba(180, 210, 240, 0.65) 100%);
+      border: 1px solid rgba(100, 150, 220, 0.5);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     }
 
     /* Glass shine on controls */
@@ -151,77 +217,193 @@
       pointer-events: none;
     }
 
+    /* iOS 6 style search input */
     #search {
-      padding: 14px 18px;
-      border: 1px solid rgba(100, 150, 220, 0.4);
-      border-top: 1px solid rgba(0, 0, 0, 0.6);
-      background: linear-gradient(180deg,
-        rgba(10, 25, 50, 0.8) 0%,
-        rgba(15, 30, 55, 0.7) 100%);
-      color: #e8f4ff;
+      padding: 8px 12px;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      background: #ffffff;
+      color: #333;
       width: 100%;
-      font-size: 16px;
+      font-size: 15px;
       box-shadow: 
-        inset 0 2px 8px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(0, 0, 0, 0.5),
-        0 1px 0 var(--glass-light);
+        inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 1px 0 rgba(255, 255, 255, 0.8);
       transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    body.light-theme #search {
+      background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(245, 250, 255, 0.8) 100%);
+      color: #0a1828;
+      border: 1px solid rgba(100, 150, 220, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.1),
+        0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     #search:focus {
       outline: none;
-      border-color: rgba(100, 180, 255, 0.6);
+      border-color: var(--ios-blue);
       box-shadow: 
-        inset 0 2px 8px rgba(0, 0, 0, 0.7),
-        0 0 0 3px rgba(74, 158, 255, 0.25),
-        0 0 20px rgba(74, 158, 255, 0.4);
+        inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 0 0 3px rgba(0, 122, 255, 0.2),
+        0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    body.light-theme #search:focus {
+      box-shadow: 
+        inset 0 2px 8px rgba(0, 0, 0, 0.1),
+        0 0 0 3px rgba(74, 158, 255, 0.2),
+        0 0 20px rgba(74, 158, 255, 0.3);
     }
 
     #search::placeholder {
-      color: rgba(232, 241, 255, 0.35);
+      color: rgba(0, 0, 0, 0.3);
     }
 
-    /* Boxy glossy game items */
-    .game-item {
-      background: linear-gradient(180deg, 
-        rgba(35, 65, 110, 0.35) 0%, 
-        rgba(25, 50, 90, 0.4) 100%);
-      margin: 12px 0;
-      padding: 18px 20px;
-      border: 1px solid rgba(120, 180, 240, 0.35);
-      border-top: 1px solid var(--glass-border);
-      border-left: 4px solid rgba(100, 170, 255, 0.6);
-      box-shadow: 
-        0 4px 16px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    body.light-theme #search::placeholder {
+      color: rgba(10, 24, 40, 0.4);
+    }
+
+    .filter-row {
+      margin-top: 16px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      color: #555;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    body.light-theme .filter-label {
+      color: #2d5a8f;
+    }
+
+    /* iOS 6 style select */
+    select {
+      padding: 6px 10px;
+      background: linear-gradient(180deg, #ffffff 0%, #e8eef3 100%);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      color: #333;
       cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s, border-left-color 0.15s;
-      will-change: transform;
+      box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.05),
+        0 1px 0 rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+    }
+
+    body.light-theme select {
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(245,250,255,0.8) 100%);
+      color: #0a1828;
+      border: 1px solid rgba(100,150,220,0.5);
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .platform-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* iOS 6 style platform chips */
+    .platform-chip {
+      padding: 6px 12px;
+      background: linear-gradient(180deg, #ffffff 0%, #d5dde5 50%, #b8c5d0 51%, #a8b5c0 100%);
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      color: #333;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
       position: relative;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .platform-chip:hover {
+      background: linear-gradient(180deg, #f8f8f8 0%, #cbd8e3 50%, #aabac8 51%, #98a8b8 100%);
+    }
+
+    .platform-chip.active {
+      background: linear-gradient(180deg, #5a9ff5 0%, #3b88e8 50%, #2977d9 51%, #1e6acc 100%);
+      border-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+      box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    body.light-theme .platform-chip {
+      background: linear-gradient(180deg, rgba(200,220,245,0.7) 0%, rgba(180,210,240,0.75) 100%);
+      color: #2d5a8f;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.3);
+    }
+
+    body.light-theme .platform-chip.active {
+      background: linear-gradient(180deg, rgba(74,158,255,0.8) 0%, rgba(60,140,235,0.85) 100%);
+      color: #fff;
+    }
+
+    /* iOS 6 style game items (grouped table view) */
+    .game-item {
+      background: rgba(255, 255, 255, 0.9);
+      margin: 0 0 10px 0;
+      padding: 14px 16px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      box-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+    }
+
+    body.light-theme .game-item {
+      background: linear-gradient(180deg, 
+        rgba(220, 235, 250, 0.6) 0%, 
+        rgba(200, 225, 245, 0.65) 100%);
+      border: 1px solid rgba(100, 150, 220, 0.5);
+      border-left: 4px solid rgba(74, 158, 255, 0.7);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     }
 
     /* Glass shine on game items */
     .game-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.08) 0%, 
-        transparent 100%);
-      pointer-events: none;
+      display: none;
     }
 
     .game-item:hover {
-      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 1);
       box-shadow: 
-        0 6px 20px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 0 20px rgba(74, 158, 255, 0.2);
-      border-left-color: rgba(120, 200, 255, 0.9);
+        0 2px 6px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    body.light-theme .game-item:hover {
+      box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 0 20px rgba(74, 158, 255, 0.3);
+    }
+
+    .game-item:active {
+      background: rgba(240, 245, 250, 0.95);
     }
 
     .game-item-header {
@@ -232,18 +414,88 @@
       z-index: 1;
     }
 
+    .game-item-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
     .game-item-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: #f5fbff;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      color: #333;
+    }
+
+    body.light-theme .game-item-title {
+      color: #0a2540;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .favorite-btn {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 4px;
+      filter: grayscale(1);
+      opacity: 0.5;
+      transition: all 0.2s;
+    }
+
+    .favorite-btn:hover, .favorite-btn.active {
+      filter: grayscale(0);
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .game-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .share-btn {
+      padding: 4px 10px;
+      background: linear-gradient(180deg, #ffffff 0%, #e8eef3 100%);
+      border: 1px solid rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
+      color: var(--ios-blue);
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: all 0.15s;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .share-btn:hover {
+      background: linear-gradient(180deg, #f8f8f8 0%, #dee8f0 100%);
+    }
+
+    .share-btn:active {
+      background: linear-gradient(180deg, #d5e0ea 0%, #ffffff 100%);
+      box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.1),
+        0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    body.light-theme .share-btn {
+      background: linear-gradient(180deg, rgba(180,210,240,0.6) 0%, rgba(160,195,230,0.65) 100%);
+      color: #2d5a8f;
     }
 
     .game-item-arrow {
-      font-size: 0.85rem;
-      color: #a8d4ff;
+      font-size: 0.75rem;
+      color: #999;
       transition: transform 0.2s ease;
       will-change: transform;
+    }
+
+    body.light-theme .game-item-arrow {
+      color: #4a9eff;
     }
 
     .game-item.expanded .game-item-arrow {
@@ -273,10 +525,14 @@
 
     .game-item-description {
       margin: 10px 0 16px 0;
-      line-height: 1.6;
-      color: #d0e5ff;
-      font-size: 0.95rem;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      line-height: 1.5;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    body.light-theme .game-item-description {
+      color: #2d5a8f;
+      text-shadow: none;
     }
 
     .versions-container {
@@ -286,80 +542,167 @@
       margin-top: 14px;
     }
 
-    /* Boxy glossy version cards */
+    /* iOS 6 style version cards */
     .version {
-      background: linear-gradient(180deg, 
-        rgba(50, 95, 160, 0.4) 0%, 
-        rgba(35, 75, 135, 0.45) 100%);
-      padding: 16px 18px;
-      border: 1px solid rgba(140, 200, 255, 0.3);
-      border-top: 2px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 12px 14px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 6px;
       box-shadow: 
-        0 3px 14px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-      will-change: transform;
+        0 1px 2px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+      transition: all 0.15s;
       position: relative;
+    }
+
+    body.light-theme .version {
+      background: linear-gradient(180deg, 
+        rgba(230, 240, 250, 0.7) 0%, 
+        rgba(210, 230, 245, 0.75) 100%);
+      border: 1px solid rgba(100, 150, 220, 0.4);
+      box-shadow: 
+        0 3px 14px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
     }
 
     /* Glass shine on version cards */
     .version::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        transparent 100%);
-      pointer-events: none;
+      display: none;
     }
 
     .version:hover {
-      transform: translateY(-3px);
-      border-color: rgba(160, 210, 255, 0.5);
+      background: rgba(255, 255, 255, 1);
       box-shadow: 
-        0 5px 18px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        0 0 25px rgba(74, 158, 255, 0.3);
+        0 2px 4px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+
+    body.light-theme .version:hover {
+      box-shadow: 
+        0 5px 18px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        0 0 25px rgba(74, 158, 255, 0.2);
+    }
+
+    .version:active {
+      background: rgba(240, 245, 250, 0.95);
     }
 
     .version strong {
-      color: #f8fcff;
-      font-size: 15px;
-      font-weight: 700;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
       display: block;
-      margin-bottom: 10px;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      margin-bottom: 8px;
       position: relative;
       z-index: 1;
     }
 
+    body.light-theme .version strong {
+      color: #0a2540;
+      text-shadow: none;
+    }
+
     a {
-      color: #9fd4ff;
-      font-weight: 700;
+      color: var(--ios-blue);
+      font-weight: 600;
       text-decoration: none;
-      transition: color 0.2s, text-shadow 0.2s;
+      transition: opacity 0.2s;
       display: inline-block;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
       position: relative;
       z-index: 1;
     }
 
     a:hover {
-      color: #d0ebff;
-      text-shadow: 0 0 10px rgba(150, 200, 255, 0.6);
+      opacity: 0.7;
+    }
+
+    a:active {
+      opacity: 0.4;
+    }
+
+    body.light-theme a {
+      color: #2d7acc;
+      text-shadow: none;
+    }
+
+    body.light-theme a:hover {
+      color: #1a5fb8;
     }
 
     .no-results {
       text-align: center;
       padding: 60px 20px;
-      color: #ddeeff;
-      font-size: 1.15rem;
+      color: #666;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    body.light-theme .no-results {
+      color: #2d5a8f;
+      text-shadow: none;
+    }
+
+    /* iOS 6 style view toggle */
+    .view-toggle {
+      display: flex;
+      gap: 0;
+      background: transparent;
+      padding: 0;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    body.light-theme .view-toggle {
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(245,250,255,0.8) 100%);
+      border: 1px solid rgba(100,150,220,0.5);
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .view-toggle-btn {
+      padding: 6px 12px;
+      background: linear-gradient(180deg, #ffffff 0%, #e8eef3 100%);
+      border: none;
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
+      color: #333;
+      cursor: pointer;
+      font-size: 0.8rem;
       font-weight: 600;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .view-toggle-btn:last-child {
+      border-right: none;
+    }
+
+    .view-toggle-btn.active {
+      background: linear-gradient(180deg, #5a9ff5 0%, #2977d9 100%);
+      color: #fff;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    body.light-theme .view-toggle-btn {
+      color: #2d5a8f;
+    }
+
+    body.light-theme .view-toggle-btn.active {
+      background: linear-gradient(180deg, rgba(74,158,255,0.7) 0%, rgba(60,140,235,0.75) 100%);
+      color: #fff;
+    }
+
+    .compact-view .game-item {
+      padding: 12px 16px;
+    }
+
+    .compact-view .game-item-title {
+      font-size: 0.95rem;
     }
 
     @media (max-width: 768px) {
@@ -374,6 +717,15 @@
 
       .versions-container {
         grid-template-columns: 1fr;
+      }
+
+      .filter-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .platform-filters {
+        width: 100%;
       }
     }
 
@@ -398,12 +750,43 @@
 <body>
 
 <header>
-  <div class="title">The Apline Bay</div>
+  <div class="title">The Alpine Bay</div>
+  <div class="header-stats">
+    <div class="stat-text">
+      <span id="stats">Loading...</span>
+    </div>
+    <button id="refreshBtn" class="btn">⟳ Refresh</button>
+  </div>
 </header>
 
 <div class="container">
   <div class="controls">
     <input type="text" id="search" placeholder="Search games..." />
+    
+    <div class="filter-row">
+      <label class="filter-label">Sort:</label>
+      <select id="sortSelect">
+        <option value="name-asc">Name (A-Z)</option>
+        <option value="name-desc">Name (Z-A)</option>
+        <option value="versions-desc">Most Versions</option>
+        <option value="versions-asc">Least Versions</option>
+      </select>
+      
+      <label class="filter-label" style="margin-left: 12px;">View:</label>
+      <div class="view-toggle">
+        <button class="view-toggle-btn active" data-view="normal">Normal</button>
+        <button class="view-toggle-btn" data-view="compact">Compact</button>
+      </div>
+
+      <button id="favoritesBtn" class="btn" style="margin-left: auto;">⭐ Favorites</button>
+    </div>
+
+    <div class="filter-row">
+      <label class="filter-label">Platform:</label>
+      <div class="platform-filters" id="platformFilters">
+        <div class="platform-chip" data-platform="all">All</div>
+      </div>
+    </div>
   </div>
   <div id="games"></div>
 </div>
@@ -412,15 +795,46 @@
 (function(){
   const container = document.getElementById('games');
   const search = document.getElementById('search');
+  const sortSelect = document.getElementById('sortSelect');
+  const platformFilters = document.getElementById('platformFilters');
+  const favoritesBtn = document.getElementById('favoritesBtn');
+  const refreshBtn = document.getElementById('refreshBtn');
+  const statsEl = document.getElementById('stats');
+  
   let dataCache = [];
   let renderedGames = new Map();
+  let favorites = new Set(JSON.parse(localStorage.getItem('alpine_favorites') || '[]'));
+  let currentSort = 'name-asc';
+  let currentPlatform = 'all';
+  let showOnlyFavorites = false;
+  let viewMode = 'normal';
+  let allPlatforms = new Set();
+  
+  // View mode toggle
+  document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      viewMode = btn.dataset.view;
+      if (viewMode === 'compact') {
+        container.classList.add('compact-view');
+      } else {
+        container.classList.remove('compact-view');
+      }
+    };
+  });
+  
+  function updateStats() {
+    const totalGames = dataCache.length;
+    const totalVersions = dataCache.reduce((sum, g) => sum + (g.versions?.length || 0), 0);
+    statsEl.textContent = `${totalGames} games • ${totalVersions} versions • ${favorites.size} favorites`;
+  }
   
   function showMessage(msg){
     container.innerHTML = `<div class="no-results">${msg}</div>`;
     renderedGames.clear();
   }
 
-  // Debounce for performance
   function debounce(func, wait) {
     let timeout;
     return function(...args) {
@@ -429,10 +843,40 @@
     };
   }
 
-  // Efficient rendering with DOM reuse
+  function sortGames(list) {
+    const sorted = [...list];
+    switch(currentSort) {
+      case 'name-asc':
+        sorted.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'name-desc':
+        sorted.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'versions-desc':
+        sorted.sort((a, b) => (b.versions?.length || 0) - (a.versions?.length || 0));
+        break;
+      case 'versions-asc':
+        sorted.sort((a, b) => (a.versions?.length || 0) - (b.versions?.length || 0));
+        break;
+    }
+    return sorted;
+  }
+
+  function filterByPlatform(list) {
+    if (currentPlatform === 'all') return list;
+    return list.filter(game => 
+      game.versions?.some(v => v.platform === currentPlatform)
+    );
+  }
+
+  function filterByFavorites(list) {
+    if (!showOnlyFavorites) return list;
+    return list.filter(game => favorites.has(game.name));
+  }
+
   function render(list){
     if(!list.length){
-      showMessage(search.value.trim() === '' ? 'Start typing to search for games...' : 'No games found.');
+      showMessage(search.value.trim() === '' && !showOnlyFavorites ? 'Start typing to search for games...' : 'No games found.');
       return;
     }
 
@@ -443,6 +887,8 @@
       let gameItem = renderedGames.get(game.name);
       if (!gameItem) {
         gameItem = createGameElement(game);
+      } else {
+        updateFavoriteButton(gameItem, game);
       }
       newRendered.set(game.name, gameItem);
       fragment.appendChild(gameItem);
@@ -453,6 +899,35 @@
     renderedGames = newRendered;
   }
 
+  function updateFavoriteButton(gameItem, game) {
+    const favBtn = gameItem.querySelector('.favorite-btn');
+    if (favBtn) {
+      favBtn.className = 'favorite-btn' + (favorites.has(game.name) ? ' active' : '');
+    }
+  }
+
+  function toggleFavorite(gameName) {
+    if (favorites.has(gameName)) {
+      favorites.delete(gameName);
+    } else {
+      favorites.add(gameName);
+    }
+    localStorage.setItem('alpine_favorites', JSON.stringify([...favorites]));
+    updateStats();
+    apply();
+  }
+
+  function shareGame(game) {
+    const url = window.location.href.split('?')[0] + '?game=' + encodeURIComponent(game.name);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert('Game link copied to clipboard!');
+      });
+    } else {
+      prompt('Copy this link:', url);
+    }
+  }
+
   function createGameElement(game){
     const gameItem = document.createElement('div');
     gameItem.className = 'game-item';
@@ -460,15 +935,40 @@
     const gameHeader = document.createElement('div');
     gameHeader.className = 'game-item-header';
 
+    const gameTitleRow = document.createElement('div');
+    gameTitleRow.className = 'game-item-title-row';
+
+    const favBtn = document.createElement('button');
+    favBtn.className = 'favorite-btn' + (favorites.has(game.name) ? ' active' : '');
+    favBtn.textContent = '⭐';
+    favBtn.onclick = (e) => {
+      e.stopPropagation();
+      toggleFavorite(game.name);
+    };
+
     const gameTitle = document.createElement('div');
     gameTitle.className = 'game-item-title';
     gameTitle.textContent = game.name;
+
+    gameTitleRow.append(favBtn, gameTitle);
+
+    const gameActions = document.createElement('div');
+    gameActions.className = 'game-actions';
+
+    const shareBtn = document.createElement('button');
+    shareBtn.className = 'share-btn';
+    shareBtn.textContent = '🔗 Share';
+    shareBtn.onclick = (e) => {
+      e.stopPropagation();
+      shareGame(game);
+    };
 
     const gameArrow = document.createElement('span');
     gameArrow.className = 'game-item-arrow';
     gameArrow.textContent = '▶';
 
-    gameHeader.append(gameTitle, gameArrow);
+    gameActions.append(shareBtn, gameArrow);
+    gameHeader.append(gameTitleRow, gameActions);
     gameItem.appendChild(gameHeader);
 
     const gameContent = document.createElement('div');
@@ -519,23 +1019,52 @@
 
   function apply(){
     const query = search.value.toLowerCase().trim();
-    if(query === ''){
-      render([]);
-      return;
+    let filtered = dataCache;
+    
+    if(query !== ''){
+      filtered = filtered.filter(g =>
+        g.name.toLowerCase().includes(query) ||
+        g.description?.toLowerCase().includes(query) ||
+        g.versions?.some(v => 
+          v.platform.toLowerCase().includes(query) ||
+          v.tags?.some(tag => tag.toLowerCase().includes(query))
+        )
+      );
     }
     
-    const filtered = dataCache.filter(g =>
-      g.name.toLowerCase().includes(query) ||
-      g.description?.toLowerCase().includes(query) ||
-      g.versions?.some(v => 
-        v.platform.toLowerCase().includes(query) ||
-        v.tags?.some(tag => tag.toLowerCase().includes(query))
-      )
-    );
+    filtered = filterByPlatform(filtered);
+    filtered = filterByFavorites(filtered);
+    filtered = sortGames(filtered);
+    
     render(filtered);
   }
 
   const debouncedApply = debounce(apply, 150);
+
+  function buildPlatformFilters() {
+    dataCache.forEach(game => {
+      game.versions?.forEach(v => {
+        if (v.platform) allPlatforms.add(v.platform);
+      });
+    });
+
+    const sorted = ['all', ...Array.from(allPlatforms).sort()];
+    platformFilters.innerHTML = '';
+    
+    sorted.forEach(platform => {
+      const chip = document.createElement('div');
+      chip.className = 'platform-chip' + (platform === 'all' ? ' active' : '');
+      chip.dataset.platform = platform;
+      chip.textContent = platform === 'all' ? 'All' : platform;
+      chip.onclick = () => {
+        document.querySelectorAll('.platform-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentPlatform = platform;
+        apply();
+      };
+      platformFilters.appendChild(chip);
+    });
+  }
 
   showMessage('Loading games...');
 
@@ -564,7 +1093,17 @@
       if (dataCache.length === 0) {
         showMessage('No games found. Make sure JSON files are in the "Rom 47" folder.');
       } else {
+        buildPlatformFilters();
+        updateStats();
         showMessage('Start typing to search for games...');
+        
+        // Check for shared game link
+        const params = new URLSearchParams(window.location.search);
+        const sharedGame = params.get('game');
+        if (sharedGame) {
+          search.value = sharedGame;
+          apply();
+        }
       }
     } catch (err) {
       showMessage('Failed to load games from Rom 47 folder.');
@@ -573,7 +1112,25 @@
   }
 
   loadAllGames();
+  
   search.oninput = debouncedApply;
+  sortSelect.onchange = () => {
+    currentSort = sortSelect.value;
+    apply();
+  };
+  
+  favoritesBtn.onclick = () => {
+    showOnlyFavorites = !showOnlyFavorites;
+    favoritesBtn.textContent = showOnlyFavorites ? '📋 All Games' : '⭐ Favorites';
+    apply();
+  };
+  
+  refreshBtn.onclick = () => {
+    showMessage('Refreshing games...');
+    renderedGames.clear();
+    allPlatforms.clear();
+    loadAllGames();
+  };
 })();
 </script>
 
