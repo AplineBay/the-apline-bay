@@ -3,19 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Alpine Bay</title>
+  <title>The Apline Bay</title>
 
   <style>
     :root {
-      --bg-gradient-start: #506a8c;
-      --bg-gradient-end: #2d4562;
-      --glass-light: rgba(255, 255, 255, 0.5);
-      --glass-border: rgba(255, 255, 255, 0.7);
-      --text: #333;
+      --bg-dark: #0a1828;
+      --glass-light: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --text: #e8f4ff;
       --accent: #4a9eff;
-      --ios-blue: #4a9eff;
-      --ios-dark-blue: #1e3a5f;
-      --ios-shadow: rgba(0, 0, 0, 0.3);
     }
 
     * {
@@ -24,50 +20,75 @@
       padding: 0;
     }
 
+    /* Simplified animations - GPU accelerated only */
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.4; }
+      50% { transform: translate3d(30px, -20px, 0); opacity: 0.6; }
+    }
+
+    @keyframes floatAlt {
+      0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.35; }
+      50% { transform: translate3d(-25px, 15px, 0); opacity: 0.5; }
+    }
+
     html, body {
       height: 100%;
-      font-family: -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #0a1a2e 0%, #050d1a 50%, #020508 100%);
       color: var(--text);
       overflow-x: hidden;
       position: relative;
     }
 
-    /* iOS 6 linen texture */
+    /* Aurora background lights */
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.08) 2px, rgba(255,255,255,.08) 4px),
-        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,.05) 2px, rgba(255,255,255,.05) 4px);
+      top: -10%;
+      left: -10%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(ellipse 800px 200px, rgba(80, 160, 240, 0.3) 0%, transparent 70%);
+      filter: blur(40px);
       z-index: 0;
+      animation: float 25s ease-in-out infinite;
       pointer-events: none;
-      opacity: 0.6;
+      will-change: transform, opacity;
     }
 
-    /* iOS 6 navigation bar */
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -10%;
+      right: -10%;
+      width: 55%;
+      height: 70%;
+      background: radial-gradient(ellipse 700px 180px, rgba(100, 180, 255, 0.25) 0%, transparent 70%);
+      filter: blur(40px);
+      z-index: 0;
+      animation: floatAlt 30s ease-in-out infinite;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+
+    /* Boxy glossy header */
     header {
-      padding: 20px 24px 16px 24px;
+      padding: 24px;
       background: linear-gradient(180deg, 
-        #5d7fa3 0%, 
-        #476894 50%,
-        #2d4d74 100%);
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        rgba(50, 90, 140, 0.9) 0%, 
+        rgba(30, 70, 120, 0.95) 100%);
+      border-top: 2px solid var(--glass-border);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
       box-shadow: 
-        0 2px 5px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+        0 4px 24px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 var(--glass-light),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
       position: relative;
       z-index: 10;
       text-align: center;
     }
 
-    /* Glass shine on header */
+    /* Glass shine effect on header */
     header::before {
       content: '';
       position: absolute;
@@ -76,96 +97,20 @@
       right: 0;
       height: 50%;
       background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.4) 0%, 
+        var(--glass-light) 0%, 
         transparent 100%);
       pointer-events: none;
-      border-radius: 0;
     }
 
     .title {
-      font-size: 1.5rem;
+      font-size: 2.2rem;
       font-weight: 700;
       color: #fff;
       text-shadow: 
-        0 -1px 0 rgba(0, 0, 0, 0.7),
-        0 1px 0 rgba(255, 255, 255, 0.3);
-      letter-spacing: 0.3px;
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(100, 180, 255, 0.5);
+      letter-spacing: 1.5px;
       position: relative;
-    }
-
-    .header-stats {
-      margin-top: 12px;
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .stat-text {
-      color: #fff;
-      font-size: 0.8rem;
-      text-shadow: 
-        0 -1px 0 rgba(0, 0, 0, 0.6),
-        0 1px 0 rgba(255, 255, 255, 0.2);
-      font-weight: 500;
-    }
-
-    /* iOS 6 glossy buttons */
-    .btn {
-      padding: 7px 16px;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(230, 240, 250, 0.9) 50%, 
-        rgba(200, 220, 240, 0.85) 51%, 
-        rgba(180, 210, 235, 0.8) 100%);
-      border: 1px solid rgba(0, 0, 0, 0.4);
-      border-top-color: rgba(255, 255, 255, 0.5);
-      border-radius: 6px;
-      color: var(--ios-dark-blue);
-      cursor: pointer;
-      box-shadow: 
-        0 1px 3px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-      font-size: 0.85rem;
-      font-weight: 700;
-      transition: all 0.15s;
-      position: relative;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.4) 0%, 
-        transparent 100%);
-      border-radius: 5px 5px 0 0;
-      pointer-events: none;
-    }
-
-    .btn:hover {
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 1) 0%, 
-        rgba(240, 248, 255, 0.95) 50%, 
-        rgba(220, 235, 250, 0.9) 51%, 
-        rgba(200, 225, 245, 0.85) 100%);
-    }
-
-    .btn:active {
-      background: linear-gradient(180deg, 
-        rgba(180, 210, 235, 0.8) 0%, 
-        rgba(200, 220, 240, 0.85) 50%, 
-        rgba(230, 240, 250, 0.9) 51%, 
-        rgba(255, 255, 255, 0.95) 100%);
-      box-shadow: 
-        inset 0 1px 3px rgba(0, 0, 0, 0.3),
-        0 1px 0 rgba(255, 255, 255, 0.6);
     }
 
     .container {
@@ -176,20 +121,19 @@
       z-index: 10;
     }
 
-    /* iOS 6 glossy controls panel */
+    /* Boxy glossy search container */
     .controls {
       background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.92) 0%, 
-        rgba(245, 250, 255, 0.88) 100%);
-      padding: 20px;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-top-color: rgba(255, 255, 255, 0.6);
-      border-radius: 10px;
-      margin-bottom: 20px;
+        rgba(40, 75, 130, 0.4) 0%, 
+        rgba(25, 55, 105, 0.45) 100%);
+      padding: 24px;
+      border: 1px solid rgba(120, 180, 240, 0.4);
+      border-top: 2px solid var(--glass-border);
+      margin-bottom: 32px;
       box-shadow: 
-        0 3px 10px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 1),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+        0 8px 32px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 var(--glass-light),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
       position: relative;
     }
 
@@ -200,100 +144,61 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 50%;
+      height: 40%;
       background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.5) 0%, 
+        rgba(255, 255, 255, 0.1) 0%, 
         transparent 100%);
       pointer-events: none;
-      border-radius: 10px 10px 0 0;
     }
 
-    /* iOS 6 search input */
     #search {
-      padding: 9px 14px;
-      border: 1px solid rgba(0, 0, 0, 0.35);
-      border-top-color: rgba(0, 0, 0, 0.5);
-      border-radius: 6px;
+      padding: 14px 18px;
+      border: 1px solid rgba(100, 150, 220, 0.4);
+      border-top: 1px solid rgba(0, 0, 0, 0.6);
       background: linear-gradient(180deg,
-        rgba(250, 252, 255, 0.95) 0%,
-        rgba(255, 255, 255, 0.9) 100%);
-      color: #333;
+        rgba(10, 25, 50, 0.8) 0%,
+        rgba(15, 30, 55, 0.7) 100%);
+      color: #e8f4ff;
       width: 100%;
-      font-size: 15px;
+      font-size: 16px;
       box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.15),
-        inset 0 1px 2px rgba(0, 0, 0, 0.1),
-        0 1px 0 rgba(255, 255, 255, 0.9);
+        inset 0 2px 8px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(0, 0, 0, 0.5),
+        0 1px 0 var(--glass-light);
       transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     #search:focus {
       outline: none;
-      border-color: var(--ios-blue);
+      border-color: rgba(100, 180, 255, 0.6);
       box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.15),
-        0 0 0 4px rgba(74, 158, 255, 0.25),
-        0 1px 0 rgba(255, 255, 255, 0.9);
+        inset 0 2px 8px rgba(0, 0, 0, 0.7),
+        0 0 0 3px rgba(74, 158, 255, 0.25),
+        0 0 20px rgba(74, 158, 255, 0.4);
     }
 
     #search::placeholder {
-      color: rgba(0, 0, 0, 0.35);
+      color: rgba(232, 241, 255, 0.35);
     }
 
-    .filter-row {
-      margin-top: 16px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .filter-label {
-      color: var(--ios-dark-blue);
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-    }
-
-    /* iOS 6 select */
-    select {
-      padding: 7px 12px;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(240, 245, 250, 0.9) 100%);
-      border: 1px solid rgba(0, 0, 0, 0.35);
-      border-top-color: rgba(255, 255, 255, 0.4);
-      border-radius: 6px;
-      color: #333;
-      cursor: pointer;
-      box-shadow: 
-        inset 0 1px 2px rgba(0, 0, 0, 0.08),
-        0 1px 0 rgba(255, 255, 255, 0.9);
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-
-    /* iOS 6 grouped table view */
+    /* Boxy glossy game items */
     .game-item {
       background: linear-gradient(180deg, 
-        #ffffff 0%, 
-        #f8fbff 50%,
-        #f0f5fa 100%);
-      margin: 0 0 12px 0;
-      padding: 16px 18px;
-      border: 1px solid rgba(0, 0, 0, 0.25);
-      border-top: 1px solid rgba(255, 255, 255, 0.8);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-      border-radius: 12px;
+        rgba(35, 65, 110, 0.35) 0%, 
+        rgba(25, 50, 90, 0.4) 100%);
+      margin: 12px 0;
+      padding: 18px 20px;
+      border: 1px solid rgba(120, 180, 240, 0.35);
+      border-top: 1px solid var(--glass-border);
+      border-left: 4px solid rgba(100, 170, 255, 0.6);
       box-shadow: 
-        0 1px 0 rgba(255, 255, 255, 0.8),
-        0 3px 8px rgba(0, 0, 0, 0.25),
-        inset 0 1px 1px rgba(255, 255, 255, 1),
-        inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+        0 4px 16px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 var(--glass-light),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: transform 0.15s, box-shadow 0.15s, border-left-color 0.15s;
+      will-change: transform;
       position: relative;
-      overflow: hidden;
     }
 
     /* Glass shine on game items */
@@ -303,51 +208,20 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 55%;
+      height: 50%;
       background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.7) 0%,
-        rgba(255, 255, 255, 0.3) 50%, 
+        rgba(255, 255, 255, 0.08) 0%, 
         transparent 100%);
       pointer-events: none;
-      border-radius: 11px 11px 0 0;
-    }
-
-    /* iOS 6 subtle texture */
-    .game-item::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,.05) 1px, rgba(255,255,255,.05) 2px);
-      pointer-events: none;
-      opacity: 0.5;
     }
 
     .game-item:hover {
-      background: linear-gradient(180deg, 
-        #ffffff 0%, 
-        #fafcff 50%,
-        #f5f9fe 100%);
-      box-shadow: 
-        0 1px 0 rgba(255, 255, 255, 1),
-        0 4px 12px rgba(0, 0, 0, 0.3),
-        0 0 20px rgba(74, 158, 255, 0.15),
-        inset 0 1px 1px rgba(255, 255, 255, 1);
       transform: translateY(-2px);
-    }
-
-    .game-item:active {
-      background: linear-gradient(180deg, 
-        #f0f5fa 0%, 
-        #f8fbff 50%,
-        #ffffff 100%);
       box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.15),
-        0 1px 0 rgba(255, 255, 255, 0.8);
-      transform: translateY(0);
+        0 6px 20px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 20px rgba(74, 158, 255, 0.2);
+      border-left-color: rgba(120, 200, 255, 0.9);
     }
 
     .game-item-header {
@@ -358,97 +232,18 @@
       z-index: 1;
     }
 
-    .game-item-title-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex: 1;
-    }
-
     .game-item-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--ios-dark-blue);
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-    }
-
-    .favorite-btn {
-      background: none;
-      border: none;
-      font-size: 1.3rem;
-      cursor: pointer;
-      padding: 4px;
-      filter: grayscale(1);
-      opacity: 0.5;
-      transition: all 0.2s;
-    }
-
-    .favorite-btn:hover, .favorite-btn.active {
-      filter: grayscale(0);
-      opacity: 1;
-      transform: scale(1.15);
-    }
-
-    .game-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .share-btn {
-      padding: 5px 12px;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(230, 242, 255, 0.9) 100%);
-      border: 1px solid rgba(0, 0, 0, 0.3);
-      border-top-color: rgba(255, 255, 255, 0.5);
-      border-radius: 5px;
-      color: var(--ios-blue);
-      cursor: pointer;
-      font-size: 0.75rem;
-      font-weight: 700;
-      box-shadow: 
-        0 1px 2px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      transition: all 0.15s;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-      position: relative;
-    }
-
-    .share-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.3) 0%, 
-        transparent 100%);
-      border-radius: 4px 4px 0 0;
-      pointer-events: none;
-    }
-
-    .share-btn:hover {
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 1) 0%, 
-        rgba(240, 248, 255, 0.95) 100%);
-    }
-
-    .share-btn:active {
-      background: linear-gradient(180deg, 
-        rgba(230, 242, 255, 0.9) 0%, 
-        rgba(255, 255, 255, 0.95) 100%);
-      box-shadow: 
-        inset 0 1px 2px rgba(0, 0, 0, 0.15),
-        0 1px 0 rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #f5fbff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     }
 
     .game-item-arrow {
-      font-size: 0.75rem;
-      color: var(--ios-blue);
+      font-size: 0.85rem;
+      color: #a8d4ff;
       transition: transform 0.2s ease;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      will-change: transform;
     }
 
     .game-item.expanded .game-item-arrow {
@@ -479,8 +274,9 @@
     .game-item-description {
       margin: 10px 0 16px 0;
       line-height: 1.6;
-      color: #555;
-      font-size: 0.9rem;
+      color: #d0e5ff;
+      font-size: 0.95rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     .versions-container {
@@ -490,25 +286,21 @@
       margin-top: 14px;
     }
 
-    /* iOS 6 version cards */
+    /* Boxy glossy version cards */
     .version {
       background: linear-gradient(180deg, 
-        #ffffff 0%,
-        #f8fbff 50%, 
-        #f2f7fc 100%);
-      padding: 14px 16px;
-      border: 1px solid rgba(0, 0, 0, 0.22);
-      border-top: 1px solid rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-      border-radius: 10px;
+        rgba(50, 95, 160, 0.4) 0%, 
+        rgba(35, 75, 135, 0.45) 100%);
+      padding: 16px 18px;
+      border: 1px solid rgba(140, 200, 255, 0.3);
+      border-top: 2px solid var(--glass-border);
       box-shadow: 
-        0 1px 0 rgba(255, 255, 255, 0.6),
-        0 2px 6px rgba(0, 0, 0, 0.18),
-        inset 0 1px 1px rgba(255, 255, 255, 1),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.04);
-      transition: all 0.2s;
+        0 3px 14px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 var(--glass-light),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+      will-change: transform;
       position: relative;
-      overflow: hidden;
     }
 
     /* Glass shine on version cards */
@@ -518,140 +310,56 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 55%;
+      height: 50%;
       background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.65) 0%,
-        rgba(255, 255, 255, 0.25) 50%, 
+        rgba(255, 255, 255, 0.1) 0%, 
         transparent 100%);
       pointer-events: none;
-      border-radius: 9px 9px 0 0;
-    }
-
-    /* Subtle texture */
-    .version::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,.04) 1px, rgba(255,255,255,.04) 2px);
-      pointer-events: none;
-      opacity: 0.6;
     }
 
     .version:hover {
-      background: linear-gradient(180deg, 
-        #ffffff 0%,
-        #fafcff 50%, 
-        #f5f9fe 100%);
+      transform: translateY(-3px);
+      border-color: rgba(160, 210, 255, 0.5);
       box-shadow: 
-        0 1px 0 rgba(255, 255, 255, 0.8),
-        0 3px 10px rgba(0, 0, 0, 0.22),
-        0 0 15px rgba(74, 158, 255, 0.12),
-        inset 0 1px 1px rgba(255, 255, 255, 1);
-      transform: translateY(-1px);
-    }
-
-    .version:active {
-      background: linear-gradient(180deg, 
-        #f2f7fc 0%,
-        #f8fbff 50%, 
-        #ffffff 100%);
-      box-shadow: 
-        inset 0 1px 3px rgba(0, 0, 0, 0.12),
-        0 1px 0 rgba(255, 255, 255, 0.6);
-      transform: translateY(0);
+        0 5px 18px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 25px rgba(74, 158, 255, 0.3);
     }
 
     .version strong {
-      color: var(--ios-dark-blue);
-      font-size: 14px;
+      color: #f8fcff;
+      font-size: 15px;
       font-weight: 700;
       display: block;
-      margin-bottom: 8px;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      margin-bottom: 10px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
       position: relative;
       z-index: 1;
     }
 
     a {
-      color: var(--ios-blue);
+      color: #9fd4ff;
       font-weight: 700;
       text-decoration: none;
-      transition: opacity 0.2s;
+      transition: color 0.2s, text-shadow 0.2s;
       display: inline-block;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
       position: relative;
       z-index: 1;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     }
 
     a:hover {
-      opacity: 0.7;
-    }
-
-    a:active {
-      opacity: 0.4;
+      color: #d0ebff;
+      text-shadow: 0 0 10px rgba(150, 200, 255, 0.6);
     }
 
     .no-results {
       text-align: center;
       padding: 60px 20px;
-      color: #e8f0ff;
-      font-size: 1rem;
+      color: #ddeeff;
+      font-size: 1.15rem;
       font-weight: 600;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
-
-    /* iOS 6 view toggle */
-    .view-toggle {
-      display: flex;
-      gap: 0;
-      background: transparent;
-      padding: 0;
-      border: 1px solid rgba(0, 0, 0, 0.35);
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 
-        0 1px 2px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
-    }
-
-    .view-toggle-btn {
-      padding: 6px 14px;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(240, 245, 250, 0.9) 100%);
-      border: none;
-      border-right: 1px solid rgba(0, 0, 0, 0.25);
-      color: #333;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 700;
-      transition: all 0.2s;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-    }
-
-    .view-toggle-btn:last-child {
-      border-right: none;
-    }
-
-    .view-toggle-btn.active {
-      background: linear-gradient(180deg, 
-        rgba(74, 158, 255, 0.9) 0%, 
-        rgba(60, 140, 235, 0.85) 100%);
-      color: #fff;
-      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    .compact-view .game-item {
-      padding: 12px 16px;
-    }
-
-    .compact-view .game-item-title {
-      font-size: 0.95rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
 
     @media (max-width: 768px) {
@@ -661,24 +369,27 @@
       }
 
       .title {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
       }
 
       .versions-container {
         grid-template-columns: 1fr;
       }
-
-      .filter-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
     }
 
+    /* Respect reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Hide animations on low-end devices */
+    @media (max-width: 480px) {
+      body::before, body::after {
+        display: none;
       }
     }
   </style>
@@ -687,36 +398,12 @@
 <body>
 
 <header>
-  <div class="title">The Alpine Bay</div>
-  <div class="header-stats">
-    <div class="stat-text">
-      <span id="stats">Loading...</span>
-    </div>
-    <button id="refreshBtn" class="btn">⟳ Refresh</button>
-  </div>
+  <div class="title">The Apline Bay</div>
 </header>
 
 <div class="container">
   <div class="controls">
     <input type="text" id="search" placeholder="Search games..." />
-    
-    <div class="filter-row">
-      <label class="filter-label">Sort:</label>
-      <select id="sortSelect">
-        <option value="name-asc">Name (A-Z)</option>
-        <option value="name-desc">Name (Z-A)</option>
-        <option value="versions-desc">Most Versions</option>
-        <option value="versions-asc">Least Versions</option>
-      </select>
-      
-      <label class="filter-label" style="margin-left: 12px;">View:</label>
-      <div class="view-toggle">
-        <button class="view-toggle-btn active" data-view="normal">Normal</button>
-        <button class="view-toggle-btn" data-view="compact">Compact</button>
-      </div>
-
-      <button id="favoritesBtn" class="btn" style="margin-left: auto;">⭐ Favorites</button>
-    </div>
   </div>
   <div id="games"></div>
 </div>
@@ -725,43 +412,15 @@
 (function(){
   const container = document.getElementById('games');
   const search = document.getElementById('search');
-  const sortSelect = document.getElementById('sortSelect');
-  const favoritesBtn = document.getElementById('favoritesBtn');
-  const refreshBtn = document.getElementById('refreshBtn');
-  const statsEl = document.getElementById('stats');
-  
   let dataCache = [];
   let renderedGames = new Map();
-  let favorites = new Set(JSON.parse(localStorage.getItem('alpine_favorites') || '[]'));
-  let currentSort = 'name-asc';
-  let showOnlyFavorites = false;
-  let viewMode = 'normal';
-  
-  // View mode toggle
-  document.querySelectorAll('.view-toggle-btn').forEach(btn => {
-    btn.onclick = () => {
-      document.querySelectorAll('.view-toggle-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      viewMode = btn.dataset.view;
-      if (viewMode === 'compact') {
-        container.classList.add('compact-view');
-      } else {
-        container.classList.remove('compact-view');
-      }
-    };
-  });
-  
-  function updateStats() {
-    const totalGames = dataCache.length;
-    const totalVersions = dataCache.reduce((sum, g) => sum + (g.versions?.length || 0), 0);
-    statsEl.textContent = `${totalGames} games • ${totalVersions} versions • ${favorites.size} favorites`;
-  }
   
   function showMessage(msg){
     container.innerHTML = `<div class="no-results">${msg}</div>`;
     renderedGames.clear();
   }
 
+  // Debounce for performance
   function debounce(func, wait) {
     let timeout;
     return function(...args) {
@@ -770,33 +429,10 @@
     };
   }
 
-  function sortGames(list) {
-    const sorted = [...list];
-    switch(currentSort) {
-      case 'name-asc':
-        sorted.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case 'name-desc':
-        sorted.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case 'versions-desc':
-        sorted.sort((a, b) => (b.versions?.length || 0) - (a.versions?.length || 0));
-        break;
-      case 'versions-asc':
-        sorted.sort((a, b) => (a.versions?.length || 0) - (b.versions?.length || 0));
-        break;
-    }
-    return sorted;
-  }
-
-  function filterByFavorites(list) {
-    if (!showOnlyFavorites) return list;
-    return list.filter(game => favorites.has(game.name));
-  }
-
+  // Efficient rendering with DOM reuse
   function render(list){
     if(!list.length){
-      showMessage(showOnlyFavorites ? 'No favorite games yet.' : 'No games found.');
+      showMessage(search.value.trim() === '' ? 'Start typing to search for games...' : 'No games found.');
       return;
     }
 
@@ -807,8 +443,6 @@
       let gameItem = renderedGames.get(game.name);
       if (!gameItem) {
         gameItem = createGameElement(game);
-      } else {
-        updateFavoriteButton(gameItem, game);
       }
       newRendered.set(game.name, gameItem);
       fragment.appendChild(gameItem);
@@ -819,35 +453,6 @@
     renderedGames = newRendered;
   }
 
-  function updateFavoriteButton(gameItem, game) {
-    const favBtn = gameItem.querySelector('.favorite-btn');
-    if (favBtn) {
-      favBtn.className = 'favorite-btn' + (favorites.has(game.name) ? ' active' : '');
-    }
-  }
-
-  function toggleFavorite(gameName) {
-    if (favorites.has(gameName)) {
-      favorites.delete(gameName);
-    } else {
-      favorites.add(gameName);
-    }
-    localStorage.setItem('alpine_favorites', JSON.stringify([...favorites]));
-    updateStats();
-    apply();
-  }
-
-  function shareGame(game) {
-    const url = window.location.href.split('?')[0] + '?game=' + encodeURIComponent(game.name);
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(() => {
-        alert('Game link copied to clipboard!');
-      });
-    } else {
-      prompt('Copy this link:', url);
-    }
-  }
-
   function createGameElement(game){
     const gameItem = document.createElement('div');
     gameItem.className = 'game-item';
@@ -855,40 +460,15 @@
     const gameHeader = document.createElement('div');
     gameHeader.className = 'game-item-header';
 
-    const gameTitleRow = document.createElement('div');
-    gameTitleRow.className = 'game-item-title-row';
-
-    const favBtn = document.createElement('button');
-    favBtn.className = 'favorite-btn' + (favorites.has(game.name) ? ' active' : '');
-    favBtn.textContent = '⭐';
-    favBtn.onclick = (e) => {
-      e.stopPropagation();
-      toggleFavorite(game.name);
-    };
-
     const gameTitle = document.createElement('div');
     gameTitle.className = 'game-item-title';
     gameTitle.textContent = game.name;
-
-    gameTitleRow.append(favBtn, gameTitle);
-
-    const gameActions = document.createElement('div');
-    gameActions.className = 'game-actions';
-
-    const shareBtn = document.createElement('button');
-    shareBtn.className = 'share-btn';
-    shareBtn.textContent = '🔗 Share';
-    shareBtn.onclick = (e) => {
-      e.stopPropagation();
-      shareGame(game);
-    };
 
     const gameArrow = document.createElement('span');
     gameArrow.className = 'game-item-arrow';
     gameArrow.textContent = '▶';
 
-    gameActions.append(shareBtn, gameArrow);
-    gameHeader.append(gameTitleRow, gameActions);
+    gameHeader.append(gameTitle, gameArrow);
     gameItem.appendChild(gameHeader);
 
     const gameContent = document.createElement('div');
@@ -939,22 +519,19 @@
 
   function apply(){
     const query = search.value.toLowerCase().trim();
-    let filtered = dataCache;
-    
-    if(query !== ''){
-      filtered = filtered.filter(g =>
-        g.name.toLowerCase().includes(query) ||
-        g.description?.toLowerCase().includes(query) ||
-        g.versions?.some(v => 
-          v.platform.toLowerCase().includes(query) ||
-          v.tags?.some(tag => tag.toLowerCase().includes(query))
-        )
-      );
+    if(query === ''){
+      render([]);
+      return;
     }
     
-    filtered = filterByFavorites(filtered);
-    filtered = sortGames(filtered);
-    
+    const filtered = dataCache.filter(g =>
+      g.name.toLowerCase().includes(query) ||
+      g.description?.toLowerCase().includes(query) ||
+      g.versions?.some(v => 
+        v.platform.toLowerCase().includes(query) ||
+        v.tags?.some(tag => tag.toLowerCase().includes(query))
+      )
+    );
     render(filtered);
   }
 
@@ -987,15 +564,7 @@
       if (dataCache.length === 0) {
         showMessage('No games found. Make sure JSON files are in the "Rom 47" folder.');
       } else {
-        updateStats();
-        apply();
-        
-        const params = new URLSearchParams(window.location.search);
-        const sharedGame = params.get('game');
-        if (sharedGame) {
-          search.value = sharedGame;
-          apply();
-        }
+        showMessage('Start typing to search for games...');
       }
     } catch (err) {
       showMessage('Failed to load games from Rom 47 folder.');
@@ -1004,24 +573,7 @@
   }
 
   loadAllGames();
-  
   search.oninput = debouncedApply;
-  sortSelect.onchange = () => {
-    currentSort = sortSelect.value;
-    apply();
-  };
-  
-  favoritesBtn.onclick = () => {
-    showOnlyFavorites = !showOnlyFavorites;
-    favoritesBtn.textContent = showOnlyFavorites ? '📋 All Games' : '⭐ Favorites';
-    apply();
-  };
-  
-  refreshBtn.onclick = () => {
-    showMessage('Refreshing games...');
-    renderedGames.clear();
-    loadAllGames();
-  };
 })();
 </script>
 
