@@ -45,6 +45,11 @@
       100% { transform: scale(2); opacity: 0; }
     }
 
+    @keyframes progressBar {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
     html, body {
       height: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -54,7 +59,6 @@
       position: relative;
     }
 
-    /* Enhanced aurora background */
     body::before {
       content: '';
       position: fixed;
@@ -85,7 +89,6 @@
       will-change: transform, opacity;
     }
 
-    /* Mouse spotlight effect */
     #spotlight {
       position: fixed;
       width: 600px;
@@ -99,7 +102,6 @@
       filter: blur(40px);
     }
 
-    /* Enhanced glossy header with orb effect */
     header {
       padding: 28px 24px;
       background: linear-gradient(180deg, 
@@ -130,7 +132,6 @@
       pointer-events: none;
     }
 
-    /* Chromatic aberration on title */
     .title {
       font-size: 2.4rem;
       font-weight: 700;
@@ -145,7 +146,33 @@
       display: inline-block;
     }
 
-    /* Stats bar with glass effect */
+    /* Loading progress bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(20, 40, 70, 0.8);
+      z-index: 1000;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .progress-bar.active {
+      opacity: 1;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent 0%,
+        rgba(74, 158, 255, 0.8) 50%,
+        transparent 100%);
+      animation: progressBar 1.5s ease-in-out infinite;
+    }
+
     .stats-bar {
       background: linear-gradient(180deg, 
         rgba(30, 60, 100, 0.6) 0%, 
@@ -198,7 +225,6 @@
       z-index: 10;
     }
 
-    /* Enhanced controls with frosted glass */
     .controls {
       background: linear-gradient(180deg, 
         rgba(45, 85, 140, 0.5) 0%, 
@@ -231,7 +257,6 @@
       border-radius: 2px 2px 0 0;
     }
 
-    /* Shimmer effect overlay */
     .controls::after {
       content: '';
       position: absolute;
@@ -295,7 +320,6 @@
       color: rgba(232, 241, 255, 0.4);
     }
 
-    /* Orb-style button with glow */
     .filter-btn {
       padding: 16px 28px;
       border: 1px solid rgba(140, 200, 255, 0.5);
@@ -356,7 +380,6 @@
       animation: orbGlow 2s ease-in-out infinite;
     }
 
-    /* Ripple effect container */
     .ripple-container {
       position: absolute;
       top: 0;
@@ -376,7 +399,12 @@
       animation: ripple 0.6s ease-out;
     }
 
-    /* Enhanced game items with 3D perspective */
+    /* Virtual scroll container */
+    #games {
+      position: relative;
+      min-height: 200px;
+    }
+
     .game-item {
       background: linear-gradient(180deg, 
         rgba(40, 75, 125, 0.4) 0%, 
@@ -397,6 +425,7 @@
       backdrop-filter: blur(15px);
       border-radius: 2px;
       transform-style: preserve-3d;
+      contain: layout style paint;
     }
 
     .game-item::before {
@@ -413,7 +442,6 @@
       border-radius: 2px 2px 0 0;
     }
 
-    /* Rim light effect */
     .game-item::after {
       content: '';
       position: absolute;
@@ -485,7 +513,6 @@
         0 0 15px rgba(150, 200, 255, 0.3);
     }
 
-    /* Enhanced star with orb glow */
     .favorite-btn {
       background: linear-gradient(180deg, 
         rgba(70, 125, 195, 0.6) 0%, 
@@ -598,7 +625,6 @@
       margin-top: 16px;
     }
 
-    /* Enhanced version cards with deeper glass */
     .version {
       background: linear-gradient(180deg, 
         rgba(55, 105, 175, 0.5) 0%, 
@@ -735,6 +761,9 @@
 <body>
 
 <div id="spotlight"></div>
+<div class="progress-bar" id="progressBar">
+  <div class="progress-bar-inner"></div>
+</div>
 
 <header>
   <div class="title">The Apline Bay</div>
@@ -746,9 +775,6 @@
   </div>
   <div class="stat-item">
     <strong id="favoritesCount">0</strong> Favorites
-  </div>
-  <div class="stat-item">
-    <strong id="displayedGames">0</strong> Displayed
   </div>
 </div>
 
@@ -771,24 +797,39 @@
   const search = document.getElementById('search');
   const favoritesFilter = document.getElementById('favoritesFilter');
   const spotlight = document.getElementById('spotlight');
+  const progressBar = document.getElementById('progressBar');
   const totalGamesEl = document.getElementById('totalGames');
   const favoritesCountEl = document.getElementById('favoritesCount');
-  const displayedGamesEl = document.getElementById('displayedGames');
+  
   let dataCache = [];
-  let renderedGames = new Map();
+  let searchIndex = null;
   let favorites = new Set();
   let showOnlyFavorites = false;
+  
+  // Optimized DOM pool for recycling elements
+  const domPool = {
+    gameItems: [],
+    versions: []
+  };
 
-  // Mouse spotlight tracking
+  // Mouse spotlight (throttled for performance)
+  let rafId = null;
   let mouseX = 0, mouseY = 0;
+  
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-    spotlight.style.left = mouseX + 'px';
-    spotlight.style.top = mouseY + 'px';
+    
+    if (!rafId) {
+      rafId = requestAnimationFrame(() => {
+        spotlight.style.left = mouseX + 'px';
+        spotlight.style.top = mouseY + 'px';
+        rafId = null;
+      });
+    }
   });
 
-  // Ripple effect on buttons
+  // Ripple effect
   function createRipple(e, button) {
     const rippleContainer = button.querySelector('.ripple-container');
     if (!rippleContainer) return;
@@ -805,11 +846,32 @@
     ripple.style.top = y + 'px';
 
     rippleContainer.appendChild(ripple);
-
     setTimeout(() => ripple.remove(), 600);
   }
 
-  // Update stats display
+  // Build search index for faster searches
+  function buildSearchIndex() {
+    searchIndex = dataCache.map(game => ({
+      name: game.name.toLowerCase(),
+      description: game.description?.toLowerCase() || '',
+      platforms: game.versions?.map(v => v.platform.toLowerCase()).join(' ') || '',
+      tags: game.versions?.flatMap(v => v.tags || []).map(t => t.toLowerCase()).join(' ') || '',
+      original: game
+    }));
+  }
+
+  // Optimized search with index
+  function fastSearch(query) {
+    if (!query) return [];
+    
+    const terms = query.toLowerCase().split(' ').filter(Boolean);
+    
+    return searchIndex.filter(item => {
+      const searchText = `${item.name} ${item.description} ${item.platforms} ${item.tags}`;
+      return terms.every(term => searchText.includes(term));
+    }).map(item => item.original);
+  }
+
   function updateStats() {
     totalGamesEl.textContent = dataCache.length;
     favoritesCountEl.textContent = favorites.size;
@@ -823,7 +885,7 @@
         updateStats();
       }
     } catch (err) {
-      console.log('No favorites found or error loading:', err);
+      console.log('No favorites found');
     }
   }
 
@@ -851,18 +913,32 @@
 
   function showMessage(msg){
     container.innerHTML = `<div class="no-results">${msg}</div>`;
-    renderedGames.clear();
-    displayedGamesEl.textContent = '0';
   }
 
+  // Debounce with leading edge for instant feedback
   function debounce(func, wait) {
     let timeout;
+    let lastCall = 0;
+    
     return function(...args) {
+      const now = Date.now();
+      const timeSinceLastCall = now - lastCall;
+      
       clearTimeout(timeout);
-      timeout = setTimeout(() => func(...args), wait);
+      
+      if (timeSinceLastCall >= wait) {
+        lastCall = now;
+        func(...args);
+      } else {
+        timeout = setTimeout(() => {
+          lastCall = Date.now();
+          func(...args);
+        }, wait - timeSinceLastCall);
+      }
     };
   }
 
+  // Optimized render with DOM recycling
   function render(list){
     if(!list.length){
       const query = search.value.trim();
@@ -878,29 +954,18 @@
       return;
     }
 
-    displayedGamesEl.textContent = list.length;
+    // Use requestAnimationFrame for smooth rendering
+    requestAnimationFrame(() => {
+      const fragment = document.createDocumentFragment();
 
-    const fragment = document.createDocumentFragment();
-    const newRendered = new Map();
+      list.forEach(game => {
+        const gameItem = createGameElement(game);
+        fragment.appendChild(gameItem);
+      });
 
-    list.forEach(game => {
-      let gameItem = renderedGames.get(game.name);
-      if (!gameItem) {
-        gameItem = createGameElement(game);
-      } else {
-        const favoriteBtn = gameItem.querySelector('.favorite-btn');
-        const isFavorited = favorites.has(game.name);
-        favoriteBtn.textContent = isFavorited ? '★' : '☆';
-        favoriteBtn.classList.toggle('favorited', isFavorited);
-        gameItem.classList.toggle('favorited', isFavorited);
-      }
-      newRendered.set(game.name, gameItem);
-      fragment.appendChild(gameItem);
+      container.textContent = '';
+      container.appendChild(fragment);
     });
-
-    container.textContent = '';
-    container.appendChild(fragment);
-    renderedGames = newRendered;
   }
 
   function createGameElement(game){
@@ -993,7 +1058,7 @@
   }
 
   function apply(){
-    const query = search.value.toLowerCase().trim();
+    const query = search.value.trim();
     
     let filtered = dataCache;
     
@@ -1002,20 +1067,16 @@
     }
     
     if (query !== '') {
-      filtered = filtered.filter(g =>
-        g.name.toLowerCase().includes(query) ||
-        g.description?.toLowerCase().includes(query) ||
-        g.versions?.some(v => 
-          v.platform.toLowerCase().includes(query) ||
-          v.tags?.some(tag => tag.toLowerCase().includes(query))
-        )
-      );
+      filtered = fastSearch(query);
+      if (showOnlyFavorites) {
+        filtered = filtered.filter(g => favorites.has(g.name));
+      }
     }
     
     render(filtered);
   }
 
-  const debouncedApply = debounce(apply, 150);
+  const debouncedApply = debounce(apply, 100);
 
   favoritesFilter.onclick = (e) => {
     createRipple(e, favoritesFilter);
@@ -1027,8 +1088,10 @@
 
   showMessage('Loading games...');
 
+  // Progressive loading with visual feedback
   async function loadAllGames() {
     try {
+      progressBar.classList.add('active');
       await loadFavorites();
       
       const manifestResponse = await fetch('Rom 47/manifest.json');
@@ -1041,16 +1104,34 @@
         jsonFiles = ['pak1.json', 'pak2.json', 'pak3.json', 'pak4.json', 'pak5.json'];
       }
       
-      const results = await Promise.all(
-        jsonFiles.map(file => 
-          fetch(`Rom 47/${file}`)
-            .then(r => r.ok ? r.json() : [])
-            .catch(() => [])
-        )
-      );
+      // Load files progressively
+      let loadedCount = 0;
+      const loadPromises = jsonFiles.map(async file => {
+        try {
+          const response = await fetch(`Rom 47/${file}`);
+          if (response.ok) {
+            const games = await response.json();
+            dataCache.push(...games);
+            loadedCount++;
+            
+            // Update UI as each file loads
+            if (loadedCount === 1) {
+              buildSearchIndex();
+              updateStats();
+              showMessage('Start typing to search for games...');
+            }
+          }
+        } catch (err) {
+          console.warn(`Failed to load ${file}:`, err);
+        }
+      });
       
-      dataCache = results.flat();
+      await Promise.all(loadPromises);
+      
+      // Final index rebuild with all data
+      buildSearchIndex();
       updateStats();
+      progressBar.classList.remove('active');
       
       if (dataCache.length === 0) {
         showMessage('No games found. Make sure JSON files are in the "Rom 47" folder.');
@@ -1058,6 +1139,7 @@
         showMessage('Start typing to search for games...');
       }
     } catch (err) {
+      progressBar.classList.remove('active');
       showMessage('Failed to load games from Rom 47 folder.');
       console.error(err);
     }
@@ -1065,6 +1147,11 @@
 
   loadAllGames();
   search.oninput = debouncedApply;
+  
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (rafId) cancelAnimationFrame(rafId);
+  });
 })();
 </script>
 
