@@ -20,7 +20,6 @@
       padding: 0;
     }
 
-    /* Simplified animations - GPU accelerated only */
     @keyframes float {
       0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.4; }
       50% { transform: translate3d(30px, -20px, 0); opacity: 0.6; }
@@ -29,6 +28,21 @@
     @keyframes floatAlt {
       0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.35; }
       50% { transform: translate3d(-25px, 15px, 0); opacity: 0.5; }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+
+    @keyframes orbGlow {
+      0%, 100% { box-shadow: 0 0 20px rgba(74, 158, 255, 0.5), 0 0 40px rgba(74, 158, 255, 0.3), inset 0 0 20px rgba(100, 180, 255, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(74, 158, 255, 0.7), 0 0 60px rgba(74, 158, 255, 0.5), inset 0 0 30px rgba(100, 180, 255, 0.6); }
+    }
+
+    @keyframes ripple {
+      0% { transform: scale(0); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
     }
 
     html, body {
@@ -40,7 +54,7 @@
       position: relative;
     }
 
-    /* Aurora background lights */
+    /* Enhanced aurora background */
     body::before {
       content: '';
       position: fixed;
@@ -48,8 +62,8 @@
       left: -10%;
       width: 60%;
       height: 80%;
-      background: radial-gradient(ellipse 800px 200px, rgba(80, 160, 240, 0.3) 0%, transparent 70%);
-      filter: blur(40px);
+      background: radial-gradient(ellipse 800px 200px, rgba(80, 160, 240, 0.4) 0%, rgba(100, 180, 255, 0.2) 40%, transparent 70%);
+      filter: blur(50px);
       z-index: 0;
       animation: float 25s ease-in-out infinite;
       pointer-events: none;
@@ -63,206 +77,93 @@
       right: -10%;
       width: 55%;
       height: 70%;
-      background: radial-gradient(ellipse 700px 180px, rgba(100, 180, 255, 0.25) 0%, transparent 70%);
-      filter: blur(40px);
+      background: radial-gradient(ellipse 700px 180px, rgba(100, 180, 255, 0.35) 0%, rgba(74, 158, 255, 0.15) 40%, transparent 70%);
+      filter: blur(50px);
       z-index: 0;
       animation: floatAlt 30s ease-in-out infinite;
       pointer-events: none;
       will-change: transform, opacity;
     }
 
-    /* Boxy glossy header */
+    /* Mouse spotlight effect */
+    #spotlight {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(120, 180, 255, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      filter: blur(40px);
+    }
+
+    /* Enhanced glossy header with orb effect */
     header {
-      padding: 24px;
+      padding: 28px 24px;
       background: linear-gradient(180deg, 
-        rgba(50, 90, 140, 0.9) 0%, 
-        rgba(30, 70, 120, 0.95) 100%);
+        rgba(55, 100, 155, 0.95) 0%, 
+        rgba(35, 80, 135, 1) 100%);
       border-top: 2px solid var(--glass-border);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.6);
       box-shadow: 
-        0 4px 24px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        0 8px 32px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
       position: relative;
       z-index: 10;
       text-align: center;
+      backdrop-filter: blur(20px);
     }
 
-    /* Glass shine effect on header */
     header::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 50%;
+      height: 60%;
       background: linear-gradient(180deg, 
-        var(--glass-light) 0%, 
+        rgba(255, 255, 255, 0.18) 0%, 
         transparent 100%);
       pointer-events: none;
     }
 
+    /* Chromatic aberration on title */
     .title {
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       color: #fff;
       text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(100, 180, 255, 0.5);
-      letter-spacing: 1.5px;
+        2px 2px 0 rgba(255, 0, 100, 0.3),
+        -2px -2px 0 rgba(0, 200, 255, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(100, 180, 255, 0.6);
+      letter-spacing: 2px;
       position: relative;
+      display: inline-block;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 32px auto;
-      padding: 24px;
+    /* Stats bar with glass effect */
+    .stats-bar {
+      background: linear-gradient(180deg, 
+        rgba(30, 60, 100, 0.6) 0%, 
+        rgba(20, 45, 80, 0.7) 100%);
+      padding: 12px 24px;
+      border-bottom: 1px solid rgba(120, 180, 240, 0.3);
+      box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 16px rgba(0, 0, 0, 0.5);
       position: relative;
       z-index: 10;
-    }
-
-    /* Boxy glossy search container */
-    .controls {
-      background: linear-gradient(180deg, 
-        rgba(40, 75, 130, 0.4) 0%, 
-        rgba(25, 55, 105, 0.45) 100%);
-      padding: 24px;
-      border: 1px solid rgba(120, 180, 240, 0.4);
-      border-top: 2px solid var(--glass-border);
-      margin-bottom: 32px;
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
-      position: relative;
-    }
-
-    /* Glass shine on controls */
-    .controls::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 40%;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
-        transparent 100%);
-      pointer-events: none;
-    }
-
-    .search-row {
       display: flex;
-      gap: 12px;
-      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      backdrop-filter: blur(15px);
     }
 
-    #search {
-      padding: 14px 18px;
-      border: 1px solid rgba(100, 150, 220, 0.4);
-      border-top: 1px solid rgba(0, 0, 0, 0.6);
-      background: linear-gradient(180deg,
-        rgba(10, 25, 50, 0.8) 0%,
-        rgba(15, 30, 55, 0.7) 100%);
-      color: #e8f4ff;
-      flex: 1;
-      font-size: 16px;
-      box-shadow: 
-        inset 0 2px 8px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(0, 0, 0, 0.5),
-        0 1px 0 var(--glass-light);
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    #search:focus {
-      outline: none;
-      border-color: rgba(100, 180, 255, 0.6);
-      box-shadow: 
-        inset 0 2px 8px rgba(0, 0, 0, 0.7),
-        0 0 0 3px rgba(74, 158, 255, 0.25),
-        0 0 20px rgba(74, 158, 255, 0.4);
-    }
-
-    #search::placeholder {
-      color: rgba(232, 241, 255, 0.35);
-    }
-
-    /* Aero-style filter button */
-    .filter-btn {
-      padding: 14px 24px;
-      border: 1px solid rgba(120, 180, 240, 0.4);
-      border-top: 2px solid var(--glass-border);
-      background: linear-gradient(180deg, 
-        rgba(50, 95, 160, 0.5) 0%, 
-        rgba(35, 75, 135, 0.55) 100%);
-      color: #e8f4ff;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 
-        0 3px 12px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-      transition: all 0.2s;
-      position: relative;
-      white-space: nowrap;
-    }
-
-    .filter-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.12) 0%, 
-        transparent 100%);
-      pointer-events: none;
-    }
-
-    .filter-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(160, 210, 255, 0.6);
-      box-shadow: 
-        0 5px 16px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        0 0 20px rgba(74, 158, 255, 0.3);
-    }
-
-    .filter-btn.active {
-      background: linear-gradient(180deg, 
-        rgba(70, 130, 200, 0.7) 0%, 
-        rgba(50, 105, 175, 0.75) 100%);
-      border-color: rgba(160, 210, 255, 0.7);
-      box-shadow: 
-        0 3px 12px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        0 0 25px rgba(100, 180, 255, 0.4);
-    }
-
-    /* Boxy glossy game items */
-    .game-item {
-      background: linear-gradient(180deg, 
-        rgba(35, 65, 110, 0.35) 0%, 
-        rgba(25, 50, 90, 0.4) 100%);
-      margin: 12px 0;
-      padding: 18px 20px;
-      border: 1px solid rgba(120, 180, 240, 0.35);
-      border-top: 1px solid var(--glass-border);
-      border-left: 4px solid rgba(100, 170, 255, 0.6);
-      box-shadow: 
-        0 4px 16px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      transition: transform 0.15s, box-shadow 0.15s, border-left-color 0.15s;
-      will-change: transform;
-      position: relative;
-    }
-
-    /* Glass shine on game items */
-    .game-item::before {
+    .stats-bar::before {
       content: '';
       position: absolute;
       top: 0;
@@ -275,21 +176,289 @@
       pointer-events: none;
     }
 
-    .game-item:hover {
-      transform: translateY(-2px);
+    .stat-item {
+      color: #b8d8ff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .stat-item strong {
+      color: #e0f0ff;
+      font-size: 1.1rem;
+      margin-right: 6px;
+      text-shadow: 0 0 10px rgba(120, 200, 255, 0.5);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Enhanced controls with frosted glass */
+    .controls {
+      background: linear-gradient(180deg, 
+        rgba(45, 85, 140, 0.5) 0%, 
+        rgba(30, 65, 115, 0.55) 100%);
+      padding: 24px;
+      border: 1px solid rgba(140, 200, 255, 0.4);
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
+      margin-bottom: 32px;
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(74, 158, 255, 0.1);
+      position: relative;
+      backdrop-filter: blur(20px);
+      border-radius: 2px;
+    }
+
+    .controls::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.12) 0%, 
+        transparent 100%);
+      pointer-events: none;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Shimmer effect overlay */
+    .controls::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 3s ease-in-out infinite;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    #search {
+      padding: 16px 20px;
+      border: 1px solid rgba(100, 150, 220, 0.5);
+      border-top: 1px solid rgba(0, 0, 0, 0.7);
+      background: linear-gradient(180deg,
+        rgba(12, 30, 55, 0.9) 0%,
+        rgba(18, 38, 65, 0.85) 100%);
+      color: #e8f4ff;
+      flex: 1;
+      font-size: 16px;
+      box-shadow: 
+        inset 0 3px 10px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(0, 0, 0, 0.6),
+        0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+      border-radius: 2px;
+    }
+
+    #search:focus {
+      outline: none;
+      border-color: rgba(120, 200, 255, 0.7);
+      box-shadow: 
+        inset 0 3px 10px rgba(0, 0, 0, 0.8),
+        0 0 0 3px rgba(74, 158, 255, 0.3),
+        0 0 30px rgba(74, 158, 255, 0.5),
+        0 4px 20px rgba(0, 0, 0, 0.6);
+      background: linear-gradient(180deg,
+        rgba(15, 35, 65, 0.95) 0%,
+        rgba(20, 42, 72, 0.9) 100%);
+    }
+
+    #search::placeholder {
+      color: rgba(232, 241, 255, 0.4);
+    }
+
+    /* Orb-style button with glow */
+    .filter-btn {
+      padding: 16px 28px;
+      border: 1px solid rgba(140, 200, 255, 0.5);
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
+      background: linear-gradient(180deg, 
+        rgba(60, 110, 180, 0.6) 0%, 
+        rgba(40, 90, 160, 0.7) 100%);
+      color: #e8f4ff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+      transition: all 0.3s;
+      position: relative;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        transparent 100%);
+      pointer-events: none;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-3px);
+      border-color: rgba(180, 220, 255, 0.7);
+      box-shadow: 
+        0 6px 24px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(74, 158, 255, 0.4);
+      background: linear-gradient(180deg, 
+        rgba(70, 125, 200, 0.7) 0%, 
+        rgba(50, 105, 180, 0.8) 100%);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(180deg, 
+        rgba(80, 145, 220, 0.8) 0%, 
+        rgba(60, 120, 195, 0.9) 100%);
+      border-color: rgba(180, 220, 255, 0.8);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        0 0 40px rgba(100, 180, 255, 0.6);
+      animation: orbGlow 2s ease-in-out infinite;
+    }
+
+    /* Ripple effect container */
+    .ripple-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      border-radius: 2px;
+    }
+
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      animation: ripple 0.6s ease-out;
+    }
+
+    /* Enhanced game items with 3D perspective */
+    .game-item {
+      background: linear-gradient(180deg, 
+        rgba(40, 75, 125, 0.4) 0%, 
+        rgba(28, 58, 105, 0.5) 100%);
+      margin: 14px 0;
+      padding: 20px 22px;
+      border: 1px solid rgba(140, 200, 255, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.3);
+      border-left: 4px solid rgba(100, 170, 255, 0.7);
       box-shadow: 
         0 6px 20px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 0 20px rgba(74, 158, 255, 0.2);
-      border-left-color: rgba(120, 200, 255, 0.9);
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+      position: relative;
+      backdrop-filter: blur(15px);
+      border-radius: 2px;
+      transform-style: preserve-3d;
+    }
+
+    .game-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 100%);
+      pointer-events: none;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Rim light effect */
+    .game-item::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
+      background: linear-gradient(135deg, 
+        rgba(120, 200, 255, 0) 0%,
+        rgba(120, 200, 255, 0.3) 50%,
+        rgba(120, 200, 255, 0) 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      border-radius: 2px;
+    }
+
+    .game-item:hover {
+      transform: translateY(-4px) rotateX(2deg);
+      box-shadow: 
+        0 12px 32px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 40px rgba(74, 158, 255, 0.3);
+      border-left-color: rgba(140, 210, 255, 1);
+      border-color: rgba(160, 210, 255, 0.6);
+    }
+
+    .game-item:hover::after {
+      opacity: 1;
     }
 
     .game-item.favorited {
-      border-left-color: rgba(255, 215, 100, 0.8);
+      border-left-color: rgba(255, 200, 80, 0.9);
+      box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 0 20px rgba(255, 180, 60, 0.2);
     }
 
     .game-item.favorited:hover {
-      border-left-color: rgba(255, 230, 120, 1);
+      border-left-color: rgba(255, 220, 100, 1);
+      box-shadow: 
+        0 12px 32px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 40px rgba(255, 180, 60, 0.4);
     }
 
     .game-item-header {
@@ -303,84 +472,90 @@
     .game-item-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       flex: 1;
     }
 
     .game-item-title {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 600;
-      color: #f5fbff;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+      color: #f8fcff;
+      text-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.7),
+        0 0 15px rgba(150, 200, 255, 0.3);
     }
 
-    /* Aero-style favorite star button */
+    /* Enhanced star with orb glow */
     .favorite-btn {
       background: linear-gradient(180deg, 
-        rgba(60, 110, 180, 0.5) 0%, 
-        rgba(40, 85, 150, 0.55) 100%);
-      border: 1px solid rgba(140, 200, 255, 0.4);
-      border-top: 2px solid var(--glass-border);
-      padding: 6px 10px;
+        rgba(70, 125, 195, 0.6) 0%, 
+        rgba(50, 100, 170, 0.7) 100%);
+      border: 1px solid rgba(160, 210, 255, 0.5);
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 12px;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s;
       box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        0 3px 12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
       position: relative;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       line-height: 1;
       will-change: transform;
+      backdrop-filter: blur(10px);
+      border-radius: 2px;
+      overflow: hidden;
     }
 
-    /* Glass shine on star button */
     .favorite-btn::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 50%;
+      height: 60%;
       background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.18) 0%, 
         transparent 100%);
       pointer-events: none;
     }
 
     .favorite-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(160, 210, 255, 0.6);
+      transform: translateY(-3px) scale(1.05);
+      border-color: rgba(180, 220, 255, 0.7);
       box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        0 0 20px rgba(74, 158, 255, 0.3);
+        0 6px 18px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(74, 158, 255, 0.4);
     }
 
     .favorite-btn.favorited {
       background: linear-gradient(180deg, 
-        rgba(180, 130, 50, 0.6) 0%, 
-        rgba(150, 100, 30, 0.65) 100%);
-      border-color: rgba(255, 215, 100, 0.6);
+        rgba(200, 145, 60, 0.7) 0%, 
+        rgba(170, 115, 40, 0.8) 100%);
+      border-color: rgba(255, 210, 100, 0.7);
       box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2),
-        0 0 15px rgba(255, 200, 80, 0.3);
+        0 3px 12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 20px rgba(255, 180, 60, 0.4);
+      animation: orbGlow 3s ease-in-out infinite;
     }
 
     .favorite-btn.favorited:hover {
-      border-color: rgba(255, 230, 120, 0.8);
+      border-color: rgba(255, 230, 120, 0.9);
       box-shadow: 
-        0 4px 12px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        0 0 25px rgba(255, 200, 80, 0.4);
+        0 6px 18px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        0 0 35px rgba(255, 180, 60, 0.6);
     }
 
     .game-item-arrow {
-      font-size: 0.85rem;
-      color: #a8d4ff;
-      transition: transform 0.2s ease;
+      font-size: 0.9rem;
+      color: #b8d8ff;
+      transition: transform 0.3s ease;
       will-change: transform;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     }
 
     .game-item.expanded .game-item-arrow {
@@ -390,7 +565,7 @@
     .game-item-content {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.25s ease-out;
+      transition: grid-template-rows 0.3s ease-out;
       overflow: hidden;
     }
 
@@ -401,66 +576,68 @@
     .game-item-content-inner {
       overflow: hidden;
       padding-top: 0;
-      transition: padding-top 0.25s ease-out;
+      transition: padding-top 0.3s ease-out;
     }
 
     .game-item.expanded .game-item-content-inner {
-      padding-top: 14px;
+      padding-top: 16px;
     }
 
     .game-item-description {
-      margin: 10px 0 16px 0;
-      line-height: 1.6;
-      color: #d0e5ff;
-      font-size: 0.95rem;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      margin: 12px 0 18px 0;
+      line-height: 1.65;
+      color: #d8ebff;
+      font-size: 0.96rem;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
 
     .versions-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 14px;
-      margin-top: 14px;
+      gap: 16px;
+      margin-top: 16px;
     }
 
-    /* Boxy glossy version cards */
+    /* Enhanced version cards with deeper glass */
     .version {
       background: linear-gradient(180deg, 
-        rgba(50, 95, 160, 0.4) 0%, 
-        rgba(35, 75, 135, 0.45) 100%);
-      padding: 16px 18px;
-      border: 1px solid rgba(140, 200, 255, 0.3);
-      border-top: 2px solid var(--glass-border);
+        rgba(55, 105, 175, 0.5) 0%, 
+        rgba(40, 85, 150, 0.6) 100%);
+      padding: 18px 20px;
+      border: 1px solid rgba(160, 210, 255, 0.4);
+      border-top: 2px solid rgba(255, 255, 255, 0.3);
       box-shadow: 
-        0 3px 14px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 var(--glass-light),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+        0 4px 18px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+      transition: all 0.3s;
       will-change: transform;
       position: relative;
+      backdrop-filter: blur(12px);
+      border-radius: 2px;
     }
 
-    /* Glass shine on version cards */
     .version::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 50%;
+      height: 60%;
       background: linear-gradient(180deg, 
-        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.12) 0%, 
         transparent 100%);
       pointer-events: none;
+      border-radius: 2px 2px 0 0;
     }
 
     .version:hover {
-      transform: translateY(-3px);
-      border-color: rgba(160, 210, 255, 0.5);
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(180, 220, 255, 0.6);
       box-shadow: 
-        0 5px 18px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25),
-        0 0 25px rgba(74, 158, 255, 0.3);
+        0 8px 24px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(74, 158, 255, 0.4);
     }
 
     .version strong {
@@ -468,35 +645,36 @@
       font-size: 15px;
       font-weight: 700;
       display: block;
-      margin-bottom: 10px;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      margin-bottom: 12px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
       position: relative;
       z-index: 1;
     }
 
     a {
-      color: #9fd4ff;
+      color: #a8d8ff;
       font-weight: 700;
       text-decoration: none;
-      transition: color 0.2s, text-shadow 0.2s;
+      transition: all 0.3s;
       display: inline-block;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       position: relative;
       z-index: 1;
     }
 
     a:hover {
-      color: #d0ebff;
-      text-shadow: 0 0 10px rgba(150, 200, 255, 0.6);
+      color: #e0f0ff;
+      text-shadow: 0 0 15px rgba(160, 210, 255, 0.7);
+      transform: translateX(2px);
     }
 
     .no-results {
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
       color: #ddeeff;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
     }
 
     @media (max-width: 768px) {
@@ -506,7 +684,7 @@
       }
 
       .title {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
       }
 
       .versions-container {
@@ -524,9 +702,17 @@
       .filter-btn {
         width: 100%;
       }
+
+      .stats-bar {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .game-item:hover {
+        transform: translateY(-2px);
+      }
     }
 
-    /* Respect reduced motion preference */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -535,9 +721,11 @@
       }
     }
 
-    /* Hide animations on low-end devices */
     @media (max-width: 480px) {
       body::before, body::after {
+        display: none;
+      }
+      #spotlight {
         display: none;
       }
     }
@@ -546,15 +734,32 @@
 
 <body>
 
+<div id="spotlight"></div>
+
 <header>
   <div class="title">The Apline Bay</div>
 </header>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <strong id="totalGames">0</strong> Total Games
+  </div>
+  <div class="stat-item">
+    <strong id="favoritesCount">0</strong> Favorites
+  </div>
+  <div class="stat-item">
+    <strong id="displayedGames">0</strong> Displayed
+  </div>
+</div>
 
 <div class="container">
   <div class="controls">
     <div class="search-row">
       <input type="text" id="search" placeholder="Search games..." />
-      <button class="filter-btn" id="favoritesFilter">★ Show Favorites</button>
+      <button class="filter-btn" id="favoritesFilter">
+        <div class="ripple-container"></div>
+        ★ Show Favorites
+      </button>
     </div>
   </div>
   <div id="games"></div>
@@ -565,33 +770,72 @@
   const container = document.getElementById('games');
   const search = document.getElementById('search');
   const favoritesFilter = document.getElementById('favoritesFilter');
+  const spotlight = document.getElementById('spotlight');
+  const totalGamesEl = document.getElementById('totalGames');
+  const favoritesCountEl = document.getElementById('favoritesCount');
+  const displayedGamesEl = document.getElementById('displayedGames');
   let dataCache = [];
   let renderedGames = new Map();
   let favorites = new Set();
   let showOnlyFavorites = false;
+
+  // Mouse spotlight tracking
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    spotlight.style.left = mouseX + 'px';
+    spotlight.style.top = mouseY + 'px';
+  });
+
+  // Ripple effect on buttons
+  function createRipple(e, button) {
+    const rippleContainer = button.querySelector('.ripple-container');
+    if (!rippleContainer) return;
+
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
+
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+
+    rippleContainer.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+  }
+
+  // Update stats display
+  function updateStats() {
+    totalGamesEl.textContent = dataCache.length;
+    favoritesCountEl.textContent = favorites.size;
+  }
   
-  // Load favorites from storage
   async function loadFavorites() {
     try {
       const result = await window.storage.get('favorites');
       if (result && result.value) {
         favorites = new Set(JSON.parse(result.value));
+        updateStats();
       }
     } catch (err) {
       console.log('No favorites found or error loading:', err);
     }
   }
 
-  // Save favorites to storage
   async function saveFavorites() {
     try {
       await window.storage.set('favorites', JSON.stringify([...favorites]));
+      updateStats();
     } catch (err) {
       console.error('Error saving favorites:', err);
     }
   }
 
-  // Toggle favorite status
   async function toggleFavorite(gameName, event) {
     event.stopPropagation();
     
@@ -608,9 +852,9 @@
   function showMessage(msg){
     container.innerHTML = `<div class="no-results">${msg}</div>`;
     renderedGames.clear();
+    displayedGamesEl.textContent = '0';
   }
 
-  // Debounce for performance
   function debounce(func, wait) {
     let timeout;
     return function(...args) {
@@ -619,7 +863,6 @@
     };
   }
 
-  // Efficient rendering with DOM reuse
   function render(list){
     if(!list.length){
       const query = search.value.trim();
@@ -635,6 +878,8 @@
       return;
     }
 
+    displayedGamesEl.textContent = list.length;
+
     const fragment = document.createDocumentFragment();
     const newRendered = new Map();
 
@@ -643,7 +888,6 @@
       if (!gameItem) {
         gameItem = createGameElement(game);
       } else {
-        // Update favorite status on existing elements
         const favoriteBtn = gameItem.querySelector('.favorite-btn');
         const isFavorited = favorites.has(game.name);
         favoriteBtn.textContent = isFavorited ? '★' : '☆';
@@ -681,6 +925,10 @@
     }
     favoriteBtn.onclick = (e) => toggleFavorite(game.name, e);
     favoriteBtn.title = isFavorited ? 'Remove from favorites' : 'Add to favorites';
+
+    const favoriteRipple = document.createElement('div');
+    favoriteRipple.className = 'ripple-container';
+    favoriteBtn.appendChild(favoriteRipple);
 
     const gameTitle = document.createElement('div');
     gameTitle.className = 'game-item-title';
@@ -749,12 +997,10 @@
     
     let filtered = dataCache;
     
-    // Filter by favorites if enabled
     if (showOnlyFavorites) {
       filtered = filtered.filter(g => favorites.has(g.name));
     }
     
-    // Filter by search query
     if (query !== '') {
       filtered = filtered.filter(g =>
         g.name.toLowerCase().includes(query) ||
@@ -771,11 +1017,11 @@
 
   const debouncedApply = debounce(apply, 150);
 
-  // Toggle favorites filter
-  favoritesFilter.onclick = () => {
+  favoritesFilter.onclick = (e) => {
+    createRipple(e, favoritesFilter);
     showOnlyFavorites = !showOnlyFavorites;
     favoritesFilter.classList.toggle('active', showOnlyFavorites);
-    favoritesFilter.textContent = showOnlyFavorites ? '★ Show All' : '★ Show Favorites';
+    favoritesFilter.innerHTML = `<div class="ripple-container"></div>${showOnlyFavorites ? '★ Show All' : '★ Show Favorites'}`;
     apply();
   };
 
@@ -783,7 +1029,6 @@
 
   async function loadAllGames() {
     try {
-      // First load favorites
       await loadFavorites();
       
       const manifestResponse = await fetch('Rom 47/manifest.json');
@@ -805,6 +1050,7 @@
       );
       
       dataCache = results.flat();
+      updateStats();
       
       if (dataCache.length === 0) {
         showMessage('No games found. Make sure JSON files are in the "Rom 47" folder.');
