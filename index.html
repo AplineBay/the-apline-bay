@@ -151,6 +151,12 @@
       pointer-events: none;
     }
 
+    .search-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
     #search {
       padding: 14px 18px;
       border: 1px solid rgba(100, 150, 220, 0.4);
@@ -159,7 +165,7 @@
         rgba(10, 25, 50, 0.8) 0%,
         rgba(15, 30, 55, 0.7) 100%);
       color: #e8f4ff;
-      width: 100%;
+      flex: 1;
       font-size: 16px;
       box-shadow: 
         inset 0 2px 8px rgba(0, 0, 0, 0.7),
@@ -179,6 +185,60 @@
 
     #search::placeholder {
       color: rgba(232, 241, 255, 0.35);
+    }
+
+    /* Aero-style filter button */
+    .filter-btn {
+      padding: 14px 24px;
+      border: 1px solid rgba(120, 180, 240, 0.4);
+      border-top: 2px solid var(--glass-border);
+      background: linear-gradient(180deg, 
+        rgba(50, 95, 160, 0.5) 0%, 
+        rgba(35, 75, 135, 0.55) 100%);
+      color: #e8f4ff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 
+        0 3px 12px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 var(--glass-light),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+      transition: all 0.2s;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.12) 0%, 
+        transparent 100%);
+      pointer-events: none;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(160, 210, 255, 0.6);
+      box-shadow: 
+        0 5px 16px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 20px rgba(74, 158, 255, 0.3);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(180deg, 
+        rgba(70, 130, 200, 0.7) 0%, 
+        rgba(50, 105, 175, 0.75) 100%);
+      border-color: rgba(160, 210, 255, 0.7);
+      box-shadow: 
+        0 3px 12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(100, 180, 255, 0.4);
     }
 
     /* Boxy glossy game items */
@@ -224,6 +284,14 @@
       border-left-color: rgba(120, 200, 255, 0.9);
     }
 
+    .game-item.favorited {
+      border-left-color: rgba(255, 215, 100, 0.8);
+    }
+
+    .game-item.favorited:hover {
+      border-left-color: rgba(255, 230, 120, 1);
+    }
+
     .game-item-header {
       display: flex;
       justify-content: space-between;
@@ -232,11 +300,80 @@
       z-index: 1;
     }
 
+    .game-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
     .game-item-title {
       font-size: 1.1rem;
       font-weight: 600;
       color: #f5fbff;
       text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Aero-style favorite star button */
+    .favorite-btn {
+      background: linear-gradient(180deg, 
+        rgba(60, 110, 180, 0.5) 0%, 
+        rgba(40, 85, 150, 0.55) 100%);
+      border: 1px solid rgba(140, 200, 255, 0.4);
+      border-top: 2px solid var(--glass-border);
+      padding: 6px 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 var(--glass-light),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+      position: relative;
+      font-size: 1.2rem;
+      line-height: 1;
+      will-change: transform;
+    }
+
+    /* Glass shine on star button */
+    .favorite-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        transparent 100%);
+      pointer-events: none;
+    }
+
+    .favorite-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(160, 210, 255, 0.6);
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 0 20px rgba(74, 158, 255, 0.3);
+    }
+
+    .favorite-btn.favorited {
+      background: linear-gradient(180deg, 
+        rgba(180, 130, 50, 0.6) 0%, 
+        rgba(150, 100, 30, 0.65) 100%);
+      border-color: rgba(255, 215, 100, 0.6);
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 0 15px rgba(255, 200, 80, 0.3);
+    }
+
+    .favorite-btn.favorited:hover {
+      border-color: rgba(255, 230, 120, 0.8);
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 25px rgba(255, 200, 80, 0.4);
     }
 
     .game-item-arrow {
@@ -375,6 +512,18 @@
       .versions-container {
         grid-template-columns: 1fr;
       }
+
+      .search-row {
+        flex-direction: column;
+      }
+
+      #search {
+        width: 100%;
+      }
+
+      .filter-btn {
+        width: 100%;
+      }
     }
 
     /* Respect reduced motion preference */
@@ -403,7 +552,10 @@
 
 <div class="container">
   <div class="controls">
-    <input type="text" id="search" placeholder="Search games..." />
+    <div class="search-row">
+      <input type="text" id="search" placeholder="Search games..." />
+      <button class="filter-btn" id="favoritesFilter">★ Show Favorites</button>
+    </div>
   </div>
   <div id="games"></div>
 </div>
@@ -412,9 +564,47 @@
 (function(){
   const container = document.getElementById('games');
   const search = document.getElementById('search');
+  const favoritesFilter = document.getElementById('favoritesFilter');
   let dataCache = [];
   let renderedGames = new Map();
+  let favorites = new Set();
+  let showOnlyFavorites = false;
   
+  // Load favorites from storage
+  async function loadFavorites() {
+    try {
+      const result = await window.storage.get('favorites');
+      if (result && result.value) {
+        favorites = new Set(JSON.parse(result.value));
+      }
+    } catch (err) {
+      console.log('No favorites found or error loading:', err);
+    }
+  }
+
+  // Save favorites to storage
+  async function saveFavorites() {
+    try {
+      await window.storage.set('favorites', JSON.stringify([...favorites]));
+    } catch (err) {
+      console.error('Error saving favorites:', err);
+    }
+  }
+
+  // Toggle favorite status
+  async function toggleFavorite(gameName, event) {
+    event.stopPropagation();
+    
+    if (favorites.has(gameName)) {
+      favorites.delete(gameName);
+    } else {
+      favorites.add(gameName);
+    }
+    
+    await saveFavorites();
+    apply();
+  }
+
   function showMessage(msg){
     container.innerHTML = `<div class="no-results">${msg}</div>`;
     renderedGames.clear();
@@ -432,7 +622,16 @@
   // Efficient rendering with DOM reuse
   function render(list){
     if(!list.length){
-      showMessage(search.value.trim() === '' ? 'Start typing to search for games...' : 'No games found.');
+      const query = search.value.trim();
+      if (showOnlyFavorites && favorites.size === 0) {
+        showMessage('No favorite games yet. Click the ★ button on games to favorite them!');
+      } else if (showOnlyFavorites) {
+        showMessage('No favorite games match your search.');
+      } else if (query === '') {
+        showMessage('Start typing to search for games...');
+      } else {
+        showMessage('No games found.');
+      }
       return;
     }
 
@@ -443,6 +642,13 @@
       let gameItem = renderedGames.get(game.name);
       if (!gameItem) {
         gameItem = createGameElement(game);
+      } else {
+        // Update favorite status on existing elements
+        const favoriteBtn = gameItem.querySelector('.favorite-btn');
+        const isFavorited = favorites.has(game.name);
+        favoriteBtn.textContent = isFavorited ? '★' : '☆';
+        favoriteBtn.classList.toggle('favorited', isFavorited);
+        gameItem.classList.toggle('favorited', isFavorited);
       }
       newRendered.set(game.name, gameItem);
       fragment.appendChild(gameItem);
@@ -456,9 +662,25 @@
   function createGameElement(game){
     const gameItem = document.createElement('div');
     gameItem.className = 'game-item';
+    const isFavorited = favorites.has(game.name);
+    if (isFavorited) {
+      gameItem.classList.add('favorited');
+    }
 
     const gameHeader = document.createElement('div');
     gameHeader.className = 'game-item-header';
+
+    const gameLeft = document.createElement('div');
+    gameLeft.className = 'game-item-left';
+
+    const favoriteBtn = document.createElement('button');
+    favoriteBtn.className = 'favorite-btn';
+    favoriteBtn.textContent = isFavorited ? '★' : '☆';
+    if (isFavorited) {
+      favoriteBtn.classList.add('favorited');
+    }
+    favoriteBtn.onclick = (e) => toggleFavorite(game.name, e);
+    favoriteBtn.title = isFavorited ? 'Remove from favorites' : 'Add to favorites';
 
     const gameTitle = document.createElement('div');
     gameTitle.className = 'game-item-title';
@@ -468,7 +690,8 @@
     gameArrow.className = 'game-item-arrow';
     gameArrow.textContent = '▶';
 
-    gameHeader.append(gameTitle, gameArrow);
+    gameLeft.append(favoriteBtn, gameTitle);
+    gameHeader.append(gameLeft, gameArrow);
     gameItem.appendChild(gameHeader);
 
     const gameContent = document.createElement('div');
@@ -512,35 +735,57 @@
     gameContent.appendChild(gameContentInner);
     gameItem.appendChild(gameContent);
 
-    gameHeader.onclick = () => gameItem.classList.toggle('expanded');
+    gameHeader.onclick = (e) => {
+      if (e.target !== favoriteBtn && !favoriteBtn.contains(e.target)) {
+        gameItem.classList.toggle('expanded');
+      }
+    };
 
     return gameItem;
   }
 
   function apply(){
     const query = search.value.toLowerCase().trim();
-    if(query === ''){
-      render([]);
-      return;
+    
+    let filtered = dataCache;
+    
+    // Filter by favorites if enabled
+    if (showOnlyFavorites) {
+      filtered = filtered.filter(g => favorites.has(g.name));
     }
     
-    const filtered = dataCache.filter(g =>
-      g.name.toLowerCase().includes(query) ||
-      g.description?.toLowerCase().includes(query) ||
-      g.versions?.some(v => 
-        v.platform.toLowerCase().includes(query) ||
-        v.tags?.some(tag => tag.toLowerCase().includes(query))
-      )
-    );
+    // Filter by search query
+    if (query !== '') {
+      filtered = filtered.filter(g =>
+        g.name.toLowerCase().includes(query) ||
+        g.description?.toLowerCase().includes(query) ||
+        g.versions?.some(v => 
+          v.platform.toLowerCase().includes(query) ||
+          v.tags?.some(tag => tag.toLowerCase().includes(query))
+        )
+      );
+    }
+    
     render(filtered);
   }
 
   const debouncedApply = debounce(apply, 150);
 
+  // Toggle favorites filter
+  favoritesFilter.onclick = () => {
+    showOnlyFavorites = !showOnlyFavorites;
+    favoritesFilter.classList.toggle('active', showOnlyFavorites);
+    favoritesFilter.textContent = showOnlyFavorites ? '★ Show All' : '★ Show Favorites';
+    apply();
+  };
+
   showMessage('Loading games...');
 
   async function loadAllGames() {
     try {
+      // First load favorites
+      await loadFavorites();
+      
       const manifestResponse = await fetch('Rom 47/manifest.json');
       let jsonFiles = [];
       
