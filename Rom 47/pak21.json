@@ -1,0 +1,18 @@
+[
+    {
+        "slug": "extreme-car-driving-simulator-ios",
+        "name": "Extreme Car Driving Simulator [IOS]",
+        "description": "A popular game with engaging gameplay and features.",
+        "versions": [
+            {
+                "platform": "Classic",
+                "url": "https://archive.org/download/com.aim.racing-ios7.0-clutch-2.0.4_202503/com.aim.racing-iOS7.0-%28Clutch-2.0.4%29.ipa",
+                "tags": [
+                    "Singleplayer",
+                    "Offline",
+                    "Ios"
+                ]
+            }
+        ]
+    }
+]
